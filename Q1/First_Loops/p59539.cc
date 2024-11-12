@@ -4,15 +4,14 @@ using namespace std;
 int main() {
     cout.setf(ios::fixed);
     cout.precision(4);
-    
+
     int n;
     cin >> n;
 
-    float comptador = 1;
-    float suma = 0;
-    while (comptador <= n) {
-        suma += 1/comptador;
-        comptador++;
+    double harmonic_number = 0;
+    for (int i = 1; i <= n; ++i) {
+        harmonic_number += 1.0 / i;
     }
-    cout << suma << endl;
+
+    cout << harmonic_number << endl;
 }
