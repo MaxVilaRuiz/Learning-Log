@@ -1,5 +1,5 @@
 CXX := g++
-CXXFLAGS := -std=c++17 -g3 -D_GLIBCXX_DEBUG -Wall -Wextra -Werror -Wno-sign-compare-fno-extended-identifiers
+CXXFLAGS := -std=c++17 -g3 -D_GLIBCXX_DEBUG -Wall -Wextra -Werror -Wno-ignored-reference-qualifiers
 
 program: main.o vstack.o html_elem.o
 	$(CXX) $(CXXFLAGS) -o program $^
