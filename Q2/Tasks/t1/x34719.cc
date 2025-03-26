@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <algorithm>
 using namespace std;
 
 struct Log {
@@ -11,47 +12,49 @@ struct Log {
 
 struct Map_content {
     int count;
+    int last;
     vector<string> paths;
 };
 
-// Pre:
-// Post:
-void insert_v(vector<string>& v, string s) {
-    v.push_back(s);
-    int i = v.size() - 1;
-    while (0 < i && s < v[i-1]) {
-        v[i] = v[i-1];
-        i--;
-    }
-    v[i] = s;
-}
-
 int main() { 
     map<string, Map_content > M;   
-    Log access1, access2;
-    cin >> access1.ip >> access1.path >> access1.time;
+    vector<string> bots;
+    Log access;
+    while (cin >> access.ip >> access.path >> access.time) {
+        auto it = M.find(access.ip);
 
-    while (cin >> access2.ip >> access2.path >> access2.time) {
-        if (access1.time - access2.time < 100) {
-            insert_v(M[access1.ip].paths, access1.path);
-            if (access1.ip == access2.ip) M[access1.ip].count++;
-            else {
-                if (M[access1.ip].count < 20) M[access1.ip].count = 0;
+        if (it != M.end()) {
+            if (access.time - (*it).second.last < 100) {
+                (*it).second.count++;
+                if ((*it).second.count == 20) bots.push_back(access.ip);
             }
+            else {
+                if ((*it).second.count < 20) (*it).second.count = 1;
+            }
+
+            auto i = find((*it).second.paths.begin(), (*it).second.paths.end(), access.path);
+            if (i == (*it).second.paths.end()) {
+                (*it).second.paths.push_back(access.path);
+            }
+
+            (*it).second.last = access.time;
         }
-        access1 = access2;
+        else {
+            M[access.ip] = {1, access.time, {access.path}};
+        }
     }
 
-    int i = 0;
-    for (auto it = M.begin(); it != M.end(); it++) {
-        if (20 <= (*it).second.count) {
-            cout << (*it).first << ' ';
-            for (int i = 0; i < (*it).second.paths.size(); i++) {
-                cout << (*it).second.paths[i] << ' ';
+    // Output
+    if (0 < bots.size()) {
+        sort(bots.begin(), bots.end());
+        for (int i = 0; i < bots.size(); i++) {
+            cout << bots[i];
+            sort(M[bots[i]].paths.begin(), M[bots[i]].paths.end());
+            for (int j = 0; j < M[bots[i]].paths.size(); j++) {
+                cout << ' ' << M[bots[i]].paths[j];
             }
             cout << endl;
-            i++;
         }
     }
-    if (i == 0) cout << "No bots" << endl;
+    else cout << "No bots" << endl;
 }
