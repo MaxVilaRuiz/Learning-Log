@@ -16,6 +16,10 @@ struct Map_content {
     vector<string> paths;
 };
 
+// Pre: Llistat d'accessos web formats per una IP, un path i un temps 
+//      (string, string i int, respectivament).
+// Post: Es mostra "No bots" si no s'ha detectat cap bot. Altrament, per cada bot detectat 
+//       mostra un línia amb la IP i tots els paths d'aquell bot ordenats lexicogràficament.
 int main() { 
     map<string, Map_content > M;   
     vector<string> bots;
