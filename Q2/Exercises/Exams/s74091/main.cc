@@ -5,6 +5,7 @@ using namespace pro2;
 
 #include <set>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 /**
@@ -21,11 +22,16 @@ using namespace std;
  * @returns El conjunt de valors trobats a profunditat `depth`
  */
 set<int> values_at_depth(BinTree<int> t, int depth) {
-    if (!t.empty() && depth == 1) return {t.value()};
-    else if (!t.empty() && depth != 1) {
-        return {values_at_depth(t.left(), depth-1), values_at_depth(t.right(), depth-1)};
+    if (t.empty()) return {};
+    else if (depth == 1) return {t.value()};
+    else {
+        set<int> s_left = {values_at_depth(t.left(), depth - 1)};
+        set<int> s_right = {values_at_depth(t.right(), depth - 1)};
+        set<int> s;
+        s.insert(s_left.begin(), s_left.end());
+        s.insert(s_right.begin(), s_right.end());
+        return s;
     }
-    return {};
 }
 
 int read_int(string line) {

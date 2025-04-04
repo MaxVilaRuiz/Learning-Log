@@ -17,19 +17,15 @@ using namespace std;
  *
  * @pre   `skip` >= 0
  */
-void remove_zeros_skipping(list<pair<string, int>>& L, int skip) {
+void remove_zeros_skipping(list<pair<string, int> >& L, int skip) {    
     auto it = L.begin();
     while (it != L.end()) {
-        if ((*it).second == 0) {
-            if (0 < skip) {
-                skip--;
-                it++;
-            }
-            else {
-                it = L.erase(it);
-            }
+        if ((*it).second == 0 && 0 < skip) skip--;
+        else if ((*it).second == 0 && skip == 0) {
+            it = L.erase(it);
+            it--;
         }
-        else it++;
+        it++;
     }
 }
 
@@ -41,7 +37,7 @@ int read_int(string line) {
 }
 
 template <typename A, typename B>
-list<pair<A, B>> read_list_of_pairs(string input) {
+list<pair<A, B> > read_list_of_pairs(string input) {
     A a;
     B b;
     list<pair<A, B>> result;
@@ -53,7 +49,7 @@ list<pair<A, B>> read_list_of_pairs(string input) {
     return result;
 }
 
-void show_list_of_pairs(list<pair<string, int>>& L) {
+void show_list_of_pairs(list<pair<string, int> >& L) {
     auto it = L.begin();
     if (it != L.end()) {
         cout << it->first << ' ' << it->second;

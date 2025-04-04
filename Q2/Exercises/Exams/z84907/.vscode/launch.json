@@ -5,15 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debugar amb GDB",
+            "name": "Debuggar",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/program", // <--- si el nom del programa es diu diferent, cal canviar-lo aquí
+            "program": "${workspaceFolder}/program",
             "args": [],
-            "stopAtEntry": true, // <---- Posant `false` aquí no pararà al principi del programa
+            "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false, // <--- Posant true aquí llença una consola externa
+            "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [
                 {
@@ -27,8 +27,8 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: Compila amb Makefile",
-            "internalConsoleOptions": "openOnSessionStart"
+            "preLaunchTask": "Build with Makefile"
         }
+
     ]
 }

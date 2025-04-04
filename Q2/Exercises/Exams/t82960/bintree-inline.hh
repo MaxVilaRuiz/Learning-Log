@@ -1,5 +1,5 @@
-#ifndef INLINE_HH
-#define INLINE_HH
+#ifndef BINTREE_INLINE_HH
+#define BINTREE_INLINE_HH
 
 #include <iostream>
 #include <sstream>

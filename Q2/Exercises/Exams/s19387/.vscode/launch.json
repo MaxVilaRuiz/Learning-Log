@@ -27,8 +27,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: Compila amb Makefile",
-            "internalConsoleOptions": "openOnSessionStart"
+            "preLaunchTask": "C/C++: Compila amb Makefile"
         }
     ]
 }
