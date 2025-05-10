@@ -97,3 +97,11 @@ void Mario::update(pro2::Window& window, const vector<Platform>& platforms) {
         }
     }
 }
+
+pro2::Rect Mario::rect() const {
+    int left = pos_.x - 6;
+    int top = pos_.y - 15;
+    int right = pos_.x + 6;
+    int bottom = pos_.y + 15;
+    return Rect({left, top, right, bottom});    
+}

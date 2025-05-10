@@ -54,6 +54,11 @@ class Mario {
 
     void update(pro2::Window& window, const std::vector<Platform>& platforms);
 
+    /**
+     * @brief Retorna el rectangle que conté a l'objecte que rep per paràmetre implícit.
+     */
+    pro2::Rect rect() const;
+
  private:
     static const std::vector<std::vector<int>> mario_sprite_normal_;
 };

@@ -42,8 +42,19 @@ void paint_sprite(pro2::Window&                        window,
                   const std::vector<std::vector<int>>& sprite,
                   bool                                 mirror);
 
-}  // namespace pro2
+                  void paint_rect(pro2::Window& window, pro2::Rect rectangle, pro2::Color color);
 
-void paint_rect(pro2::Window& window, pro2::Rect rectangle, pro2::Color color);
+/**
+ * @brief Diu si els dos objectes s'estan col·lisionant (true) o si no (false).
+ *
+ * La funció 'objs_collision' compara les posicions dels rectangles dels dos objectes que
+ * rep pels paràmetres per determinar si s'estan tocant / col·lisionant. En cas vafirmatiu, 
+ * la funció retorna 'true'; altrament, retorna 'false'.
+ *
+ * @param obj1 Rectangle que conté a l'objecte 1
+ * @param obj2 Rectangle que conté a l'objecte 2
+ */
+bool objs_collision(pro2::Rect obj1, pro2::Rect obj2);
+}  // namespace pro2
 
 #endif
