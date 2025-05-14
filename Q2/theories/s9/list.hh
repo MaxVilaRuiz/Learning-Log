@@ -28,7 +28,7 @@ class List {
 
   void insertValue(Item *pitemprev, T value) {
     Item* pitem = new Item();
-    pitem -> value = value;
+    pitem->value = value;
     insertItem(pitemprev, pitem);
   }
 
@@ -87,6 +87,29 @@ class List {
       exit(1);
     }
     deleteItem(itemsup.prev);
+  }
+
+  bool find(const T& value) const {
+    Item* paux = iteminf.next;
+    while (paux != &itemsup) {
+      if (paux->value == value) return true;
+      paux = paux->next;
+    }
+    return false;
+  }
+
+  void reverse() {
+    Item* paux = itemsup.prev;
+    Item paux2;
+    while (paux != &iteminf) {
+      paux2 = paux->next;
+      paux->next = paux->prev;
+      paux->prev = paux2;
+      paux = paux->prev;
+    }
+    paux2 = iteminf;
+    iteminf.next = itemsup.prev;
+    itemsup.prev = paux2.next;
   }
 
   /*
