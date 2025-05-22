@@ -103,5 +103,5 @@ pro2::Rect Mario::rect() const {
     int top = pos_.y - 15;
     int right = pos_.x + 6;
     int bottom = pos_.y + 15;
-    return Rect({left, top, right, bottom});    
+    return pro2::Rect({left, top, right, bottom});    
 }

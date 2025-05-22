@@ -77,7 +77,7 @@ void Game::paint(pro2::Window& window) {
     for (const Coin& c : coins_) {
         c.paint(window);
     }
-    const Rect cam_rect = window.camera_rect();
+    const pro2::Rect cam_rect = window.camera_rect();
     Pt top_left = {cam_rect.left + 5, cam_rect.top + 5}; 
     Pt top_left2 = {cam_rect.left + 22, cam_rect.top + 8};
     paint_sprite(window, top_left, Coin::coin_sprite_front, false);
