@@ -1,28 +1,41 @@
 #pragma once
 
-// #include <iostream>
 #include <vector>
 #include "platform.hh"
 
 class Coin { 
   private:
-    pro2::Pt pos_;
-    int frame_ = 0;
+    pro2::Pt pos_; // Position of the coin
+    int frame_ = 0; // Animation frame counter
 
+    // Internal sprites for animation
     static const std::vector<std::vector<int>> coin_sprite_oval_;
     static const std::vector<std::vector<int>> coin_sprite_side_;
 
   public:
-    static const std::vector<std::vector<int>> coin_sprite_front; 
+    static const std::vector<std::vector<int>> coin_sprite_front; // Public facing sprite
 
+    /// @brief Constructs a Coin at a given position
     Coin(pro2::Pt pos) : pos_(pos) {}
 
+    /**
+     * @brief Draws the coin on the screen
+     * @param window Window to render the coin on
+     * @pre window must be valid
+     * @post Coin is painted to the window
+     */
     void paint(pro2::Window& window) const;
 
+    /**
+     * @brief Updates animation frame of the coin
+     * @post frame_ is incremented or cycled for animation
+     */
     void update();
 
     /**
-     * @brief Retorna el rectangle que conté a l'objecte que rep per paràmetre implícit.
+     * @brief Returns the bounding rectangle of the coin
+     * @return A rectangle representing the coin's area
+     * @post The returned Rect encloses the coin's position
      */
-    pro2::Rect rect() const;
+    pro2::Rect get_rect() const;
 };

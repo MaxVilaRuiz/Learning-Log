@@ -1,12 +1,13 @@
 #include "platform.hh"
 using namespace std;
-
 using pro2::Color;
+
 
 const int b = 0xc84d0b;
 const int _ = 0;
 
 // clang-format off
+// Platform texture (b = block color, _ = transparent)
 const vector<vector<int>> Platform::platform_texture_ = {
     {b, b, b, b, b, b, _}, 
 	{b, b, b, b, b, b, _}, 
@@ -19,6 +20,7 @@ const vector<vector<int>> Platform::platform_texture_ = {
 };
 // clang-format on
 
+
 void Platform::paint(pro2::Window& window) const {
     const int xsz = platform_texture_.size();
     const int ysz = platform_texture_[0].size();
@@ -29,10 +31,12 @@ void Platform::paint(pro2::Window& window) const {
     }
 }
 
+
 bool Platform::has_crossed_floor_downwards(pro2::Pt plast, pro2::Pt pcurr) const {
     return (left_ <= plast.x && plast.x <= right_) && (left_ <= pcurr.x && pcurr.x <= right_) &&
            (plast.y <= top_ && pcurr.y >= top_);
 }
+
 
 bool Platform::is_pt_inside(pro2::Pt pt) const {
 	return left_ <= pt.x && pt.x <= right_ && top_ <= pt.y && pt.y <= bottom_;

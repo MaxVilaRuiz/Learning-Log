@@ -3,6 +3,8 @@
 using namespace std;
 using namespace pro2;
 
+
+// Color codes
 const int _ = -1;
 const int r = pro2::red;
 const int s = 0xecc49b;
@@ -12,7 +14,7 @@ const int h = pro2::black;
 const int g = 0xaaaaaa;
 const int w = 0x8d573c;
 
-// clang-format off
+// Mario sprite
 const vector<vector<int>> Mario::mario_sprite_normal_ = {
     {_, _, _, r, r, r, r, r, _, _, _, _},
     {_, _, r, r, r, r, r, r, r, r, r, _},
@@ -31,12 +33,13 @@ const vector<vector<int>> Mario::mario_sprite_normal_ = {
     {_, w, w, w, _, _, _, _, w, w, w, _},
     {w, w, w, w, _, _, _, _, w, w, w, w},
 };
-// clang-format on
+
 
 void Mario::paint(pro2::Window& window) const {
     const Pt top_left = {pos_.x - 6, pos_.y - 15};
     paint_sprite(window, top_left, mario_sprite_normal_, looking_left_);
 }
+
 
 void Mario::apply_physics_() {
     if (grounded_) {
@@ -44,10 +47,8 @@ void Mario::apply_physics_() {
         accel_.y = 0;
     }
 
-    // Always falling to check if we aren't grounded
-    // If we are, we will return to the same spot
-
-    const int gravity = 1;  // gravity = 1 pixel / frame_time^2
+    // Gravity pull
+    const int gravity = 1;
     speed_.y += gravity;
 
     if (accel_time_ > 0) {
@@ -59,6 +60,7 @@ void Mario::apply_physics_() {
     pos_.y += speed_.y;
 }
 
+
 void Mario::jump() {
     if (grounded_) {
         accel_.y = -6;
@@ -67,14 +69,16 @@ void Mario::jump() {
     }
 }
 
-void Mario::update(pro2::Window& window, const vector<Platform>& platforms) {
+
+void Mario::update(pro2::Window& window, const list<Platform>& platforms) {
     last_pos_ = pos_;
+
     if (window.is_key_down(jump_key_)) {
         jump();
     }
 
-    // Velocitat horitzontal
-    speed_.x = 0; 
+    // Horizontal speed
+    speed_.x = 0;
     if (window.is_key_down(left_key_)) {
         speed_.x = -4;
     } else if (window.is_key_down(right_key_)) {
@@ -84,10 +88,7 @@ void Mario::update(pro2::Window& window, const vector<Platform>& platforms) {
         looking_left_ = speed_.x < 0;
     }
 
-    // Apply acceleration and speed
     apply_physics_();
-
-    // Check position
     set_grounded(false);
 
     for (const Platform& platform : platforms) {
@@ -98,10 +99,11 @@ void Mario::update(pro2::Window& window, const vector<Platform>& platforms) {
     }
 }
 
+
 pro2::Rect Mario::rect() const {
     int left = pos_.x - 6;
     int top = pos_.y - 15;
     int right = pos_.x + 6;
     int bottom = pos_.y + 15;
-    return pro2::Rect({left, top, right, bottom});    
+    return pro2::Rect({left, top, right, bottom});
 }

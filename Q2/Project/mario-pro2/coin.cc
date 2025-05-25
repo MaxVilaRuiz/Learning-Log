@@ -3,6 +3,7 @@
 using namespace std;
 using namespace pro2;
 
+
 const int _ = -1;
 const int y = pro2::yellow; 
 const int b = pro2::black;
@@ -56,27 +57,32 @@ const vector<vector<int>> Coin::coin_sprite_side_ = {
 };
 // clang-format on
 
+
 void Coin::paint(pro2::Window& window) const {
     int frame = (frame_ / 13) % 4;
     switch (frame) { 
         case 0:
             paint_sprite(window, {pos_.x, pos_.y}, coin_sprite_front, false);
             break;
+
         case 1:
         case 3:
             paint_sprite(window, {pos_.x, pos_.y + 2}, coin_sprite_oval_, false);
             break;
+            
         case 2:
             paint_sprite(window, {pos_.x, pos_.y + 4}, coin_sprite_side_, false);
             break;
     }
 }
 
+
 void Coin::update() {
     frame_++;
 }
 
-pro2::Rect Coin::rect() const {
+
+pro2::Rect Coin::get_rect() const {
     int left = pos_.x;
     int top = pos_.y + 2;
     int right = pos_.x + 12;

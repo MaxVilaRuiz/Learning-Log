@@ -1,40 +1,42 @@
-#ifndef GAME_HH
-#define GAME_HH
+#pragma once
 
 #include <vector>
 #include <list>
+#include <set>
 #include "mario.hh"
 #include "platform.hh"
 #include "coin.hh"
 #include "window.hh"
 #include "utils.hh"
+#include "finder.hh"
 
 class Game {
-    Mario                 mario_;
-    Mario                 mario2_;
-    std::vector<Platform> platforms_;
-    std::list<Coin> coins_;
+    static constexpr int sky_blue = 0x5c94fc; // Background color
+    
+    Mario                 mario_;          // Main player
+    Mario                 mario2_;         // Second player
+    std::list<Platform> platforms_;        // All platforms
+    std::list<Coin> coins_;                // All coins
+    Finder<Platform> platform_finder_;     // Platform finder
+    Finder<Coin> coin_finder_;             // Coin finder
+    std::set<const Coin*> coin_actualObj_;         // Coins in view
+    std::set<const Platform*> platform_actualObj_; // Platforms in view
 
-    bool finished_;
-    bool paused_;
-    int num_coins_;
+    bool finished_;     // Game over flag
+    bool paused_;       // Pause flag
+    int num_coins_;     // Collected coins
+    bool following_cam_ = false; // Vertical camera tracking state
 
-    void process_keys(pro2::Window& window);
-    void update_objects(pro2::Window& window);
-    void update_camera(pro2::Window& window);
+    void process_keys(pro2::Window& window);     // Handle input
+    void update_objects(pro2::Window& window);   // Update game logic
+    void update_camera(pro2::Window& window);    // Adjust camera
 
  public:
-    Game(int width, int height);
+    Game(int width, int height); // Constructor
 
-    void update(pro2::Window& window);
-    void paint(pro2::Window& window);
+    void update(pro2::Window& window); // Per-frame update
 
-    bool is_finished() const {
-        return finished_;
-    }
+    void paint(pro2::Window& window);  // Draw game
 
- private:
-    static constexpr int sky_blue = 0x5c94fc;
+    bool is_finished() const { return finished_; }
 };
-
-#endif

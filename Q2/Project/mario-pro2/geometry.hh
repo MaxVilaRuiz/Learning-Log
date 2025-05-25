@@ -1,5 +1,4 @@
-#ifndef GEOMETRY_HH
-#define GEOMETRY_HH
+#pragma once
 
 namespace pro2 {
 
@@ -23,5 +22,3 @@ struct Rect {
 };
 
 }
-
-#endif
