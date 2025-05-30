@@ -3,7 +3,8 @@
 #include <vector>
 #include <list>
 #include <set>
-#include "mario.hh"
+#include <vector>
+#include "main_char.hh"
 #include "platform.hh"
 #include "coin.hh"
 #include "window.hh"
@@ -13,8 +14,8 @@
 class Game {
     static constexpr int sky_blue = 0x5c94fc; // Background color
     
-    Mario                 mario_;          // Main player
-    Mario                 mario2_;         // Second player
+    MainChar mario_;          // Main player
+    MainChar luigi_;         // Second player
     std::list<Platform> platforms_;        // All platforms
     std::list<Coin> coins_;                // All coins
     Finder<Platform> platform_finder_;     // Platform finder

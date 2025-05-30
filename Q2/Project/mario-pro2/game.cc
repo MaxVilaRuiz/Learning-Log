@@ -3,8 +3,8 @@ using namespace pro2;
 
 
 Game::Game(int width, int height)
-    : mario_({width / 2, 150}, Keys::Space, Keys::Left, Keys::Right),
-      mario2_({(width / 2) - 30, 150}, Keys::W, Keys::A, Keys::D),
+    : mario_({width / 2, 150}, Keys::Up, Keys::Down, Keys::Left, Keys::Right, "mario"),
+      luigi_({(width / 2) - 30, 150}, Keys::W, Keys::S, Keys::A, Keys::D, "luigi"),
       platforms_{
         Platform(0, 200, 250, 261),
         Platform(100, 300, 200, 211),
@@ -61,13 +61,30 @@ void Game::process_keys(pro2::Window& window) {
         finished_ = true;
         return;
     }
-    else if (window.was_key_pressed(80)) paused_ = !paused_; // 'P' key to pause/unpause
+    else if (window.was_key_pressed(Keys::P)) paused_ = !paused_; // 'P' key to pause/unpause
 }
 
 
 void Game::update_objects(pro2::Window& window) {
-    mario_.update(window, platforms_);
-    mario2_.update(window, platforms_);
+    mario_.update(window, platform_actualObj_);
+    luigi_.update(window, platform_actualObj_);
+
+    // Subtract lives from characters if they are out of bounds
+    const int bottom_limit = window.camera_rect().bottom + 320;
+    if (mario_.pos().y > bottom_limit) {
+        mario_.lose_life();
+        window.set_camera_topleft({window.camera_rect().left, window.camera_rect().top - 150});
+        mario_.reset_position({window.camera_center().x - 80, window.camera_center().y - 20});
+    }
+    if (luigi_.pos().y > bottom_limit) {
+        luigi_.lose_life();
+        luigi_.reset_position({window.camera_center().x - 60, window.camera_center().y - 20});
+    }
+
+    // Finish game if a character have run out of lives
+    if (mario_.lives() == 0 || luigi_.lives() == 0) {
+        finished_ = true;
+    }
 
     // Query visible objects
     platform_actualObj_ = platform_finder_.query(window.camera_rect());
@@ -76,7 +93,8 @@ void Game::update_objects(pro2::Window& window) {
     // Check collisions and update coins
     if (!coins_.empty()) {
         for (auto it = coins_.begin(); it != coins_.end(); it++) {
-            if (objs_collision(mario_.rect(), it->get_rect()) || objs_collision(mario2_.rect(), it->get_rect())) {
+            if (objs_collision(mario_.rect(), it->get_rect()) || 
+                objs_collision(luigi_.rect(), it->get_rect())) {
                 coin_finder_.remove(&(*it)); 
                 it = coins_.erase(it);
                 num_coins_++;
@@ -140,5 +158,9 @@ void Game::paint(pro2::Window& window) {
 
     // Draw characters
     mario_.paint(window);
-    mario2_.paint(window);
+    luigi_.paint(window);
+
+    // Draw characters' lives
+    mario_.paint_lives(window, "mario");
+    luigi_.paint_lives(window, "luigi");
 }

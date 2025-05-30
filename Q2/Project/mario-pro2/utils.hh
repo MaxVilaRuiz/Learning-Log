@@ -42,7 +42,14 @@ void paint_sprite(pro2::Window&                        window,
                   const std::vector<std::vector<int>>& sprite,
                   bool                                 mirror);
 
-                  void paint_rect(pro2::Window& window, pro2::Rect rectangle, pro2::Color color);
+/**
+ * @brief Dibuixa un rectangle ple a la finestra amb un color donat.
+ *
+ * @param window    Finestra a la que pintar.
+ * @param rectangle Rectangle que es vol pintar.
+ * @param color     Color amb el qual es pintarà el rectangle.
+ */
+void paint_rect(pro2::Window& window, pro2::Rect rectangle, pro2::Color color);
 
 /**
  * @brief Diu si els dos objectes s'estan col·lisionant (true) o si no (false).

@@ -8,7 +8,7 @@
 template <class T>
 class Finder {
  private:
-    // Grid 480 x 320 (Mario screen) - max 42 cols, 63 rows
+    // Grid 480 x 320 (Screen) - max 42 cols, 63 rows
     inline static const int CELL_WIDTH = 480;
     inline static const int CELL_HEIGHT = 320;
     inline static const int MAX_X = 25000;
