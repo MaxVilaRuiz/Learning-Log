@@ -11,6 +11,7 @@ const int w = pro2::white;
 const int o = pro2::brown;
 const int g = pro2::golden;
 
+// clang-format off
 const vector<vector<int>> Coin::coin_sprite_front = {
     {_, _, _, _, b, b, b, b, _, _, _, _},
     {_, _, _, b, y, y, y, y, b, _, _, _},
@@ -176,6 +177,7 @@ const vector<vector<int>> Coin::coin_sprite_animation9_ = {
     {_, _, _, _, b, y, y, _, _, _, _, _},
     {_, _, _, _, _, b, _, _, _, _, _, _},
 };
+// clang-format on
 
 
 void Coin::paint(pro2::Window& window) const {

@@ -5,7 +5,7 @@
 
 class Coin { 
   private:
-    pro2::Pt pos_; // Position of the coin
+    pro2::Pt pos_;  // Position of the coin
     int frame_ = 0; // Animation frame counter
     int animation_speed_ = 7;
 

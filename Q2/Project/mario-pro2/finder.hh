@@ -21,17 +21,14 @@ class Finder {
 
     /**
      * @brief Adds or removes object `t` from the spatial grid based on the `add` parameter.
-     *
      * @pre
      * - `t` != nullptr
      * - `pro2::Rect r = t->get_rect()`:
      *   - `0 <= r.left <= r.right <= MAX_COL * CELL_WIDTH`
      *   - `0 <= r.top <= r.bottom <= MAX_ROW * CELL_HEIGHT`
-     *
      * @post
      * - If `add` is `true`, `t` is inserted into all grid cells that intersect with its rectangle.
      * - Otherwise, `t` is removed from all grid cells that intersect with its rectangle.
-     *
      * @param t Pointer to an object of type T that implements `get_rect() const`.
      * @param add Indicates whether to add (`true`) or remove (`false`) the object `t` from the grid.
     */

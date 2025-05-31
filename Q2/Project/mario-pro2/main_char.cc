@@ -16,6 +16,7 @@ const int w = pro2::brown;
 const int e = pro2::green;
 const int i = pro2::white;
 
+// clang-format off
 // Mario sprites
 const vector<vector<int>> MainChar::mario_sprite_normal_ = {
     {_, _, _, r, r, r, r, r, _, _, _, _},
@@ -195,6 +196,7 @@ const vector<vector<int>> MainChar::luigi_lives_sprite_ = {
     {_, _, _, _, _, _, h, _, _, _, _, _},
     {_, _, _, _, _, _, _, _, _, _, _, _},    
 };
+// clang-format on
 
 
 void MainChar::paint(pro2::Window& window) const {
