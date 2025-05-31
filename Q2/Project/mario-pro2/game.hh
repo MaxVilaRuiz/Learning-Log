@@ -19,17 +19,23 @@ class Game {
     
     MainChar mario_;          // Main player
     MainChar luigi_;         // Second player
+
     std::list<Platform> platforms_;        // All platforms
-    std::list<Coin> coins_;                // All coins
     Finder<Platform> platform_finder_;     // Platform finder
+    std::set<const Platform*> platform_actualObj_; // Platforms in view
+
+    std::list<Coin> coins_;                // All coins
     Finder<Coin> coin_finder_;             // Coin finder
     std::set<const Coin*> coin_actualObj_;         // Coins in view
-    std::set<const Platform*> platform_actualObj_; // Platforms in view
+    int num_coins_;     // Collected coins
 
     bool finished_;     // Game over flag
     bool paused_;       // Pause flag
-    int num_coins_;     // Collected coins
     bool following_cam_ = false; // Vertical camera tracking state
+
+    bool day_time_ = true; // Background status
+    int frame_counter_ = 0;
+    static const int day_night_interval_ = 1200; // 20s at 60fps
 
     void process_keys(pro2::Window& window);     // Handle input
     void update_objects(pro2::Window& window);   // Update game logic

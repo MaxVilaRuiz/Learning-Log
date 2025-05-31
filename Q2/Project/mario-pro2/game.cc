@@ -145,18 +145,20 @@ void Game::update(pro2::Window& window) {
         update_objects(window);
         update_camera(window);
     }
+
+    // To update the background status
+    frame_counter_++;
+    if (day_night_interval_ <= frame_counter_) {
+        frame_counter_ = 0;
+        day_time_ = !day_time_;
+    }
 }
 
 
 void Game::paint(pro2::Window& window) {
     // Paint the background and its objects
-    const pro2::Rect cam_rect = window.camera_rect();
-    if ((cam_rect.right / 1500) % 2 == 0) {
-        window.clear(sky_blue);
-    }
-    else {
-        window.clear(sky_dark);
-    }
+    if (day_time_) window.clear(sky_blue);
+    else window.clear(sky_dark);
 
     // Draw platforms
     for (const Platform* p : platform_actualObj_) {
@@ -169,9 +171,10 @@ void Game::paint(pro2::Window& window) {
     }
 
     // Draw the counter
+    const pro2::Rect cam_rect = window.camera_rect();
     Pt top_left = {cam_rect.left + 5, cam_rect.top + 35}; 
     paint_sprite(window, top_left, Coin::coin_sprite_front, false);
-    pro2::Color text_color = ((cam_rect.right / 1500) % 2 == 0) ? pro2::black : pro2::white;
+    pro2::Color text_color = (day_time_) ? pro2::black : pro2::white;
     window.draw_num({top_left.x + 17, top_left.y + 3}, std::to_string(num_coins_), text_color);
 
     // Draw characters
