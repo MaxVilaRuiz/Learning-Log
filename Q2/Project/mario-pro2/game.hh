@@ -14,8 +14,6 @@
 class Game {
     static constexpr int sky_blue = 0x5c94fc; // Main background color
     static constexpr int sky_dark = 0x0C134F; // Secondary background color
-    static const std::vector<std::vector<int>> sun_sprite_;
-    static const std::vector<std::vector<int>> moon_sprite_;
     
     MainChar mario_;          // Main player
     MainChar luigi_;         // Second player
@@ -35,7 +33,7 @@ class Game {
 
     bool day_time_ = true; // Background status
     int frame_counter_ = 0;
-    static const int day_night_interval_ = 1200; // 20s at 60fps
+    static const int day_night_interval_ = 900; // 15s at 60fps
 
     void process_keys(pro2::Window& window);     // Handle input
     void update_objects(pro2::Window& window);   // Update game logic

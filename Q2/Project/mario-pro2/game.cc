@@ -2,15 +2,6 @@
 using namespace pro2;
 
 
-// const std::vector<std::vector<int>> sun_sprite_ {
-    
-// };
-
-// const std::vector<std::vector<int>> sun_sprite_ {
-
-// };
-
-
 Game::Game(int width, int height)
     : mario_({width / 2, 150}, Keys::Up, Keys::Down, Keys::Left, Keys::Right, "mario"),
       luigi_({(width / 2) - 30, 150}, Keys::W, Keys::S, Keys::A, Keys::D, "luigi"),

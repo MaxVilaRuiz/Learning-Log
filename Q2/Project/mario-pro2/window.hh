@@ -39,7 +39,9 @@ const Color white = 0x00ffffff;
 const Color beige = 0xecc49b;
 const Color gray = 0xaaaaaa;
 const Color brown = 0x8d573c;
-const Color golden = 0xFFB200;
+const Color orange = 0xff9f00;
+const Color golden = 0xffb200;
+const Color taupe = 0x7f8cAA;
 
 /**
  * @enum Keys
