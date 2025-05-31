@@ -226,17 +226,17 @@ void MainChar::paint(pro2::Window& window) const {
 
 void MainChar::paint_lives(pro2::Window& window, string character) const {
     if (character == "mario") {
-        const pro2::Pt top_right = {window.camera_rect().right - 20, window.camera_rect().top + 5};
+        const pro2::Pt top_left = {window.camera_rect().left + 5, window.camera_rect().top + 5};
 
         for (int i = 0; i < lives_; i++) {
-            paint_sprite(window, {top_right.x - 15*i, top_right.y}, mario_lives_sprite_, false);
+            paint_sprite(window, {top_left.x + 15*i, top_left.y}, mario_lives_sprite_, false);
         }
     }
     else {
-        const pro2::Pt top_right = {window.camera_rect().right - 20, window.camera_rect().top + 20};
+        const pro2::Pt top_left = {window.camera_rect().left + 5, window.camera_rect().top + 20};
 
         for (int i = 0; i < lives_; i++) {
-            paint_sprite(window, {top_right.x - 15*i, top_right.y}, luigi_lives_sprite_, false);
+            paint_sprite(window, {top_left.x + 15*i, top_left.y}, luigi_lives_sprite_, false);
         }
     }
 }

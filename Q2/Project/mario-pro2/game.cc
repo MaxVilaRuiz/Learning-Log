@@ -2,6 +2,15 @@
 using namespace pro2;
 
 
+// const std::vector<std::vector<int>> sun_sprite_ {
+    
+// };
+
+// const std::vector<std::vector<int>> sun_sprite_ {
+
+// };
+
+
 Game::Game(int width, int height)
     : mario_({width / 2, 150}, Keys::Up, Keys::Down, Keys::Left, Keys::Right, "mario"),
       luigi_({(width / 2) - 30, 150}, Keys::W, Keys::S, Keys::A, Keys::D, "luigi"),
@@ -73,7 +82,7 @@ void Game::update_objects(pro2::Window& window) {
     const int bottom_limit = window.camera_rect().bottom + 320;
     if (mario_.pos().y > bottom_limit) {
         mario_.lose_life();
-        window.set_camera_topleft({window.camera_rect().left, window.camera_rect().top - 150});
+        window.set_camera_topleft({window.camera_rect().left, window.camera_rect().top - 185});
         mario_.reset_position({window.camera_center().x - 80, window.camera_center().y - 20});
     }
     if (luigi_.pos().y > bottom_limit) {
@@ -87,8 +96,11 @@ void Game::update_objects(pro2::Window& window) {
     }
 
     // Query visible objects
-    platform_actualObj_ = platform_finder_.query(window.camera_rect());
-    coin_actualObj_ = coin_finder_.query(window.camera_rect());
+    pro2::Rect cam_rec = window.camera_rect();
+    // Increase the query rectangle to preload the objects at the bottom and top of the screen
+    pro2::Rect query_rec = {cam_rec.left, cam_rec.top - 160, cam_rec.right, cam_rec.bottom + 160};
+    platform_actualObj_ = platform_finder_.query(query_rec);
+    coin_actualObj_ = coin_finder_.query(query_rec);
     
     // Check collisions and update coins
     if (!coins_.empty()) {
@@ -110,7 +122,7 @@ void Game::update_camera(pro2::Window& window) {
     const Pt cam = window.camera_center();
 
     int dx = 0, dy = 0;
-    const int limit_y = 160;
+    const int limit_y = 140;
 
     // Always follow Mario horizontally
     if (mario_pos.x != cam.x) dx = mario_pos.x - cam.x;
@@ -137,7 +149,14 @@ void Game::update(pro2::Window& window) {
 
 
 void Game::paint(pro2::Window& window) {
-    window.clear(sky_blue);
+    // Paint the background and its objects
+    const pro2::Rect cam_rect = window.camera_rect();
+    if ((cam_rect.right / 1500) % 2 == 0) {
+        window.clear(sky_blue);
+    }
+    else {
+        window.clear(sky_dark);
+    }
 
     // Draw platforms
     for (const Platform* p : platform_actualObj_) {
@@ -150,11 +169,10 @@ void Game::paint(pro2::Window& window) {
     }
 
     // Draw the counter
-    const pro2::Rect cam_rect = window.camera_rect();
-    Pt top_left = {cam_rect.left + 5, cam_rect.top + 5}; 
-    Pt top_left2 = {cam_rect.left + 22, cam_rect.top + 8};
+    Pt top_left = {cam_rect.left + 5, cam_rect.top + 35}; 
     paint_sprite(window, top_left, Coin::coin_sprite_front, false);
-    window.draw_num(top_left2, std::to_string(num_coins_), pro2::black);
+    pro2::Color text_color = ((cam_rect.right / 1500) % 2 == 0) ? pro2::black : pro2::white;
+    window.draw_num({top_left.x + 17, top_left.y + 3}, std::to_string(num_coins_), text_color);
 
     // Draw characters
     mario_.paint(window);

@@ -125,7 +125,7 @@ class MainChar {
 
     /**
      * @brief Decreases the number of lives by one.
-     * @post lives_-- && 0 <= lives_.
+     * @post lives_-- && 0 <= lives_
      */
     void lose_life();
 

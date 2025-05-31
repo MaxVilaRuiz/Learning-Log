@@ -8,9 +8,9 @@
 template <class T>
 class Finder {
  private:
-    // Grid 480 x 320 (Screen) - max 42 cols, 63 rows
+    // Grid 480 x 640 (sued by game.cc) - max 52 cols, 39 rows
     inline static const int CELL_WIDTH = 480;
-    inline static const int CELL_HEIGHT = 320;
+    inline static const int CELL_HEIGHT = 640;
     inline static const int MAX_X = 25000;
     inline static const int MAX_Y = 25000;
     inline static const int MAX_COL = MAX_X / CELL_WIDTH;

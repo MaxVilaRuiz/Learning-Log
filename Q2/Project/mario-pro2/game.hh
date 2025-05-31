@@ -12,7 +12,10 @@
 #include "finder.hh"
 
 class Game {
-    static constexpr int sky_blue = 0x5c94fc; // Background color
+    static constexpr int sky_blue = 0x5c94fc; // Main background color
+    static constexpr int sky_dark = 0x0C134F; // Secondary background color
+    static const std::vector<std::vector<int>> sun_sprite_;
+    static const std::vector<std::vector<int>> moon_sprite_;
     
     MainChar mario_;          // Main player
     MainChar luigi_;         // Second player
