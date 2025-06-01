@@ -6,12 +6,14 @@
 
 class Goomba {
  private:
-    static const std::vector<std::vector<int>> goomba_sprite_left_;
+    static const std::vector<std::vector<int>> goomba_sprite_normal_;
+    static const std::vector<std::vector<int>> goomba_sprite_walk1_;
+    static const std::vector<std::vector<int>> goomba_sprite_walk2_;
 
     pro2::Pt pos_;
     int actual_pos_ = pos_.x;
     int frame_ = 0;
-    
+
     const int travel_ = 50;
     const int speed_ = 5; // Positions moved in each frame
 
@@ -25,7 +27,7 @@ class Goomba {
      * @brief Renders Goomba.
      * @param window Target window.
      */
-    void paint(pro2::Window& window) const;
+    void paint(pro2::Window& window);
 
     void move();
 

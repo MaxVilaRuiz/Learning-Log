@@ -4,50 +4,64 @@ using namespace std;
 
 // Color codes
 const int _ = -1;
-const int r = pro2::red;
 const int s = pro2::beige;
-const int b = pro2::blue;
-const int y = pro2::yellow;
-const int h = pro2::black;
-const int g = pro2::gray;
+const int b = pro2::black;
 const int w = pro2::brown;
-const int e = pro2::green;
-const int i = pro2::white;
 
 // clang-format off
 // Goomba sprites
-const vector<vector<int>> Goomba::goomba_sprite_left_ = {
-    {_, _, _, r, r, r, r, r, _, _, _, _},
-    {_, _, r, r, r, r, r, r, r, r, r, _},
-    {_, _, h, h, h, s, s, h, s, _, _, _},
-    {_, h, s, h, s, s, s, h, s, s, s, _},
-    {_, h, s, h, h, s, s, s, h, s, s, s},
-    {_, h, h, s, s, s, s, h, h, h, h, _},
-    {_, _, _, s, s, s, s, s, s, s, _, _},
-    {_, _, r, r, b, r, r, r, _, _, _, _},
-    {_, r, r, r, b, r, r, b, r, r, r, _},
-    {r, r, r, r, b, b, b, b, r, r, r, r},
-    {g, g, r, b, y, b, b, y, b, r, g, g},
-    {g, g, g, b, b, b, b, b, b, g, g, g},
-    {g, g, b, b, b, b, b, b, b, b, g, g},
-    {_, _, b, b, b, _, _, b, b, b, _, _},
-    {_, w, w, w, _, _, _, _, w, w, w, _},
-    {w, w, w, w, _, _, _, _, w, w, w, w},
+const vector<vector<int>> Goomba::goomba_sprite_normal_ = {
+    {_, _, _, w, w, w, w, _, _, _},
+    {_, _, w, b, w, w, b, w, _, _},
+    {_, w, s, w, b, b, w, s, w, _},
+    {w, w, s, b, s, s, b, s, w, w},
+    {w, w, s, b, s, s, b, s, w, w},
+    {w, w, w, w, w, w, w, w, w, w},
+    {_, w, w, w, s, s, w, w, w, _},
+    {_, _, s, s, s, s, s, s, _, _},
+    {_, b, b, b, s, s, b, b, b, _},
+    {b, b, b, b, _, _, b, b, b, b},
+};
+
+const vector<vector<int>> Goomba::goomba_sprite_walk1_ = {
+    {_, _, _, w, w, w, w, _, _, _},
+    {_, _, w, b, w, w, b, w, _, _},
+    {_, w, s, w, b, b, w, s, w, _},
+    {w, w, s, b, s, s, b, s, w, w},
+    {w, w, s, b, s, s, b, s, w, w},
+    {w, w, w, w, w, w, w, w, w, w},
+    {_, w, w, w, s, s, w, w, w, _},
+    {_, _, s, s, s, s, s, s, _, _},
+    {_, b, b, b, s, s, b, b, b, b},
+    {_, b, b, b, _, _, b, b, b, b},
+};
+
+const vector<vector<int>> Goomba::goomba_sprite_walk2_ = {
+    {_, _, _, w, w, w, w, _, _, _},
+    {_, _, w, b, w, w, b, w, _, _},
+    {_, w, s, w, b, b, w, s, w, _},
+    {w, w, s, b, s, s, b, s, w, w},
+    {w, w, s, b, s, s, b, s, w, w},
+    {w, w, w, w, w, w, w, w, w, w},
+    {_, w, w, w, s, s, w, w, w, _},
+    {_, _, s, s, s, s, s, s, _, _},
+    {b, b, b, b, s, s, b, b, b, _},
+    {b, b, b, b, _, _, b, b, b, _},
 };
 // clang-format on
 
 
-void Goomba::paint(pro2::Window& window) const {
+void Goomba::paint(pro2::Window& window) {
     const vector<vector<int>>* sprite = nullptr;
-    const int phase = frame_ % 5;
+    const int phase = frame_ % 4;
 
-    if (phase == 0) sprite = &goomba_sprite_left_; 
-    else if (phase == 1) sprite = &goomba_sprite_left_;
-    else if (phase == 2) sprite = &goomba_sprite_left_;
-    else if (phase == 3) sprite = &goomba_sprite_left_;
-    else &goomba_sprite_left_;
+    if (phase == 0) sprite = &goomba_sprite_normal_; 
+    else if (phase == 1) sprite = &goomba_sprite_walk1_;
+    else if (phase == 2) sprite = &goomba_sprite_normal_;
+    else sprite = &goomba_sprite_walk2_;
     
-    paint_sprite(window, {actual_pos_, pos_.y}, *sprite, !to_right_);
+    paint_sprite(window, {actual_pos_, pos_.y}, *sprite, false);
+    frame_++;
 }
 
 
