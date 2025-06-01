@@ -6,10 +6,10 @@
 
 class Goomba {
  private:
-    static const std::vector<std::vector<int>> goomba_sprite_normal_;
-    static const std::vector<std::vector<int>> goomba_sprite_walk1_;
-    static const std::vector<std::vector<int>> goomba_sprite_walk2_;
-    static const std::vector<std::vector<int>> goomba_sprite_squashed_;
+    static const std::vector<std::vector<int>> goomba_sprite_normal1_;
+    static const std::vector<std::vector<int>> goomba_sprite_normal2_;
+    static const std::vector<std::vector<int>> goomba_sprite_squashed1_;
+    static const std::vector<std::vector<int>> goomba_sprite_squashed2_;
 
     pro2::Pt pos_;
     int actual_pos_ = pos_.x;
@@ -44,6 +44,6 @@ class Goomba {
     bool is_squashed() const;
 
     void start_immunity(int current_frame, int duration);
-    
+
     bool is_immune(int current_frame) const;
 };
