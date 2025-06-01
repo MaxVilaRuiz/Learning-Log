@@ -200,7 +200,7 @@ const vector<vector<int>> MainChar::luigi_lives_sprite_ = {
 
 
 void MainChar::paint(pro2::Window& window) const {
-    const Pt top_left = {pos_.x - 6, pos_.y - 15};
+    const Pt pos = {pos_.x - 6, pos_.y - 15};
     const vector<vector<int>>* sprite = nullptr;
 
     if (character_ == "mario") {
@@ -222,7 +222,7 @@ void MainChar::paint(pro2::Window& window) const {
         else sprite = &luigi_sprite_normal_;
     }
 
-    paint_sprite(window, top_left, *sprite, looking_left_);
+    paint_sprite(window, pos, *sprite, looking_left_);
 }
 
 
@@ -278,8 +278,8 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms)
     
     // Repositioning the secondary characters on the screen
     if (character_ != "mario") {
-        Rect char_rec = rect();
-        Rect cam_rec = window.camera_rect();
+        pro2::Rect char_rec = rect();
+        pro2::Rect cam_rec = window.camera_rect();
         // Horizontal position
         if (char_rec.right < cam_rec.left) pos_.x = cam_rec.left;
         else if (char_rec.left > cam_rec.right) pos_.x = cam_rec.right;
