@@ -106,23 +106,24 @@ void Game::update_objects(pro2::Window& window) {
     goombas_actualObj_ = goombas_finder_.query(query_rec);
     
     // Check collisions and update coins
-    if (!coins_.empty()) {
-        for (auto it = coins_.begin(); it != coins_.end(); it++) {
-            if (objs_collision(mario_.rect(), it->get_rect()) || 
-                objs_collision(luigi_.rect(), it->get_rect())) {
-                coin_finder_.remove(&(*it)); 
-                it = coins_.erase(it);
-                num_coins_++;
-            }
-            else it->update();
+    for (auto it = coin_actualObj_.begin(); it != coin_actualObj_.end();) {
+        const Coin* c = *it;
+        if (objs_collision(mario_.rect(), c->get_rect()) ||
+            objs_collision(luigi_.rect(), c->get_rect())) {
+            coin_finder_.remove(c);    
+            it = coin_actualObj_.erase(it);
+            num_coins_++;                   
+        } else {
+            Coin* non_const_coin = const_cast<Coin*>(c);
+            non_const_coin->update();
+            ++it;
         }
     }
 
     // Update Goombas
-    if (!goombas_.empty()) {
-        for (Goomba& g : goombas_) {
-            g.update();
-        }
+    for (const Goomba* g : goombas_actualObj_) {
+        Goomba* non_const_goomba = const_cast<Goomba*>(g);
+        non_const_goomba->update();
     }
 }
 

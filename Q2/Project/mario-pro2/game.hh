@@ -32,9 +32,9 @@ class Game {
     int num_coins_;                                 // Collected coins
 
     // Goombas
-    std::list<Goomba> goombas_;                         // All Goombas
-    Finder<Goomba> goombas_finder_;                      // Goombas finder
-    std::set<const Goomba*> goombas_actualObj_;          // Goombas in view
+    std::list<Goomba> goombas_;                     // All Goombas
+    Finder<Goomba> goombas_finder_;                 // Goombas finder
+    std::set<const Goomba*> goombas_actualObj_;     // Goombas in view
 
     bool finished_;                                 // Game over flag
     bool paused_;                                   // Pause flag
