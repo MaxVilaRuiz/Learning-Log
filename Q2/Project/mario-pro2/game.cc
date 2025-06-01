@@ -122,6 +122,22 @@ void Game::update_objects(pro2::Window& window) {
 
     // Update Goombas
     for (const Goomba* g : goombas_actualObj_) {
+        if (objs_collision(mario_.rect(), g->get_rect())) {
+            if (!immune_mario_) {
+                mario_.lose_life();
+                immune_mario_ = true;
+                immunity_counter_mario_ =  frame_counter_ + immunity_limit_;
+            }
+        }
+
+        if (objs_collision(luigi_.rect(), g->get_rect())) {
+            if (!immune_luigi_) {
+                luigi_.lose_life();
+                immune_luigi_ = true;
+                immunity_counter_luigi_ =  frame_counter_ + immunity_limit_;
+            }
+        }
+
         Goomba* non_const_goomba = const_cast<Goomba*>(g);
         non_const_goomba->update();
     }
@@ -159,10 +175,13 @@ void Game::update(pro2::Window& window) {
 
     // To update the background status
     frame_counter_++;
-    if (day_night_interval_ <= frame_counter_) {
-        frame_counter_ = 0;
+    if (frame_counter_ % day_night_interval_ == 0) {
         day_time_ = !day_time_;
     }
+
+    // To update the characters immunity
+    if (immune_mario_ && immunity_counter_mario_ <= frame_counter_) immune_mario_ = false;
+    if (immune_luigi_ && immunity_counter_luigi_ <= frame_counter_) immune_luigi_ = false;
 }
 
 
@@ -194,8 +213,8 @@ void Game::paint(pro2::Window& window) {
     window.draw_num({top_left.x + 17, top_left.y + 3}, std::to_string(num_coins_), text_color);
 
     // Draw characters
-    mario_.paint(window);
-    luigi_.paint(window);
+    mario_.paint(window, immune_mario_, frame_counter_);
+    luigi_.paint(window, immune_luigi_, frame_counter_);
 
     // Draw characters' lives
     mario_.paint_lives(window, "mario");

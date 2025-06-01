@@ -199,30 +199,32 @@ const vector<vector<int>> MainChar::luigi_lives_sprite_ = {
 // clang-format on
 
 
-void MainChar::paint(pro2::Window& window) const {
-    const Pt pos = {pos_.x - 6, pos_.y - 15};
-    const vector<vector<int>>* sprite = nullptr;
-
-    if (character_ == "mario") {
-        if (speed_.x != 0) {
-            int phase = (animation_counter_ / animation_speed_) % 3;
-            if (phase == 0) sprite = &mario_sprite_walk1_;
-            else if (phase == 1) sprite = &mario_sprite_walk2_;
-            else sprite = &mario_sprite_walk3_;
+void MainChar::paint(pro2::Window& window, bool immune, int frame) const {
+    if (!immune || (immune && (frame % 2 == 0))) {
+        const Pt pos = {pos_.x - 6, pos_.y - 15};
+        const vector<vector<int>>* sprite = nullptr;
+    
+        if (character_ == "mario") {
+            if (speed_.x != 0) {
+                int phase = (animation_counter_ / animation_speed_) % 3;
+                if (phase == 0) sprite = &mario_sprite_walk1_;
+                else if (phase == 1) sprite = &mario_sprite_walk2_;
+                else sprite = &mario_sprite_walk3_;
+            }
+            else sprite = &mario_sprite_normal_;
         }
-        else sprite = &mario_sprite_normal_;
-    }
-    else {
-        if (speed_.x != 0) {
-            int phase = (animation_counter_ / animation_speed_) % 3;
-            if (phase == 0) sprite = &luigi_sprite_walk1_;
-            else if (phase == 1) sprite = &luigi_sprite_walk2_;
-            else sprite = &luigi_sprite_walk3_;
+        else {
+            if (speed_.x != 0) {
+                int phase = (animation_counter_ / animation_speed_) % 3;
+                if (phase == 0) sprite = &luigi_sprite_walk1_;
+                else if (phase == 1) sprite = &luigi_sprite_walk2_;
+                else sprite = &luigi_sprite_walk3_;
+            }
+            else sprite = &luigi_sprite_normal_;
         }
-        else sprite = &luigi_sprite_normal_;
+    
+        paint_sprite(window, pos, *sprite, looking_left_);
     }
-
-    paint_sprite(window, pos, *sprite, looking_left_);
 }
 
 

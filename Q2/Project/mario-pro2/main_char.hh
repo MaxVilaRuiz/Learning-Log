@@ -59,7 +59,7 @@ class MainChar {
      * @brief Renders MainChar.
      * @param window Target window.
      */
-    void paint(pro2::Window& window) const;
+    void paint(pro2::Window& window, bool immune, int frame) const;
 
     /**
      * @brief Renders MainChar lives.
