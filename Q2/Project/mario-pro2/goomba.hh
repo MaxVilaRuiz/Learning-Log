@@ -15,7 +15,8 @@ class Goomba {
     int frame_ = 0;
 
     const int travel_ = 50;
-    const int speed_ = 5; // Positions moved in each frame
+    const int speed_ = 1; // Positions moved in each frame
+    const int animation_speed_ = 10;
 
     bool to_right_ = true;
 
@@ -27,9 +28,9 @@ class Goomba {
      * @brief Renders Goomba.
      * @param window Target window.
      */
-    void paint(pro2::Window& window);
+    void paint(pro2::Window& window) const;
 
-    void move();
+    void update();
 
     pro2::Rect get_rect() const;
 };

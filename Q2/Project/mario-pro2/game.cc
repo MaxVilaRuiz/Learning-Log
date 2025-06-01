@@ -32,11 +32,6 @@ Game::Game(int width, int height)
         }
     }
 
-    // Add platforms to finder
-    for (const auto& plataform : platforms_) {
-        platform_finder_.add(&plataform);
-    }
-
     // Generate coins
     for (int i = 1; i < 98; i++) {
         for (int j = 1; j < 5; j++) {
@@ -49,9 +44,24 @@ Game::Game(int width, int height)
         if (i % 3 == 0) coins_.push_back(Coin({420 + i * 200, 182}));
     }
 
+    // Generate goombas
+    for (int i = 0; i < 98; i++) {
+        if (i % 2 == 1) goombas_.push_back(Goomba({325 + i * 200, 139}));
+    }
+
+    // Add platforms to finder
+    for (const auto& plataform : platforms_) {
+        platform_finder_.add(&plataform);
+    }
+
     // Add coins to finder
     for (const auto& coin : coins_) {
         coin_finder_.add(&coin);
+    }
+
+    // Add goombas to finder
+    for (const auto& goomba : goombas_) {
+        goombas_finder_.add(&goomba);
     }
 }
 
@@ -66,6 +76,7 @@ void Game::process_keys(pro2::Window& window) {
 
 
 void Game::update_objects(pro2::Window& window) {
+    // Update main characters
     mario_.update(window, platform_actualObj_);
     luigi_.update(window, platform_actualObj_);
 
@@ -92,6 +103,7 @@ void Game::update_objects(pro2::Window& window) {
     pro2::Rect query_rec = {cam_rec.left, cam_rec.top - 160, cam_rec.right, cam_rec.bottom + 160};
     platform_actualObj_ = platform_finder_.query(query_rec);
     coin_actualObj_ = coin_finder_.query(query_rec);
+    goombas_actualObj_ = goombas_finder_.query(query_rec);
     
     // Check collisions and update coins
     if (!coins_.empty()) {
@@ -103,6 +115,13 @@ void Game::update_objects(pro2::Window& window) {
                 num_coins_++;
             }
             else it->update();
+        }
+    }
+
+    // Update Goombas
+    if (!goombas_.empty()) {
+        for (Goomba& g : goombas_) {
+            g.update();
         }
     }
 }
@@ -159,6 +178,11 @@ void Game::paint(pro2::Window& window) {
     // Draw coins
     for (const Coin* c : coin_actualObj_) {
         c->paint(window);
+    }
+
+    // Draw goombas
+    for (const Goomba* g : goombas_actualObj_) {
+        g->paint(window);
     }
 
     // Draw the counter

@@ -10,22 +10,31 @@
 #include "window.hh"
 #include "utils.hh"
 #include "finder.hh"
+#include "goomba.hh"
 
 class Game {
     static constexpr int sky_blue = 0x5c94fc;       // Main background color
     static constexpr int sky_dark = 0x0C134F;       // Secondary background color
     
+    // Players
     MainChar mario_;                                // Main player
     MainChar luigi_;                                // Second player
 
+    // Platforms
     std::list<Platform> platforms_;                 // All platforms
     Finder<Platform> platform_finder_;              // Platform finder
     std::set<const Platform*> platform_actualObj_;  // Platforms in view
 
+    // Coins
     std::list<Coin> coins_;                         // All coins
     Finder<Coin> coin_finder_;                      // Coin finder
     std::set<const Coin*> coin_actualObj_;          // Coins in view
     int num_coins_;                                 // Collected coins
+
+    // Goombas
+    std::list<Goomba> goombas_;                         // All Goombas
+    Finder<Goomba> goombas_finder_;                      // Goombas finder
+    std::set<const Goomba*> goombas_actualObj_;          // Goombas in view
 
     bool finished_;                                 // Game over flag
     bool paused_;                                   // Pause flag
