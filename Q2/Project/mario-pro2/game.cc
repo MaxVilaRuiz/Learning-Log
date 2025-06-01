@@ -125,22 +125,22 @@ void Game::update_objects(pro2::Window& window) {
         Goomba* goomba = const_cast<Goomba*>(*it);
         const pro2::Rect goomba_rect = goomba->get_rect();
         bool remove = false;
+
+        if (goomba->is_squashed() && goomba->get_deadtime() <= frame_counter_) {
+            goombas_finder_.remove(goomba);
+            it = goombas_actualObj_.erase(it);
+            continue;
+        }
     
         // Mario' collision
-        if (objs_collision(mario_.rect(), goomba_rect) && !goomba->is_immune(frame_counter_)) {
+        if (objs_collision(mario_.rect(), goomba_rect)) {
             if (mario_.rect().bottom <= goomba_rect.top + 5) {
-                goomba->hit_from_above();
-                mario_.set_grounded(true);
-
-                goomba->start_immunity(frame_counter_, immunity_interval_); 
-
-                if (goomba->is_squashed()) {
-                    goombas_finder_.remove(goomba);
-                    it = goombas_actualObj_.erase(it);
-                    continue;
+                if (!goomba->is_squashed()) {
+                    goomba->hit_from_above(frame_counter_);
+                    mario_.set_grounded(true);
                 }
             }
-            else if (!immune_mario_) {
+            else if (!immune_mario_ && !goomba->is_squashed()) {
                 mario_.lose_life();
                 immune_mario_ = true;
                 immunity_mario_until_ = frame_counter_ + immunity_interval_;
@@ -148,20 +148,14 @@ void Game::update_objects(pro2::Window& window) {
         }
 
         // Luigi' collision
-        if (objs_collision(luigi_.rect(), goomba_rect) && !goomba->is_immune(frame_counter_)) {
+        if (objs_collision(luigi_.rect(), goomba_rect)) {
             if (luigi_.rect().bottom <= goomba_rect.top + 5) {
-                goomba->hit_from_above();
-                luigi_.set_grounded(true);
-
-                goomba->start_immunity(frame_counter_, immunity_interval_);
-
-                if (goomba->is_squashed()) {
-                    goombas_finder_.remove(goomba);
-                    it = goombas_actualObj_.erase(it);
-                    continue;
+                if (!goomba->is_squashed()) {
+                    goomba->hit_from_above(frame_counter_);
+                    luigi_.set_grounded(true);
                 }
             } 
-            else if (!immune_luigi_) {
+            else if (!immune_luigi_ && !goomba->is_squashed()) {
                 luigi_.lose_life();
                 immune_luigi_ = true;
                 immunity_luigi_until_ = frame_counter_ + immunity_interval_;

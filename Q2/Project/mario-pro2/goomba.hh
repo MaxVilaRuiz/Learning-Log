@@ -8,13 +8,11 @@ class Goomba {
  private:
     static const std::vector<std::vector<int>> goomba_sprite_normal1_;
     static const std::vector<std::vector<int>> goomba_sprite_normal2_;
-    static const std::vector<std::vector<int>> goomba_sprite_squashed1_;
-    static const std::vector<std::vector<int>> goomba_sprite_squashed2_;
+    static const std::vector<std::vector<int>> goomba_sprite_squashed_;
 
     pro2::Pt pos_;
     int actual_pos_ = pos_.x;
     int frame_ = 0;
-    int hit_count_ = 0;
 
     const int travel_ = 50;
     const int speed_ = 1; // Positions moved in each frame
@@ -22,8 +20,8 @@ class Goomba {
 
     bool to_right_ = true;
 
-    bool immune_ = false;
-    int immune_until_ = 0;
+    bool squashed_ = false;
+    int deadtime_ = -1;
 
 
  public:   
@@ -39,11 +37,9 @@ class Goomba {
 
     pro2::Rect get_rect() const;
 
-    void hit_from_above();
+    void hit_from_above(int global_frame);
 
-    bool is_squashed() const;
+    bool is_squashed() { return squashed_; };
 
-    void start_immunity(int current_frame, int duration);
-
-    bool is_immune(int current_frame) const;
+    int get_deadtime() const { return deadtime_; }
 };
