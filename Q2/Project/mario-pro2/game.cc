@@ -121,25 +121,55 @@ void Game::update_objects(pro2::Window& window) {
     }
 
     // Update Goombas
-    for (const Goomba* g : goombas_actualObj_) {
-        if (objs_collision(mario_.rect(), g->get_rect())) {
-            if (!immune_mario_) {
+    for (auto it = goombas_actualObj_.begin(); it != goombas_actualObj_.end();) {
+        Goomba* goomba = const_cast<Goomba*>(*it);
+        const pro2::Rect goomba_rect = goomba->get_rect();
+        bool remove = false;
+    
+        // Mario' collision
+        if (objs_collision(mario_.rect(), goomba_rect) && !goomba->is_immune(frame_counter_)) {
+            if (mario_.rect().bottom <= goomba_rect.top + 5) {
+                goomba->hit_from_above();
+                mario_.set_grounded(true);
+
+                goomba->start_immunity(frame_counter_, immunity_interval_); 
+
+                if (goomba->is_squashed()) {
+                    goombas_finder_.remove(goomba);
+                    it = goombas_actualObj_.erase(it);
+                    continue;
+                }
+            }
+            else if (!immune_mario_) {
                 mario_.lose_life();
                 immune_mario_ = true;
-                immunity_counter_mario_ =  frame_counter_ + immunity_limit_;
+                immunity_mario_until_ = frame_counter_ + immunity_interval_;
             }
         }
 
-        if (objs_collision(luigi_.rect(), g->get_rect())) {
-            if (!immune_luigi_) {
+        // Luigi' collision
+        if (objs_collision(luigi_.rect(), goomba_rect) && !goomba->is_immune(frame_counter_)) {
+            if (luigi_.rect().bottom <= goomba_rect.top + 5) {
+                goomba->hit_from_above();
+                luigi_.set_grounded(true);
+
+                goomba->start_immunity(frame_counter_, immunity_interval_);
+
+                if (goomba->is_squashed()) {
+                    goombas_finder_.remove(goomba);
+                    it = goombas_actualObj_.erase(it);
+                    continue;
+                }
+            } 
+            else if (!immune_luigi_) {
                 luigi_.lose_life();
                 immune_luigi_ = true;
-                immunity_counter_luigi_ =  frame_counter_ + immunity_limit_;
+                immunity_luigi_until_ = frame_counter_ + immunity_interval_;
             }
         }
-
-        Goomba* non_const_goomba = const_cast<Goomba*>(g);
-        non_const_goomba->update();
+    
+        goomba->update();
+        ++it;
     }
 }
 
@@ -180,8 +210,8 @@ void Game::update(pro2::Window& window) {
     }
 
     // To update the characters immunity
-    if (immune_mario_ && immunity_counter_mario_ <= frame_counter_) immune_mario_ = false;
-    if (immune_luigi_ && immunity_counter_luigi_ <= frame_counter_) immune_luigi_ = false;
+    if (immune_mario_ && immunity_mario_until_ <= frame_counter_) immune_mario_ = false;
+    if (immune_luigi_ && immunity_luigi_until_ <= frame_counter_) immune_luigi_ = false;
 }
 
 

@@ -54,10 +54,21 @@ const vector<vector<int>> Goomba::goomba_sprite_walk2_ = {
     {b, b, b, b, b, _, _, b, b, b, b, _},
     {_, b, b, b, b, _, _, b, b, b, _, _},
 };
+
+const vector<vector<int>> Goomba::goomba_sprite_squashed_ = {
+    {_, _, _, _, w, w, w, w, _, _, _, _},
+    {_, _, w, s, s, w, w, s, s, w, _, _},
+    {_, w, w, s, s, w, w, s, s, w, w, _},
+    {w, w, w, w, w, w, w, w, w, w, w, w},
+};
 // clang-format on
 
 
 void Goomba::update() {
+    if (immune_ && immune_until_ <= frame_) {
+        immune_ = false;
+    }
+    
     if (to_right_) {
         if (pos_.x + travel_ <= actual_pos_) {
             to_right_ = false;
@@ -78,14 +89,14 @@ void Goomba::update() {
 
 
 void Goomba::paint(pro2::Window& window) const {
-    const vector<vector<int>>* sprite = nullptr;
-    const int phase = (frame_ / animation_speed_) % 2;
+    const std::vector<std::vector<int>>* sprite;
 
-    if (phase == 0) sprite = &goomba_sprite_walk2_;
-    else if (phase == 1) sprite = &goomba_sprite_walk1_;
-    // else if (phase == 2) sprite = &goomba_sprite_normal_;
-    // else sprite = &goomba_sprite_walk2_;
-    
+    if (hit_count_ == 1) sprite = &goomba_sprite_squashed_; 
+    else {
+        const int phase = (frame_ / animation_speed_) % 2;
+        sprite = (phase == 0) ? &goomba_sprite_walk2_ : &goomba_sprite_walk1_;
+    }
+
     paint_sprite(window, {actual_pos_, pos_.y}, *sprite, false);
 }
 
@@ -96,4 +107,21 @@ pro2::Rect Goomba::get_rect() const {
     int right = actual_pos_ + 10;
     int bottom = pos_.y + 10;
     return {left, top, right, bottom};
+}
+
+void Goomba::hit_from_above() {
+    hit_count_++;
+}
+
+bool Goomba::is_squashed() const {
+    return hit_count_ >= 2;
+}
+
+void Goomba::start_immunity(int current_frame, int duration) {
+    immune_ = true;
+    immune_until_ = current_frame + duration;
+}
+
+bool Goomba::is_immune(int current_frame) const {
+    return immune_ && current_frame < immune_until_;
 }

@@ -44,9 +44,9 @@ class Game {
     int frame_counter_ = 0;
     static const int day_night_interval_ = 900;     // 15s at 60fps
 
-    const int immunity_limit_ = 60;
-    int immunity_counter_mario_ = 0;
-    int immunity_counter_luigi_ = 0;
+    const int immunity_interval_ = 60;              // 1s at 60fps
+    int immunity_mario_until_ = 0;
+    int immunity_luigi_until_ = 0;
     bool immune_mario_ = false;    
     bool immune_luigi_ = false;
 
