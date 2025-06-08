@@ -51,6 +51,11 @@ Game::Game(int width, int height)
         }
     }
 
+    // Generate mushrooms
+    for (int i = 1; i < 50; i++) {
+        mushrooms_.push_back(Mushroom({340 + 200 * i, 139}));
+    }
+
     // Generate goombas
     for (int i = 0; i < 98; i++) {
         if (i % 2 == 1) goombas_.push_back(Goomba({325 + i * 200, 139}));
@@ -69,6 +74,11 @@ Game::Game(int width, int height)
     // Add spikes to finder
     for (const auto& spike : spikes_) {
         spike_finder_.add(&spike);
+    }
+
+    // Add mushrooms to finder
+    for (const auto& mushroom : mushrooms_) {
+        mushroom_finder_.add(&mushroom);
     }
 
     // Add goombas to finder
@@ -116,6 +126,7 @@ void Game::update_objects(pro2::Window& window) {
     platform_actualObj_ = platform_finder_.query(query_rec);
     coin_actualObj_ = coin_finder_.query(query_rec);
     spike_actualObj_ = spike_finder_.query(query_rec);
+    mushroom_actualObj_ = mushroom_finder_.query(query_rec);
     goombas_actualObj_ = goombas_finder_.query(query_rec);
     
     // Check collisions and update coins
@@ -128,6 +139,28 @@ void Game::update_objects(pro2::Window& window) {
             num_coins_++;                   
         } else {
             Coin* non_const_coin = const_cast<Coin*>(c);
+            non_const_coin->update();
+            ++it;
+        }
+    }
+
+    // Check collisions and update mushrooms
+    for (auto it = mushroom_actualObj_.begin(); it != mushroom_actualObj_.end();) {
+        const Mushroom* m = *it;
+        if (objs_collision(mario_.rect(), m->get_rect())) {
+            mushroom_finder_.remove(m);    
+            it = mushroom_actualObj_.erase(it);
+            mario_.refill_lives();
+            // MAKE MARIO BIGGER WITH A TRANSITION              
+        }
+        else if (objs_collision(luigi_.rect(), m->get_rect())) {
+            mushroom_finder_.remove(m);    
+            it = mushroom_actualObj_.erase(it);
+            luigi_.refill_lives();
+            // MAKE LUIGI BIGGER WITH A TRANSITION              
+        }
+        else {
+            Mushroom* non_const_coin = const_cast<Mushroom*>(m);
             non_const_coin->update();
             ++it;
         }
@@ -255,6 +288,11 @@ void Game::paint(pro2::Window& window) {
     // Draw spikes
     for (const Spike* s : spike_actualObj_) {
         s->paint(window);
+    }
+
+    // Draw mushrooms
+    for (const Mushroom* m : mushroom_actualObj_) {
+        m->paint(window);
     }
 
     // Draw goombas

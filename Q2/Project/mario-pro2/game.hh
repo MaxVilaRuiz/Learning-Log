@@ -12,6 +12,7 @@
 #include "finder.hh"
 #include "goomba.hh"
 #include "spike.hh"
+#include "mushroom.hh"
 
 class Game {
     static constexpr int sky_blue = 0x5c94fc;       // Main background color
@@ -36,6 +37,11 @@ class Game {
     std::list<Spike> spikes_;                       // All Spike
     Finder<Spike> spike_finder_;                    // Spike finder
     std::set<const Spike*> spike_actualObj_;        // Spike in view
+
+    // Mushrooms
+    std::list<Mushroom> mushrooms_;                 // All Mushrooms
+    Finder<Mushroom> mushroom_finder_;              // Mushroom finder
+    std::set<const Mushroom*> mushroom_actualObj_;  // Mushroom in view
 
     // Goombas
     std::list<Goomba> goombas_;                     // All Goombas

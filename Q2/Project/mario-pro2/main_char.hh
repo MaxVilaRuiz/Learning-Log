@@ -131,6 +131,13 @@ class MainChar {
     void lose_life();
 
     /**
+     * @brief Refills the character's lives to the maximum allowed.
+     * @pre The character must exist / be alive.
+     * @post The character's life count is set to its maximum value.
+     */
+    void refill_lives();
+
+    /**
      * @brief Resets the character's position to a new location.
      * @param new_pos The new position to set for the character.
      * @post The character is moved to the specified position.

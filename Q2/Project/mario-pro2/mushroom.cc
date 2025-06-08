@@ -33,15 +33,15 @@ void Mushroom::paint(pro2::Window& window) const {
 
 
 void Mushroom::update() {
-    int phase = (frame_ / animation_speed_) % 10;
+    int phase = (frame_ / animation_speed_) % 12;
     
-    if (phase == 3 || phase == 4 || phase == 5) pos_.y += 1;
-    else if (phase == 6 || phase == 7 || phase == 8) pos_.y -= 1;
+    if (phase == 10) pos_.y -= 1;
+    else if (phase == 11) pos_.y += 1;
 
     frame_++;
 }
 
 
 pro2::Rect Mushroom::get_rect() const {
-    return {pos_.x - 10, pos_.y - 10, pos_.x + 10, pos_.y + 10};
+    return {pos_.x - 5, pos_.y - 5, pos_.x + 12, pos_.y + 10};
 }

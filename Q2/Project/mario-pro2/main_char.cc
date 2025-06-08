@@ -353,3 +353,7 @@ void MainChar::reset_position(pro2::Pt new_pos) {
     accel_ = {0, 0};
     grounded_ = false;
 }
+
+void MainChar::refill_lives() {
+    lives_ = 5;
+}
