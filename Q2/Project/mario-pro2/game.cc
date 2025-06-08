@@ -44,6 +44,13 @@ Game::Game(int width, int height)
         if (i % 3 == 0) coins_.push_back(Coin({420 + i * 200, 182}));
     }
 
+    // Generate spikes
+    for (int i = 1; i < 50; i++) {
+        for (int j = 1; j < 4; j++) {
+            spikes_.push_back(Spike({280 + 200 * i + 10 * j, 141}));
+        }
+    }
+
     // Generate goombas
     for (int i = 0; i < 98; i++) {
         if (i % 2 == 1) goombas_.push_back(Goomba({325 + i * 200, 139}));
@@ -57,6 +64,11 @@ Game::Game(int width, int height)
     // Add coins to finder
     for (const auto& coin : coins_) {
         coin_finder_.add(&coin);
+    }
+
+    // Add spikes to finder
+    for (const auto& spike : spikes_) {
+        spike_finder_.add(&spike);
     }
 
     // Add goombas to finder
@@ -103,6 +115,7 @@ void Game::update_objects(pro2::Window& window) {
     pro2::Rect query_rec = {cam_rec.left, cam_rec.top - 160, cam_rec.right, cam_rec.bottom + 160};
     platform_actualObj_ = platform_finder_.query(query_rec);
     coin_actualObj_ = coin_finder_.query(query_rec);
+    spike_actualObj_ = spike_finder_.query(query_rec);
     goombas_actualObj_ = goombas_finder_.query(query_rec);
     
     // Check collisions and update coins
@@ -222,6 +235,11 @@ void Game::paint(pro2::Window& window) {
     // Draw coins
     for (const Coin* c : coin_actualObj_) {
         c->paint(window);
+    }
+
+    // Draw spikes
+    for (const Spike* s : spike_actualObj_) {
+        s->paint(window);
     }
 
     // Draw goombas

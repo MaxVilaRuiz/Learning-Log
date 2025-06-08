@@ -11,6 +11,7 @@
 #include "utils.hh"
 #include "finder.hh"
 #include "goomba.hh"
+#include "spike.hh"
 
 class Game {
     static constexpr int sky_blue = 0x5c94fc;       // Main background color
@@ -30,6 +31,11 @@ class Game {
     Finder<Coin> coin_finder_;                      // Coin finder
     std::set<const Coin*> coin_actualObj_;          // Coins in view
     int num_coins_;                                 // Collected coins
+
+    // Spikes
+    std::list<Spike> spikes_;                       // All Spike
+    Finder<Spike> spike_finder_;                    // Spike finder
+    std::set<const Spike*> spike_actualObj_;        // Spike in view
 
     // Goombas
     std::list<Goomba> goombas_;                     // All Goombas
