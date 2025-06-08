@@ -34,7 +34,7 @@ pro2::Rect Spike::get_rect() const {
 }
 
 
-bool Spike::has_crossed_floor_downwards(pro2::Pt plast, pro2::Pt pcurr) const {
+bool Spike::above_spike(pro2::Pt plast, pro2::Pt pcurr) const {
     pro2::Rect rect = get_rect();
     return (rect.left <= plast.x && plast.x <= rect.right) && (rect.left <= pcurr.x && pcurr.x <= rect.right) &&
            (plast.y <= rect.top && pcurr.y >= rect.top);

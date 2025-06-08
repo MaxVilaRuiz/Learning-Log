@@ -318,7 +318,7 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms,
 
     // Check grounded on spikes
     for (const Spike* spike : spikes) {
-        if (spike->has_crossed_floor_downwards(last_pos_, pos_)) {
+        if (spike->above_spike(last_pos_, pos_)) {
             set_grounded(true);
             set_y(spike->get_rect().top);
         }
