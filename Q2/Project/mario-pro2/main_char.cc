@@ -36,7 +36,7 @@ const vector<vector<int>> MainChar::mario_sprite_normal_ = {
     {_, w, w, w, _, _, _, _, w, w, w, _},
     {w, w, w, w, _, _, _, _, w, w, w, w},
 };
-const vector<vector<int>> MainChar::mario_sprite_walk1_ = {
+const vector<vector<int>> MainChar::mario_sprite_normal_walk1_ = {
     {_, _, _, r, r, r, r, r, _, _, _, _},
     {_, _, r, r, r, r, r, r, r, r, r, _},
     {_, _, h, h, h, s, s, h, s, _, _, _},
@@ -54,7 +54,7 @@ const vector<vector<int>> MainChar::mario_sprite_walk1_ = {
     {_, w, w, w, _, _, _, _, w, w, w, _},
     {_, w, w, w, w, _, _, _, w, w, w, w},
 };
-const vector<vector<int>> MainChar::mario_sprite_walk2_ = {
+const vector<vector<int>> MainChar::mario_sprite_normal_walk2_ = {
     {_, _, _, r, r, r, r, r, _, _, _, _},
     {_, _, r, r, r, r, r, r, r, r, r, _},
     {_, _, h, h, h, s, s, h, s, _, _, _},
@@ -72,7 +72,7 @@ const vector<vector<int>> MainChar::mario_sprite_walk2_ = {
     {_, _, w, w, w, _, _, w, w, w, _, _},
     {_, _, w, w, w, w, _, w, w, w, w, _},
 };
-const vector<vector<int>> MainChar::mario_sprite_walk3_ = {
+const vector<vector<int>> MainChar::mario_sprite_normal_walk3_ = {
     {_, _, _, r, r, r, r, r, _, _, _, _},
     {_, _, r, r, r, r, r, r, r, r, r, _},
     {_, _, h, h, h, s, s, h, s, _, _, _},
@@ -86,6 +86,114 @@ const vector<vector<int>> MainChar::mario_sprite_walk3_ = {
     {_, _, _, b, b, g, g, b, b, _, _, _},
     {_, _, b, b, b, g, g, g, b, b, _, _},
     {_, _, b, b, b, g, g, b, b, b, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
+    {_, _, _, _, w, w, w, w, _, _, _, _},
+    {_, _, _, _, w, w, w, w, w, _, _, _},
+};
+const vector<vector<int>> MainChar::mario_sprite_medium_ = {
+    {_, _, _, r, r, r, r, r, _, _, _, _},
+    {_, _, r, r, r, r, r, r, r, r, r, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, r, r, b, r, r, r, _, _, _, _},
+    {_, r, r, r, b, r, r, b, r, r, r, _},
+    {r, r, r, r, b, b, b, b, r, r, r, r},
+    {r, r, r, b, y, b, b, y, b, r, r, r},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {w, w, w, w, _, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::mario_sprite_big_ = {
+    {_, _, _, r, r, r, r, r, _, _, _, _},
+    {_, _, r, r, r, r, r, r, r, r, r, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, r, r, b, r, r, r, _, _, _, _},
+    {_, r, r, r, b, r, r, b, r, r, r, _},
+    {r, r, r, r, b, b, b, b, r, r, r, r},
+    {r, r, r, b, b, b, b, b, b, r, r, r},
+    {r, r, b, b, y, b, b, y, b, b, r, r},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {w, w, w, w, _, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::mario_sprite_big_walk1_ = {
+    {_, _, _, r, r, r, r, r, _, _, _, _},
+    {_, _, r, r, r, r, r, r, r, r, r, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, r, r, b, r, r, r, _, _, _, _},
+    {_, r, r, r, b, r, r, b, r, r, r, _},
+    {r, r, r, r, b, b, b, b, r, r, r, r},
+    {r, r, r, b, b, b, b, b, b, r, r, r},
+    {r, r, b, b, y, b, b, y, b, b, r, r},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {_, w, w, w, w, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::mario_sprite_big_walk2_ = {
+    {_, _, _, r, r, r, r, r, _, _, _, _},
+    {_, _, r, r, r, r, r, r, r, r, r, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, r, b, r, r, r, r, _, _, _},
+    {_, _, r, r, b, r, r, b, r, r, _, _},
+    {_, _, r, r, b, r, r, b, r, r, _, _},
+    {_, _, r, r, b, b, b, b, r, r, _, _},
+    {_, _, b, b, b, b, b, y, b, r, _, _},
+    {_, _, g, g, b, b, b, b, b, r, _, _},
+    {_, _, g, g, g, b, b, b, b, g, _, _},
+    {_, _, g, g, b, b, b, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, w, w, w, _, _, w, w, w, _, _},
+    {_, _, w, w, w, w, _, w, w, w, w, _},
+};
+const vector<vector<int>> MainChar::mario_sprite_big_walk3_ = {
+    {_, _, _, r, r, r, r, r, _, _, _, _},
+    {_, _, r, r, r, r, r, r, r, r, r, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, b, b, r, r, b, b, _, _, _},
+    {_, _, _, b, b, r, r, b, b, _, _, _},
+    {_, _, _, b, b, r, r, b, b, _, _, _},
+    {_, _, _, b, b, r, r, b, b, _, _, _},
+    {_, _, _, b, b, g, g, b, b, _, _, _},
+    {_, _, b, b, b, g, g, g, b, b, _, _},
+    {_, _, b, b, b, g, g, b, b, b, _, _},
+    {_, _, b, b, b, g, g, b, b, b, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
     {_, _, _, _, b, b, b, b, _, _, _, _},
     {_, _, _, _, w, w, w, w, _, _, _, _},
     {_, _, _, _, w, w, w, w, w, _, _, _},
@@ -110,7 +218,7 @@ const vector<vector<int>> MainChar::luigi_sprite_normal_ = {
     {_, w, w, w, _, _, _, _, w, w, w, _},
     {w, w, w, w, _, _, _, _, w, w, w, w},
 };
-const vector<vector<int>> MainChar::luigi_sprite_walk1_ = {
+const vector<vector<int>> MainChar::luigi_sprite_normal_walk1_ = {
     {_, _, _, e, e, e, e, e, _, _, _, _},
     {_, _, e, e, e, e, e, e, e, e, e, _},
     {_, _, h, h, h, s, s, h, s, _, _, _},
@@ -128,7 +236,7 @@ const vector<vector<int>> MainChar::luigi_sprite_walk1_ = {
     {_, w, w, w, _, _, _, _, w, w, w, _},
     {_, w, w, w, w, _, _, _, w, w, w, w},
 };
-const vector<vector<int>> MainChar::luigi_sprite_walk2_ = {
+const vector<vector<int>> MainChar::luigi_sprite_normal_walk2_ = {
     {_, _, _, e, e, e, e, e, _, _, _, _},
     {_, _, e, e, e, e, e, e, e, e, e, _},
     {_, _, h, h, h, s, s, h, s, _, _, _},
@@ -146,7 +254,97 @@ const vector<vector<int>> MainChar::luigi_sprite_walk2_ = {
     {_, _, w, w, w, _, _, w, w, w, _, _},
     {_, _, w, w, w, w, _, w, w, w, w, _},
 };
-const vector<vector<int>> MainChar::luigi_sprite_walk3_ = {
+const vector<vector<int>> MainChar::luigi_sprite_normal_walk3_ = {
+    {_, _, _, e, e, e, e, e, _, _, _, _},
+    {_, _, e, e, e, e, e, e, e, e, e, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, b, b, e, e, b, b, _, _, _},
+    {_, _, _, b, b, e, e, b, b, _, _, _},
+    {_, _, _, b, b, e, e, b, b, _, _, _},
+    {_, _, _, b, b, g, g, b, b, _, _, _},
+    {_, _, b, b, b, g, g, g, b, b, _, _},
+    {_, _, b, b, b, g, g, b, b, b, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
+    {_, _, _, _, w, w, w, w, _, _, _, _},
+    {_, _, _, _, w, w, w, w, w, _, _, _},
+};
+const vector<vector<int>> MainChar::luigi_sprite_medium_ = {
+    {_, _, _, e, e, e, e, e, _, _, _, _},
+    {_, _, e, e, e, e, e, e, e, e, e, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, e, e, b, e, e, e, _, _, _, _},
+    {_, e, e, e, b, e, e, b, e, e, e, _},
+    {e, e, e, e, b, b, b, b, e, e, e, e},
+    {g, g, e, b, y, b, b, y, b, e, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {w, w, w, w, _, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::luigi_sprite_big_ = {
+    {_, _, _, e, e, e, e, e, _, _, _, _},
+    {_, _, e, e, e, e, e, e, e, e, e, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, e, e, b, e, e, e, _, _, _, _},
+    {_, e, e, e, b, e, e, b, e, e, e, _},
+    {e, e, e, e, b, b, b, b, e, e, e, e},
+    {g, g, e, b, y, b, b, y, b, e, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {w, w, w, w, _, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::luigi_sprite_big_walk1_ = {
+    {_, _, _, e, e, e, e, e, _, _, _, _},
+    {_, _, e, e, e, e, e, e, e, e, e, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, e, e, b, e, e, e, _, _, _, _},
+    {_, e, e, e, b, e, e, b, e, e, e, _},
+    {e, e, e, e, b, b, b, b, e, e, e, e},
+    {g, g, e, b, y, b, b, y, b, e, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {_, w, w, w, w, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::luigi_sprite_big_walk2_ = {
+    {_, _, _, e, e, e, e, e, _, _, _, _},
+    {_, _, e, e, e, e, e, e, e, e, e, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, e, b, e, e, e, e, _, _, _},
+    {_, _, e, e, b, e, e, b, e, e, _, _},
+    {_, _, e, e, b, b, b, b, e, e, _, _},
+    {_, _, g, g, b, b, b, y, b, e, _, _},
+    {_, _, g, g, g, b, b, b, b, g, _, _},
+    {_, _, g, g, b, b, b, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, w, w, w, _, _, w, w, w, _, _},
+    {_, _, w, w, w, w, _, w, w, w, w, _},
+};
+const vector<vector<int>> MainChar::luigi_sprite_big_walk3_ = {
     {_, _, _, e, e, e, e, e, _, _, _, _},
     {_, _, e, e, e, e, e, e, e, e, e, _},
     {_, _, h, h, h, s, s, h, s, _, _, _},
@@ -201,26 +399,50 @@ const vector<vector<int>> MainChar::luigi_lives_sprite_ = {
 
 void MainChar::paint(pro2::Window& window, bool immune, int frame) const {
     if (!immune || (immune && (frame % 2 == 0))) {
-        const Pt pos = {pos_.x - 6, pos_.y - 15};
+        Pt pos = {pos_.x - 6, pos_.y - 15};
         const vector<vector<int>>* sprite = nullptr;
     
         if (character_ == "mario") {
-            if (speed_.x != 0) {
-                int phase = (animation_counter_ / animation_speed_) % 3;
-                if (phase == 0) sprite = &mario_sprite_walk1_;
-                else if (phase == 1) sprite = &mario_sprite_walk2_;
-                else sprite = &mario_sprite_walk3_;
+            if (big_) {
+                pos.y -= 4;
+                if (speed_.x != 0) {
+                    int phase = (animation_counter_ / animation_speed_) % 3;
+                    if (phase == 0) sprite = &mario_sprite_big_walk1_;
+                    else if (phase == 1) sprite = &mario_sprite_big_walk2_;
+                    else sprite = &mario_sprite_big_walk3_;
+                }
+                else sprite = &mario_sprite_big_;
             }
-            else sprite = &mario_sprite_normal_;
+            else {
+                if (speed_.x != 0) {
+                    int phase = (animation_counter_ / animation_speed_) % 3;
+                    if (phase == 0) sprite = &mario_sprite_normal_walk1_;
+                    else if (phase == 1) sprite = &mario_sprite_normal_walk2_;
+                    else sprite = &mario_sprite_normal_walk3_;
+                }
+                else sprite = &mario_sprite_normal_;   
+            }
         }
         else {
-            if (speed_.x != 0) {
-                int phase = (animation_counter_ / animation_speed_) % 3;
-                if (phase == 0) sprite = &luigi_sprite_walk1_;
-                else if (phase == 1) sprite = &luigi_sprite_walk2_;
-                else sprite = &luigi_sprite_walk3_;
+            if (big_) {
+                pos.y -= 4;
+                if (speed_.x != 0) {
+                    int phase = (animation_counter_ / animation_speed_) % 3;
+                    if (phase == 0) sprite = &luigi_sprite_big_walk1_;
+                    else if (phase == 1) sprite = &luigi_sprite_big_walk2_;
+                    else sprite = &luigi_sprite_big_walk3_;
+                }
+                else sprite = &luigi_sprite_big_;
             }
-            else sprite = &luigi_sprite_normal_;
+            else {
+                if (speed_.x != 0) {
+                    int phase = (animation_counter_ / animation_speed_) % 3;
+                    if (phase == 0) sprite = &luigi_sprite_normal_walk1_;
+                    else if (phase == 1) sprite = &luigi_sprite_normal_walk2_;
+                    else sprite = &luigi_sprite_normal_walk3_;
+                }
+                else sprite = &luigi_sprite_normal_;
+            }
         }
     
         paint_sprite(window, pos, *sprite, looking_left_);
@@ -328,11 +550,7 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms,
 
 
 pro2::Rect MainChar::rect() const {
-    int left = pos_.x - 6;
-    int top = pos_.y - 15;
-    int right = pos_.x + 6;
-    int bottom = pos_.y + 15;
-    return pro2::Rect({left, top, right, bottom});
+    return pro2::Rect({pos_.x - 6, pos_.y - 15, pos_.x + 6, pos_.y + 15});
 }
 
 
@@ -344,6 +562,7 @@ int MainChar::lives() const {
 void MainChar::lose_life() {
     if (0 < lives_) {
         lives_--;
+        if (lives_ == 4) big_ = false;
     }
 }
 
@@ -354,6 +573,7 @@ void MainChar::reset_position(pro2::Pt new_pos) {
     grounded_ = false;
 }
 
-void MainChar::refill_lives() {
+void MainChar::eat_mushroom() {
     lives_ = 5;
+    big_ = true;
 }

@@ -150,13 +150,13 @@ void Game::update_objects(pro2::Window& window) {
         if (objs_collision(mario_.rect(), m->get_rect())) {
             mushroom_finder_.remove(m);    
             it = mushroom_actualObj_.erase(it);
-            mario_.refill_lives();
+            mario_.eat_mushroom();
             // MAKE MARIO BIGGER WITH A TRANSITION              
         }
         else if (objs_collision(luigi_.rect(), m->get_rect())) {
             mushroom_finder_.remove(m);    
             it = mushroom_actualObj_.erase(it);
-            luigi_.refill_lives();
+            luigi_.eat_mushroom();
             // MAKE LUIGI BIGGER WITH A TRANSITION              
         }
         else {

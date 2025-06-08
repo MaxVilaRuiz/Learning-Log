@@ -16,18 +16,29 @@ class MainChar {
     int animation_counter_ = 0;
     int animation_speed_ = 7;
     int lives_ = 5;
+    bool big_ = false;
 
     // Mario sprites
     static const std::vector<std::vector<int>> mario_sprite_normal_;
-    static const std::vector<std::vector<int>> mario_sprite_walk1_;
-    static const std::vector<std::vector<int>> mario_sprite_walk2_;
-    static const std::vector<std::vector<int>> mario_sprite_walk3_;
+    static const std::vector<std::vector<int>> mario_sprite_normal_walk1_;
+    static const std::vector<std::vector<int>> mario_sprite_normal_walk2_;
+    static const std::vector<std::vector<int>> mario_sprite_normal_walk3_;
+    static const std::vector<std::vector<int>> mario_sprite_medium_;
+    static const std::vector<std::vector<int>> mario_sprite_big_;
+    static const std::vector<std::vector<int>> mario_sprite_big_walk1_;
+    static const std::vector<std::vector<int>> mario_sprite_big_walk2_;
+    static const std::vector<std::vector<int>> mario_sprite_big_walk3_;
 
     // Mario sprites
     static const std::vector<std::vector<int>> luigi_sprite_normal_;
-    static const std::vector<std::vector<int>> luigi_sprite_walk1_;
-    static const std::vector<std::vector<int>> luigi_sprite_walk2_;
-    static const std::vector<std::vector<int>> luigi_sprite_walk3_;
+    static const std::vector<std::vector<int>> luigi_sprite_normal_walk1_;
+    static const std::vector<std::vector<int>> luigi_sprite_normal_walk2_;
+    static const std::vector<std::vector<int>> luigi_sprite_normal_walk3_;
+    static const std::vector<std::vector<int>> luigi_sprite_medium_;
+    static const std::vector<std::vector<int>> luigi_sprite_big_;
+    static const std::vector<std::vector<int>> luigi_sprite_big_walk1_;
+    static const std::vector<std::vector<int>> luigi_sprite_big_walk2_;
+    static const std::vector<std::vector<int>> luigi_sprite_big_walk3_;
 
     // Lives sprite
     static const std::vector<std::vector<int>> mario_lives_sprite_;
@@ -135,7 +146,7 @@ class MainChar {
      * @pre The character must exist / be alive.
      * @post The character's life count is set to its maximum value.
      */
-    void refill_lives();
+    void eat_mushroom();
 
     /**
      * @brief Resets the character's position to a new location.
