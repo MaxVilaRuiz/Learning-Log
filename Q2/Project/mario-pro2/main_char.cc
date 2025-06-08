@@ -416,54 +416,69 @@ const vector<vector<int>> MainChar::luigi_lives_sprite_ = {
 
 
 void MainChar::paint(pro2::Window& window, bool immune, int frame) const {
-    if (!immune || (immune && (frame % 2 == 0))) {
-        Pt pos = {pos_.x - 6, pos_.y - 15};
-        const vector<vector<int>>* sprite = nullptr;
-    
+    Pt pos = {pos_.x - 6, pos_.y - 15};
+    const vector<vector<int>>* sprite = nullptr;
+
+    if (0 < growth_counter) {
+        pos.y -= 3;
+        bool phase = 4 < (growth_counter % 10);
+
         if (character_ == "mario") {
-            if (big_) {
-                pos.y -= 4;
-                if (speed_.x != 0) {
-                    int phase = (animation_counter_ / animation_speed_) % 3;
-                    if (phase == 0) sprite = &mario_sprite_big_walk1_;
-                    else if (phase == 1) sprite = &mario_sprite_big_walk2_;
-                    else sprite = &mario_sprite_big_walk3_;
-                }
-                else sprite = &mario_sprite_big_;
-            }
-            else {
-                if (speed_.x != 0) {
-                    int phase = (animation_counter_ / animation_speed_) % 3;
-                    if (phase == 0) sprite = &mario_sprite_normal_walk1_;
-                    else if (phase == 1) sprite = &mario_sprite_normal_walk2_;
-                    else sprite = &mario_sprite_normal_walk3_;
-                }
-                else sprite = &mario_sprite_normal_;   
-            }
+            if (30 < growth_counter) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_normal_;
+            else sprite = phase ? &mario_sprite_big_ : &mario_sprite_medium_;
         }
         else {
-            if (big_) {
-                pos.y -= 4;
-                if (speed_.x != 0) {
-                    int phase = (animation_counter_ / animation_speed_) % 3;
-                    if (phase == 0) sprite = &luigi_sprite_big_walk1_;
-                    else if (phase == 1) sprite = &luigi_sprite_big_walk2_;
-                    else sprite = &luigi_sprite_big_walk3_;
+            if (30 < growth_counter) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_normal_;
+            else sprite = phase ? &luigi_sprite_big_ : &luigi_sprite_medium_;
+        }
+        paint_sprite(window, pos, *sprite, looking_left_);
+    }
+    else {
+        if (!immune || (immune && (frame % 2 == 0))) {
+            if (character_ == "mario") {
+                if (big_) {
+                    pos.y -= 4;
+                    if (speed_.x != 0) {
+                        int phase = (animation_counter_ / animation_speed_) % 3;
+                        if (phase == 0) sprite = &mario_sprite_big_walk1_;
+                        else if (phase == 1) sprite = &mario_sprite_big_walk2_;
+                        else sprite = &mario_sprite_big_walk3_;
+                    }
+                    else sprite = &mario_sprite_big_;
                 }
-                else sprite = &luigi_sprite_big_;
+                else {
+                    if (speed_.x != 0) {
+                        int phase = (animation_counter_ / animation_speed_) % 3;
+                        if (phase == 0) sprite = &mario_sprite_normal_walk1_;
+                        else if (phase == 1) sprite = &mario_sprite_normal_walk2_;
+                        else sprite = &mario_sprite_normal_walk3_;
+                    }
+                    else sprite = &mario_sprite_normal_;   
+                }
             }
             else {
-                if (speed_.x != 0) {
-                    int phase = (animation_counter_ / animation_speed_) % 3;
-                    if (phase == 0) sprite = &luigi_sprite_normal_walk1_;
-                    else if (phase == 1) sprite = &luigi_sprite_normal_walk2_;
-                    else sprite = &luigi_sprite_normal_walk3_;
+                if (big_) {
+                    pos.y -= 4;
+                    if (speed_.x != 0) {
+                        int phase = (animation_counter_ / animation_speed_) % 3;
+                        if (phase == 0) sprite = &luigi_sprite_big_walk1_;
+                        else if (phase == 1) sprite = &luigi_sprite_big_walk2_;
+                        else sprite = &luigi_sprite_big_walk3_;
+                    }
+                    else sprite = &luigi_sprite_big_;
                 }
-                else sprite = &luigi_sprite_normal_;
+                else {
+                    if (speed_.x != 0) {
+                        int phase = (animation_counter_ / animation_speed_) % 3;
+                        if (phase == 0) sprite = &luigi_sprite_normal_walk1_;
+                        else if (phase == 1) sprite = &luigi_sprite_normal_walk2_;
+                        else sprite = &luigi_sprite_normal_walk3_;
+                    }
+                    else sprite = &luigi_sprite_normal_;
+                }
             }
+            paint_sprite(window, pos, *sprite, looking_left_);
         }
-    
-        paint_sprite(window, pos, *sprite, looking_left_);
     }
 }
 
@@ -516,54 +531,56 @@ void MainChar::jump() {
 
 
 void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms, std::set<const Spike*> spikes) {
-    last_pos_ = pos_;
+    if (0 < growth_counter) growth_counter--;
+    else {
+        last_pos_ = pos_;
     
-    // Repositioning the secondary characters on the screen
-    if (character_ != "mario") {
-        pro2::Rect char_rec = rect();
-        pro2::Rect cam_rec = window.camera_rect();
-        // Horizontal position
-        if (char_rec.right < cam_rec.left) pos_.x = cam_rec.left;
-        else if (char_rec.left > cam_rec.right) pos_.x = cam_rec.right;
-        else pos_.x = last_pos_.x;
-    }
-
-    if (window.is_key_down(jump_key_)) {
-        jump();
-    }
-
-    // Horizontal speed
-    speed_.x = 0;
-    if (window.is_key_down(left_key_)) speed_.x = -4;
-    else if (window.is_key_down(right_key_)) speed_.x = 4;
-
-    if (speed_.x != 0) {
-        looking_left_ = speed_.x < 0;
-        animation_counter_++;
-    }
-    else animation_counter_ = 0;
-
-    if (pos_.x == last_pos_.x && pos_.y == last_pos_.y) apply_physics_();
-    set_grounded(false);
-
-    // Check grounded on platforms 
-    for (const Platform* platform : platforms) {
-        if (!window.is_key_down(down_key_)) {
-            if (platform->has_crossed_floor_downwards(last_pos_, pos_)) {
+        // Repositioning the secondary characters on the screen
+        if (character_ != "mario") {
+            pro2::Rect char_rec = rect();
+            pro2::Rect cam_rec = window.camera_rect();
+            // Horizontal position
+            if (char_rec.right < cam_rec.left) pos_.x = cam_rec.left;
+            else if (char_rec.left > cam_rec.right) pos_.x = cam_rec.right;
+            else pos_.x = last_pos_.x;
+        }
+    
+        if (window.is_key_down(jump_key_)) {
+            jump();
+        }
+    
+        // Horizontal speed
+        speed_.x = 0;
+        if (window.is_key_down(left_key_)) speed_.x = -4;
+        else if (window.is_key_down(right_key_)) speed_.x = 4;
+    
+        if (speed_.x != 0) {
+            looking_left_ = speed_.x < 0;
+            animation_counter_++;
+        }
+        else animation_counter_ = 0;
+    
+        if (pos_.x == last_pos_.x && pos_.y == last_pos_.y) apply_physics_();
+        set_grounded(false);
+    
+        // Check grounded on platforms 
+        for (const Platform* platform : platforms) {
+            if (!window.is_key_down(down_key_)) {
+                if (platform->has_crossed_floor_downwards(last_pos_, pos_)) {
+                    set_grounded(true);
+                    set_y(platform->top());
+                }
+            }
+        }
+    
+        // Check grounded on spikes
+        for (const Spike* spike : spikes) {
+            if (spike->above_spike(last_pos_, pos_)) {
                 set_grounded(true);
-                set_y(platform->top());
+                set_y(spike->get_rect().top);
             }
         }
     }
-
-    // Check grounded on spikes
-    for (const Spike* spike : spikes) {
-        if (spike->above_spike(last_pos_, pos_)) {
-            set_grounded(true);
-            set_y(spike->get_rect().top);
-        }
-    }
-
 }
 
 
@@ -592,6 +609,9 @@ void MainChar::reset_position(pro2::Pt new_pos) {
 }
 
 void MainChar::eat_mushroom() {
-    lives_ = 5;
-    big_ = true;
+    if (!big_) {
+        lives_ = 5;
+        big_ = true;
+        growth_counter = 60; // 1s at 60fps
+    }
 }

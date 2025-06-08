@@ -9,13 +9,20 @@
 
 class MainChar {
  private:
+    // Physics
     pro2::Pt pos_, last_pos_;
     pro2::Pt speed_ = {0, 0};
     pro2::Pt accel_ = {0, 0};
     int accel_time_ = 0;
+
+    // Walking animation
     int animation_counter_ = 0;
     int animation_speed_ = 7;
+
     int lives_ = 5;
+
+    // Mushroom effect
+    int growth_counter = 0;
     bool big_ = false;
 
     // Mario sprites

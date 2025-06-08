@@ -150,14 +150,12 @@ void Game::update_objects(pro2::Window& window) {
         if (objs_collision(mario_.rect(), m->get_rect())) {
             mushroom_finder_.remove(m);    
             it = mushroom_actualObj_.erase(it);
-            mario_.eat_mushroom();
-            // MAKE MARIO BIGGER WITH A TRANSITION              
+            mario_.eat_mushroom();            
         }
         else if (objs_collision(luigi_.rect(), m->get_rect())) {
             mushroom_finder_.remove(m);    
             it = mushroom_actualObj_.erase(it);
-            luigi_.eat_mushroom();
-            // MAKE LUIGI BIGGER WITH A TRANSITION              
+            luigi_.eat_mushroom();            
         }
         else {
             Mushroom* non_const_coin = const_cast<Mushroom*>(m);
