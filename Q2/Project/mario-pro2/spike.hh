@@ -22,4 +22,6 @@ class Spike {
     void paint(pro2::Window& window) const;
 
     pro2::Rect get_rect() const;
+
+    bool has_crossed_floor_downwards(pro2::Pt plast, pro2::Pt pcurr) const;
 };

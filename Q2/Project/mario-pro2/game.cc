@@ -89,8 +89,8 @@ void Game::process_keys(pro2::Window& window) {
 
 void Game::update_objects(pro2::Window& window) {
     // Update main characters
-    mario_.update(window, platform_actualObj_);
-    luigi_.update(window, platform_actualObj_);
+    mario_.update(window, platform_actualObj_, spike_actualObj_);
+    luigi_.update(window, platform_actualObj_, spike_actualObj_);
 
     // Subtract lives from characters if they are out of bounds
     const int bottom_limit = window.camera_rect().bottom + 320;

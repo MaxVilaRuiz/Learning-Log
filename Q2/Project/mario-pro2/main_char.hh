@@ -5,6 +5,7 @@
 #include <set>
 #include "platform.hh"
 #include "window.hh"
+#include "spike.hh"
 
 class MainChar {
  private:
@@ -109,7 +110,7 @@ class MainChar {
      * @pre Inputs and platforms valid.
      * @post Updates position, speed, grounded state.
      */
-    void update(pro2::Window& window, std::set<const Platform*> platforms);
+    void update(pro2::Window& window, std::set<const Platform*> platforms, std::set<const Spike*> spikes);
 
     /**
      * @brief Returns MainChar's bounding box.

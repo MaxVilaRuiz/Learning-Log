@@ -275,7 +275,7 @@ void MainChar::jump() {
 }
 
 
-void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms) {
+void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms, std::set<const Spike*> spikes) {
     last_pos_ = pos_;
     
     // Repositioning the secondary characters on the screen
@@ -306,6 +306,7 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms)
     if (pos_.x == last_pos_.x && pos_.y == last_pos_.y) apply_physics_();
     set_grounded(false);
 
+    // Check grounded on platforms 
     for (const Platform* platform : platforms) {
         if (!window.is_key_down(down_key_)) {
             if (platform->has_crossed_floor_downwards(last_pos_, pos_)) {
@@ -314,6 +315,15 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms)
             }
         }
     }
+
+    // Check grounded on spikes
+    for (const Spike* spike : spikes) {
+        if (spike->has_crossed_floor_downwards(last_pos_, pos_)) {
+            set_grounded(true);
+            set_y(spike->get_rect().top);
+        }
+    }
+
 }
 
 
