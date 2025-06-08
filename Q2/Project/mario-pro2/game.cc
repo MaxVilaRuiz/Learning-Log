@@ -133,6 +133,21 @@ void Game::update_objects(pro2::Window& window) {
         }
     }
 
+    // Check collisions with spikes
+    for (const Spike* s : spike_actualObj_) {
+        if (!immune_mario_ && objs_collision(mario_.rect(), s->get_rect())) {
+            mario_.lose_life();
+            immune_mario_ = true;
+            immunity_mario_until_ = frame_counter_ + immunity_interval_;
+        }
+
+        if (!immune_luigi_ && objs_collision(luigi_.rect(), s->get_rect())) {
+            luigi_.lose_life();
+            immune_luigi_ = true;
+            immunity_luigi_until_ = frame_counter_ + immunity_interval_;
+        }
+    }
+
     // Update Goombas
     for (auto it = goombas_actualObj_.begin(); it != goombas_actualObj_.end();) {
         Goomba* goomba = const_cast<Goomba*>(*it);
