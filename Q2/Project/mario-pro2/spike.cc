@@ -20,7 +20,6 @@ const vector<vector<int>> Spike::spike_sprite_ = {
     {_, b, g, g, g, l, l, b, _},
     {b, g, g, g, g, g, l, l, b},
     {b, g, g, g, g, g, l, l, b},
-    {b, g, g, g, g, g, g, l, b},
 };
 // clang-format on
 

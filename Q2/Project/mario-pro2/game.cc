@@ -47,7 +47,7 @@ Game::Game(int width, int height)
     // Generate spikes
     for (int i = 1; i < 50; i++) {
         for (int j = 1; j < 4; j++) {
-            spikes_.push_back(Spike({280 + 200 * i + 10 * j, 141}));
+            spikes_.push_back(Spike({280 + 200 * i + 10 * j, 142}));
         }
     }
 
