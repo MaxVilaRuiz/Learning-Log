@@ -15,7 +15,7 @@ class Spike {
  public:
     /**
      * @brief Constructs a Spike at the given position.
-     * @param pos Initial position of the Goomba.
+     * @param pos Initial position of the Spike.
      */
     Spike(pro2::Pt pos) : pos_(pos) {}
 
