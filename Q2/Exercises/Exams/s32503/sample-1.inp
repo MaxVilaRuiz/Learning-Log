@@ -1,0 +1,7 @@
+push x
+rotate a
+size
+push a
+print
+rotate a
+print

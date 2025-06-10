@@ -1,0 +1,18 @@
+push_back a
+it--
+*it
+print_list
+moveToBeginning
+print_list
+push_back b
+it++
+*it
+print_list
+moveToBeginning
+print_list
+push_front c
+it++
+*it
+print_list
+moveToBeginning
+print_list

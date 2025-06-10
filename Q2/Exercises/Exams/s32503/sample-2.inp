@@ -1,0 +1,14 @@
+push a
+push b
+push c
+rotate b
+print
+push d
+print
+pop 
+rotate d
+print
+push c
+print
+rotate c
+print

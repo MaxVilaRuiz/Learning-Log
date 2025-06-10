@@ -1,0 +1,7 @@
+push 1
+push 2
+size
+push 3
+print
+push_sort 0
+print

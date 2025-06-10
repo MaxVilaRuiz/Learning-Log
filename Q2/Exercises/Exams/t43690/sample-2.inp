@@ -1,0 +1,8 @@
+size
+print
+push_sort -7
+push_sort 0
+print
+push_sort -3
+print
+size
