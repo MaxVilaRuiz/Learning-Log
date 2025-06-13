@@ -5,66 +5,109 @@ using namespace pro2;
 Game::Game(int width, int height)
     : mario_({width / 2, 150}, Keys::Up, Keys::Down, Keys::Left, Keys::Right, "mario"),
       luigi_({(width / 2) - 30, 150}, Keys::W, Keys::S, Keys::A, Keys::D, "luigi"),
+
+      // Unsorted objects
       platforms_{
-        Platform(0, 200, 250, 261),
-        Platform(100, 300, 200, 211),
-        Platform(250, 400, 150, 161),
+        Platform(0, 300, 200, 450),        
+        Platform(315, 385, 150, 161),
+        Platform(400, 600, 200, 450),
+        Platform(450, 550, 155, 166),
+        Platform(625, 675, 170, 181),
+        Platform(700, 750, 140, 151),
+        Platform(775, 875, 110, 121),
+        Platform(775, 800, 170, 181),
+        Platform(900, 950, 140, 151),
+        Platform(975, 1025, 170, 181),
+        Platform(1050, 1100, 200, 211),
       },
+
       coins_ {
-        Coin({20, 232}),
-        Coin({320, 132}),
+        Coin({345, 130}),
+        Coin({820, 90})
       },
-      paused_ (false),
-      finished_(false),
-      num_coins_(0) {
-    
-    // Generate platforms
-    for (int i = 1; i < 98; i++) {
-        platforms_.push_back(Platform(250 + i * 200, 400 + i * 200, 150, 161));
-        platforms_.push_back(Platform(i * 200, 480 + i * 200, 400, 411));
 
-        if (i % 2 != 0) {
-            platforms_.push_back(Platform(320 + i * 200, 370 + i * 200, 100, 111));
-        }
+      spikes_ {
+        Spike({291, 192}),
+        Spike({400, 192}),
+      },
 
-        if (i % 3 == 0) {
-            platforms_.push_back(Platform(405 + i * 200, 445 + i * 200, 200, 211));
-        }
-    }
+      goombas_ {
+        Goomba({500, 189}),
+        Goomba({925, 129}),
+        Goomba({1075, 189}),
+      },
+
+      mushrooms_ {
+        
+      },
+
+      stars_ {
+        Star({781, 155})
+      }
+
+    {
+        
+    // Sorted objects
 
     // Generate coins
-    for (int i = 1; i < 98; i++) {
-        for (int j = 1; j < 5; j++) {
-            coins_.push_back(Coin({50 * j + i * 200, 382}));
-        }
-
-        if (i % 2 == 0) coins_.push_back(Coin({320 + i * 200, 132}));
-        else coins_.push_back(Coin({410 + i * 200, 20}));
-
-        if (i % 3 == 0) coins_.push_back(Coin({420 + i * 200, 182}));
-    }
+    for (int i = 0; i < 3; i++) coins_.push_back(Coin({475 + 20*i, 135}));
 
     // Generate spikes
-    for (int i = 1; i < 50; i++) {
-        for (int j = 1; j < 4; j++) {
-            spikes_.push_back(Spike({280 + 200 * i + 10 * j, 142}));
-        }
-    }
+    for (int i = 0; i < 2; i++) spikes_.push_back(Spike({991 + 9*i, 162}));
+    
+        
 
-    // Generate mushrooms
-    for (int i = 1; i < 50; i++) {
-        mushrooms_.push_back(Mushroom({340 + 200 * i, 139}));
-    }
 
-    // Generate goombas
-    for (int i = 0; i < 98; i++) {
-        if (i % 2 == 1) goombas_.push_back(Goomba({325 + i * 200, 139}));
-    }
 
-    // Generate stars
-    for (int i = 1; i < 50; i++) {
-        stars_.push_back(Star({350 + 200 * i, 137}));
-    }
+
+
+    // // Generate platforms
+    // for (int i = 1; i < 98; i++) {
+    //     platforms_.push_back(Platform(250 + i * 200, 400 + i * 200, 150, 161));
+    //     platforms_.push_back(Platform(i * 200, 480 + i * 200, 400, 411));
+
+    //     if (i % 2 != 0) {
+    //         platforms_.push_back(Platform(320 + i * 200, 370 + i * 200, 100, 111));
+    //     }
+
+    //     if (i % 3 == 0) {
+    //         platforms_.push_back(Platform(405 + i * 200, 445 + i * 200, 200, 211));
+    //     }
+    // }
+
+    // // Generate coins
+    // for (int i = 1; i < 98; i++) {
+    //     for (int j = 1; j < 5; j++) {
+    //         coins_.push_back(Coin({50 * j + i * 200, 382}));
+    //     }
+
+    //     if (i % 2 == 0) coins_.push_back(Coin({320 + i * 200, 132}));
+    //     else coins_.push_back(Coin({410 + i * 200, 20}));
+
+    //     if (i % 3 == 0) coins_.push_back(Coin({420 + i * 200, 182}));
+    // }
+
+    // // Generate spikes
+    // for (int i = 1; i < 50; i++) {
+    //     for (int j = 1; j < 4; j++) {
+    //         spikes_.push_back(Spike({280 + 200 * i + 10 * j, 142}));
+    //     }
+    // }
+
+    // // Generate mushrooms
+    // for (int i = 1; i < 50; i++) {
+    //     mushrooms_.push_back(Mushroom({340 + 200 * i, 139}));
+    // }
+
+    // // Generate goombas
+    // for (int i = 0; i < 98; i++) {
+    //     if (i % 2 == 1) goombas_.push_back(Goomba({325 + i * 200, 139}));
+    // }
+
+    // // Generate stars
+    // for (int i = 1; i < 50; i++) {
+    //     stars_.push_back(Star({350 + 200 * i, 137}));
+    // }
 
 
     // Add platforms to finder

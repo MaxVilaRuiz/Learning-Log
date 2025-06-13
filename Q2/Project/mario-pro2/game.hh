@@ -32,7 +32,7 @@ class Game {
     std::list<Coin> coins_;                         // All coins
     Finder<Coin> coin_finder_;                      // Coin finder
     std::set<const Coin*> coin_actualObj_;          // Coins in view
-    int num_coins_;                                 // Collected coins
+    int num_coins_ = 0;                             // Collected coins
 
     // Spikes
     std::list<Spike> spikes_;                       // All Spike
@@ -54,8 +54,8 @@ class Game {
     Finder<Star> star_finder_;                      // Star finder
     std::set<const Star*> star_actualObj_;          // Star in view
 
-    bool finished_;                                 // Game over flag
-    bool paused_;                                   // Pause flag
+    bool finished_ = false;                         // Game over flag
+    bool paused_ = false;                           // Pause flag
     bool following_cam_ = false;                    // Vertical camera tracking state
 
     bool day_time_ = true;                          // Background status
