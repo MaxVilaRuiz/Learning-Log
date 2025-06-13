@@ -19,6 +19,8 @@ Game::Game(int width, int height)
         Platform(900, 950, 140, 151),
         Platform(975, 1025, 170, 181),
         Platform(1050, 1100, 200, 211),
+        Platform(1125, 1325, 200, 450),
+        Platform(1175, 1275, 155, 166),
       },
 
       coins_ {
@@ -54,6 +56,9 @@ Game::Game(int width, int height)
 
     // Generate spikes
     for (int i = 0; i < 2; i++) spikes_.push_back(Spike({991 + 9*i, 162}));
+
+    // Generate gooombas
+    for (int i = 0; i < 2; i++) goombas_.push_back(Goomba({1171 + 100*i, 189}, 45));
     
         
 
