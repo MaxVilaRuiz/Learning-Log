@@ -184,9 +184,21 @@ class MainChar {
      */
     pro2::Pt last_grounded_pos() { return last_grounded_pos_; }
 
+    /**
+     * @brief Activates star mode for the character.
+     * @post star_mode_ is set to true and star_counter_ is reset to its starting value.
+     */
     void handle_star();
 
+    /**
+     * @brief Checks if the character is currently in star mode.
+     * @return true if the character is in star mode, false otherwise.
+     */
     bool is_in_starmode_() { return star_mode_; }
 
+    /**
+     * @brief Gets the remaining duration of star mode.
+     * @return The number of frames remaining in star mode.
+     */
     int star_countdown() { return star_counter_; }
 };
