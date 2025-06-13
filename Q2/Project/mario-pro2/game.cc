@@ -32,9 +32,9 @@ Game::Game(int width, int height)
       },
 
       goombas_ {
-        Goomba({500, 189}),
-        Goomba({925, 129}),
-        Goomba({1075, 189}),
+        Goomba({496, 189}, 60),
+        Goomba({921, 129}, 20),
+        Goomba({1071, 189}, 20),
       },
 
       mushrooms_ {

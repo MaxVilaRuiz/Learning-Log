@@ -90,9 +90,9 @@ void Goomba::paint(pro2::Window& window) const {
 
 pro2::Rect Goomba::get_rect() const {
     int left = actual_pos_ - 10;
-    int top = pos_.y - 10;
+    int top = pos_.y;
     int right = actual_pos_ + 10;
-    int bottom = pos_.y + 10;
+    int bottom = pos_.y + 30;
     return {left, top, right, bottom};
 }
 

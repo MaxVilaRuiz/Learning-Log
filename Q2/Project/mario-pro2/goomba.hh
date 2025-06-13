@@ -30,7 +30,7 @@ class Goomba {
      * @brief Constructs a Goomba at a given position.
      * @param pos Initial position of the Goomba.
      */
-    Goomba(pro2::Pt pos) : pos_(pos) {}
+    Goomba(pro2::Pt pos, int travel) : pos_(pos), travel_(travel) {}
 
     /**
      * @brief Renders the Goomba on the screen.
