@@ -62,8 +62,8 @@ Game::Game(int width, int height)
     }
 
     // Generate stars
-    for (int i = 0; i < 98; i++) {
-        if (i % 2 == 1) stars_.push_back(Star({330 + i * 200, 137}));
+    for (int i = 1; i < 50; i++) {
+        stars_.push_back(Star({350 + 200 * i, 137}));
     }
 
 
@@ -244,9 +244,22 @@ void Game::update_objects(pro2::Window& window) {
 
     // Check collisions and update stars
     for (auto it = star_actualObj_.begin(); it != star_actualObj_.end();) {
-        Star* star = const_cast<Star*>(*it);
-        star->update();
-        it++;
+        const Star* s = *it;
+        if (objs_collision(mario_.rect(), s->get_rect())) {
+            star_finder_.remove(s);    
+            it = star_actualObj_.erase(it);
+            // mario_.eat_mushroom();            
+        }
+        else if (objs_collision(luigi_.rect(), s->get_rect())) {
+            star_finder_.remove(s);    
+            it = star_actualObj_.erase(it);
+            // luigi_.eat_mushroom();            
+        }
+        else {
+            Star* non_const_star = const_cast<Star*>(s);
+            non_const_star->update();
+            ++it;
+        }
     }
 }
 

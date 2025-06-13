@@ -155,8 +155,8 @@ void Star::update() {
 
 pro2::Rect Star::get_rect() const {
     int left = pos_.x;
-    int top = pos_.y + 2;
-    int right = pos_.x + 12;
+    int top = pos_.y - 5;
+    int right = pos_.x + 15;
     int bottom = pos_.y + 20;
     return {left, top, right, bottom};    
 }
