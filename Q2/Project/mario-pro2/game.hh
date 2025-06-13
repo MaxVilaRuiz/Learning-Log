@@ -13,6 +13,7 @@
 #include "goomba.hh"
 #include "spike.hh"
 #include "mushroom.hh"
+#include "star.hh"
 
 class Game {
     static constexpr int sky_blue = 0x5c94fc;       // Main background color
@@ -47,6 +48,11 @@ class Game {
     std::list<Goomba> goombas_;                     // All Goombas
     Finder<Goomba> goombas_finder_;                 // Goombas finder
     std::set<const Goomba*> goombas_actualObj_;     // Goombas in view
+
+    // Stars
+    std::list<Star> stars_;                         // All Stars
+    Finder<Star> star_finder_;                      // Star finder
+    std::set<const Star*> star_actualObj_;          // Star in view
 
     bool finished_;                                 // Game over flag
     bool paused_;                                   // Pause flag

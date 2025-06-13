@@ -61,6 +61,12 @@ Game::Game(int width, int height)
         if (i % 2 == 1) goombas_.push_back(Goomba({325 + i * 200, 139}));
     }
 
+    // Generate stars
+    for (int i = 0; i < 98; i++) {
+        if (i % 2 == 1) stars_.push_back(Star({330 + i * 200, 137}));
+    }
+
+
     // Add platforms to finder
     for (const auto& plataform : platforms_) {
         platform_finder_.add(&plataform);
@@ -84,6 +90,11 @@ Game::Game(int width, int height)
     // Add goombas to finder
     for (const auto& goomba : goombas_) {
         goombas_finder_.add(&goomba);
+    }
+
+    // Add stars to finder
+    for (const auto& star : stars_) {
+        star_finder_.add(&star);
     }
 }
 
@@ -129,6 +140,7 @@ void Game::update_objects(pro2::Window& window) {
     spike_actualObj_ = spike_finder_.query(query_rec);
     mushroom_actualObj_ = mushroom_finder_.query(query_rec);
     goombas_actualObj_ = goombas_finder_.query(query_rec);
+    star_actualObj_ = star_finder_.query(query_rec);
     
     // Check collisions and update coins
     for (auto it = coin_actualObj_.begin(); it != coin_actualObj_.end();) {
@@ -227,7 +239,14 @@ void Game::update_objects(pro2::Window& window) {
         }
     
         goomba->update();
-        ++it;
+        it++;
+    }
+
+    // Check collisions and update stars
+    for (auto it = star_actualObj_.begin(); it != star_actualObj_.end();) {
+        Star* star = const_cast<Star*>(*it);
+        star->update();
+        it++;
     }
 }
 
@@ -301,6 +320,11 @@ void Game::paint(pro2::Window& window) {
     // Draw goombas
     for (const Goomba* g : goombas_actualObj_) {
         g->paint(window);
+    }
+
+    // Draw stars
+    for (const Star* s : star_actualObj_) {
+        s->paint(window);
     }
 
     // Draw the counter
