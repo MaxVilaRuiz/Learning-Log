@@ -248,12 +248,12 @@ void Game::update_objects(pro2::Window& window) {
         if (objs_collision(mario_.rect(), s->get_rect())) {
             star_finder_.remove(s);    
             it = star_actualObj_.erase(it);
-            // mario_.eat_mushroom();            
+            mario_.handle_star();           
         }
         else if (objs_collision(luigi_.rect(), s->get_rect())) {
             star_finder_.remove(s);    
             it = star_actualObj_.erase(it);
-            // luigi_.eat_mushroom();            
+            luigi_.handle_star();          
         }
         else {
             Star* non_const_star = const_cast<Star*>(s);

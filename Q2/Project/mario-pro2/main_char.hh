@@ -26,6 +26,10 @@ class MainChar {
     int decrease_counter_ = 0;
     bool big_ = false;
 
+    // Star effect
+    int star_counter_ = 0;
+    bool star_mode_ = false;
+
     // Mario sprites
     static const std::vector<std::vector<int>> mario_sprite_normal_;
     static const std::vector<std::vector<int>> mario_sprite_normal_walk1_;
@@ -37,7 +41,7 @@ class MainChar {
     static const std::vector<std::vector<int>> mario_sprite_big_walk2_;
     static const std::vector<std::vector<int>> mario_sprite_big_walk3_;
 
-    // Mario sprites
+    // Luigi sprites
     static const std::vector<std::vector<int>> luigi_sprite_normal_;
     static const std::vector<std::vector<int>> luigi_sprite_normal_walk1_;
     static const std::vector<std::vector<int>> luigi_sprite_normal_walk2_;
@@ -47,6 +51,17 @@ class MainChar {
     static const std::vector<std::vector<int>> luigi_sprite_big_walk1_;
     static const std::vector<std::vector<int>> luigi_sprite_big_walk2_;
     static const std::vector<std::vector<int>> luigi_sprite_big_walk3_;
+
+    // Star mode
+    static const std::vector<std::vector<int>> starmode_sprite_normal_;
+    static const std::vector<std::vector<int>> starmode_sprite_normal_walk1_;
+    static const std::vector<std::vector<int>> starmode_sprite_normal_walk2_;
+    static const std::vector<std::vector<int>> starmode_sprite_normal_walk3_;
+    static const std::vector<std::vector<int>> starmode_sprite_medium_;
+    static const std::vector<std::vector<int>> starmode_sprite_big_;
+    static const std::vector<std::vector<int>> starmode_sprite_big_walk1_;
+    static const std::vector<std::vector<int>> starmode_sprite_big_walk2_;
+    static const std::vector<std::vector<int>> starmode_sprite_big_walk3_;
 
     // Lives sprite
     static const std::vector<std::vector<int>> mario_lives_sprite_;
@@ -168,4 +183,6 @@ class MainChar {
      * @return A point representing the last grounded position.
      */
     pro2::Pt last_grounded_pos() { return last_grounded_pos_; }
+
+    void handle_star();
 };

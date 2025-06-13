@@ -15,6 +15,8 @@ const int g = pro2::gray;
 const int w = pro2::brown;
 const int e = pro2::green;
 const int i = pro2::white;
+const int o = pro2::orange;
+const int p = pro2::purple;
 
 // clang-format off
 // Mario sprites
@@ -381,6 +383,188 @@ const vector<vector<int>> MainChar::luigi_sprite_big_walk3_ = {
     {_, _, _, _, w, w, w, w, w, _, _, _},
 };
 
+// Star mode
+const vector<vector<int>> MainChar::starmode_sprite_normal_ = {
+    {_, _, _, r, o, o, y, e, _, _, _, _},
+    {_, _, r, r, o, y, y, e, e, p, p, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, r, o, b, e, e, e, _, _, _, _},
+    {_, r, o, y, b, e, e, b, e, p, p, _},
+    {r, r, o, y, b, b, b, b, p, p, p, p},
+    {g, g, y, b, y, b, b, y, b, p, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {w, w, w, w, _, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::starmode_sprite_medium_ = {
+    {_, _, _, r, r, o, y, y, _, _, _, _},
+    {_, _, r, r, o, o, y, e, e, p, p, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, r, o, b, y, y, e, _, _, _, _},
+    {_, r, r, o, b, y, e, b, e, e, p, _},
+    {r, r, o, o, b, b, b, b, e, p, p, p},
+    {r, o, o, b, y, b, b, y, b, p, p, p},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {w, w, w, w, _, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::starmode_sprite_big_ = {
+    {_, _, _, r, r, o, y, y, _, _, _, _},
+    {_, _, r, r, o, o, y, e, e, p, p, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, r, o, b, y, y, e, _, _, _, _},
+    {_, r, r, o, b, y, e, b, e, e, p, _},
+    {r, r, o, o, b, b, b, b, e, e, p, p},
+    {r, o, o, b, b, b, b, b, b, p, p, p},
+    {o, o, b, b, y, b, b, y, b, b, p, p},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {w, w, w, w, _, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::starmode_sprite_normal_walk1_ = {
+    {_, _, _, o, o, y, y, e, _, _, _, _},
+    {_, _, o, o, y, y, e, p, p, r, r, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, o, y, b, e, e, p, _, _, _, _},
+    {_, o, o, y, b, e, e, b, p, p, r, _},
+    {o, y, y, y, b, b, b, b, p, r, r, r},
+    {g, g, y, b, y, b, b, y, b, r, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {_, w, w, w, w, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::starmode_sprite_normal_walk2_ = {
+    {_, _, _, y, y, e, e, p, _, _, _, _},
+    {_, _, y, y, e, e, p, p, r, r, o, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, y, b, e, p, p, r, _, _, _},
+    {_, _, y, e, b, e, p, b, r, o, _, _},
+    {_, _, y, e, b, b, b, b, r, o, _, _},
+    {_, _, g, g, b, b, b, y, b, o, _, _},
+    {_, _, g, g, g, b, b, b, b, g, _, _},
+    {_, _, g, g, b, b, b, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, w, w, w, _, _, w, w, w, _, _},
+    {_, _, w, w, w, w, _, w, w, w, w, _},
+};
+const vector<vector<int>> MainChar::starmode_sprite_normal_walk3_ = {
+    {_, _, _, e, e, p, r, r, _, _, _, _},
+    {_, _, e, e, p, p, r, o, o, y, y, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, b, b, e, p, b, b, _, _, _},
+    {_, _, _, b, b, r, o, b, b, _, _, _},
+    {_, _, _, b, b, y, p, b, b, _, _, _},
+    {_, _, _, b, b, g, g, b, b, _, _, _},
+    {_, _, b, b, b, g, g, g, b, b, _, _},
+    {_, _, b, b, b, g, g, b, b, b, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
+    {_, _, _, _, w, w, w, w, _, _, _, _},
+    {_, _, _, _, w, w, w, w, w, _, _, _},
+};
+const vector<vector<int>> MainChar::starmode_sprite_big_walk1_ = {
+    {_, _, _, o, o, y, e, e, _, _, _, _},
+    {_, _, o, o, y, y, e, p, p, r, r, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, o, y, b, e, e, e, _, _, _, _},
+    {_, o, o, y, b, e, e, b, p, p, r, _},
+    {o, o, y, y, b, b, b, b, p, p, r, r},
+    {o, y, y, b, b, b, b, b, b, p, r, r},
+    {y, y, b, b, y, b, b, y, b, b, r, r},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {g, g, g, b, b, b, b, b, b, g, g, g},
+    {g, g, b, b, b, b, b, b, b, b, g, g},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, w, w, w, _, _, _, _, w, w, w, _},
+    {_, w, w, w, w, _, _, _, w, w, w, w},
+};
+const vector<vector<int>> MainChar::starmode_sprite_big_walk2_ = {
+    {_, _, _, y, y, e, p, p, _, _, _, _},
+    {_, _, y, y, e, e, p, r, r, o, o, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, e, b, p, r, r, r, _, _, _},
+    {_, _, y, e, b, p, r, b, r, o, _, _},
+    {_, _, y, e, b, p, p, b, r, o, _, _},
+    {_, _, y, e, b, b, b, b, o, o, _, _},
+    {_, _, b, b, b, b, b, y, b, o, _, _},
+    {_, _, g, g, b, b, b, b, b, o, _, _},
+    {_, _, g, g, g, b, b, b, b, g, _, _},
+    {_, _, g, g, b, b, b, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, b, b, b, _, _, b, b, b, _, _},
+    {_, _, w, w, w, _, _, w, w, w, _, _},
+    {_, _, w, w, w, w, _, w, w, w, w, _},
+};
+const vector<vector<int>> MainChar::starmode_sprite_big_walk3_ = {
+    {_, _, _, e, e, p, r, r, _, _, _, _},
+    {_, _, e, e, p, p, r, o, o, y, y, _},
+    {_, _, h, h, h, s, s, h, s, _, _, _},
+    {_, h, s, h, s, s, s, h, s, s, s, _},
+    {_, h, s, h, h, s, s, s, h, s, s, s},
+    {_, h, h, s, s, s, s, h, h, h, h, _},
+    {_, _, _, s, s, s, s, s, s, s, _, _},
+    {_, _, _, b, b, e, p, b, b, _, _, _},
+    {_, _, _, b, b, r, o, b, b, _, _, _},
+    {_, _, _, b, b, y, e, b, b, _, _, _},
+    {_, _, _, b, b, o, p, b, b, _, _, _},
+    {_, _, _, b, b, g, g, b, b, _, _, _},
+    {_, _, b, b, b, g, g, g, b, b, _, _},
+    {_, _, b, b, b, g, g, b, b, b, _, _},
+    {_, _, b, b, b, g, g, b, b, b, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
+    {_, _, _, _, b, b, b, b, _, _, _, _},
+    {_, _, _, _, w, w, w, w, _, _, _, _},
+    {_, _, _, _, w, w, w, w, w, _, _, _},
+};
+
 // Lives sprite
 const vector<vector<int>> MainChar::mario_lives_sprite_ = {
     {_, _, _, _, _, _, _, _, _, _, _, _},
@@ -418,84 +602,133 @@ const vector<vector<int>> MainChar::luigi_lives_sprite_ = {
 void MainChar::paint(pro2::Window& window, bool immune, int frame) const {
     Pt pos = {pos_.x - 6, pos_.y - 15};
     const vector<vector<int>>* sprite = nullptr;
+    if (0 < star_counter_) {
+        if (0 < growth_counter_) {
+            pos.y -= 3;
+            bool phase = 4 < (growth_counter_ % 10);
+    
+            if (30 < growth_counter_) sprite = phase ? &starmode_sprite_medium_ : &starmode_sprite_normal_;
+            else sprite = phase ? &starmode_sprite_big_ : &starmode_sprite_medium_;
 
-    if (0 < growth_counter_) {
-        pos.y -= 3;
-        bool phase = 4 < (growth_counter_ % 10);
-
-        if (character_ == "mario") {
-            if (30 < growth_counter_) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_normal_;
-            else sprite = phase ? &mario_sprite_big_ : &mario_sprite_medium_;
+            paint_sprite(window, pos, *sprite, looking_left_);
+        }
+        else if (0 < decrease_counter_) {
+            pos.y -= 3;
+    
+            if (!immune || (immune && (frame % 2 == 0))) {
+                bool phase = 4 < (decrease_counter_ % 10);
+    
+                if (30 < decrease_counter_) sprite = phase ? &starmode_sprite_medium_ : &starmode_sprite_big_;
+                else sprite = phase ? &starmode_sprite_normal_ : &starmode_sprite_medium_;
+                
+                paint_sprite(window, pos, *sprite, looking_left_);
+            }
         }
         else {
-            if (30 < growth_counter_) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_normal_;
-            else sprite = phase ? &luigi_sprite_big_ : &luigi_sprite_medium_;
-        }
-        paint_sprite(window, pos, *sprite, looking_left_);
-    }
-    else if (0 < decrease_counter_) {
-        pos.y -= 3;
+            if (!immune || (immune && (frame % 2 == 0))) {
+                if (big_) {
+                    pos.y -= 4;
+                    if (speed_.x != 0) {
+                        int phase = (animation_counter_ / animation_speed_) % 3;
+                        if (phase == 0) sprite = &starmode_sprite_big_walk1_;
+                        else if (phase == 1) sprite = &starmode_sprite_big_walk2_;
+                        else sprite = &starmode_sprite_big_walk3_;
+                    }
+                    else sprite = &starmode_sprite_big_;
+                }
+                else {
+                    if (speed_.x != 0) {
+                        int phase = (animation_counter_ / animation_speed_) % 3;
+                        if (phase == 0) sprite = &starmode_sprite_normal_walk1_;
+                        else if (phase == 1) sprite = &starmode_sprite_normal_walk2_;
+                        else sprite = &starmode_sprite_normal_walk3_;
+                    }
+                    else sprite = &starmode_sprite_normal_;   
+                }
 
-        if (!immune || (immune && (frame % 2 == 0))) {
-            bool phase = 4 < (decrease_counter_ % 10);
-
-            if (character_ == "mario") {
-                if (30 < decrease_counter_) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_big_;
-                else sprite = phase ? &mario_sprite_normal_ : &mario_sprite_medium_;
+                paint_sprite(window, pos, *sprite, looking_left_);
             }
-            else {
-                if (30 < decrease_counter_) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_big_;
-                else sprite = phase ? &luigi_sprite_normal_ : &luigi_sprite_medium_;
-            }
-            
-            paint_sprite(window, pos, *sprite, looking_left_);
         }
     }
     else {
-        if (!immune || (immune && (frame % 2 == 0))) {
+        if (0 < growth_counter_) {
+            pos.y -= 3;
+            bool phase = 4 < (growth_counter_ % 10);
+    
             if (character_ == "mario") {
-                if (big_) {
-                    pos.y -= 4;
-                    if (speed_.x != 0) {
-                        int phase = (animation_counter_ / animation_speed_) % 3;
-                        if (phase == 0) sprite = &mario_sprite_big_walk1_;
-                        else if (phase == 1) sprite = &mario_sprite_big_walk2_;
-                        else sprite = &mario_sprite_big_walk3_;
-                    }
-                    else sprite = &mario_sprite_big_;
-                }
-                else {
-                    if (speed_.x != 0) {
-                        int phase = (animation_counter_ / animation_speed_) % 3;
-                        if (phase == 0) sprite = &mario_sprite_normal_walk1_;
-                        else if (phase == 1) sprite = &mario_sprite_normal_walk2_;
-                        else sprite = &mario_sprite_normal_walk3_;
-                    }
-                    else sprite = &mario_sprite_normal_;   
-                }
+                if (30 < growth_counter_) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_normal_;
+                else sprite = phase ? &mario_sprite_big_ : &mario_sprite_medium_;
             }
             else {
-                if (big_) {
-                    pos.y -= 4;
-                    if (speed_.x != 0) {
-                        int phase = (animation_counter_ / animation_speed_) % 3;
-                        if (phase == 0) sprite = &luigi_sprite_big_walk1_;
-                        else if (phase == 1) sprite = &luigi_sprite_big_walk2_;
-                        else sprite = &luigi_sprite_big_walk3_;
-                    }
-                    else sprite = &luigi_sprite_big_;
-                }
-                else {
-                    if (speed_.x != 0) {
-                        int phase = (animation_counter_ / animation_speed_) % 3;
-                        if (phase == 0) sprite = &luigi_sprite_normal_walk1_;
-                        else if (phase == 1) sprite = &luigi_sprite_normal_walk2_;
-                        else sprite = &luigi_sprite_normal_walk3_;
-                    }
-                    else sprite = &luigi_sprite_normal_;
-                }
+                if (30 < growth_counter_) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_normal_;
+                else sprite = phase ? &luigi_sprite_big_ : &luigi_sprite_medium_;
             }
             paint_sprite(window, pos, *sprite, looking_left_);
+        }
+        else if (0 < decrease_counter_) {
+            pos.y -= 3;
+    
+            if (!immune || (immune && (frame % 2 == 0))) {
+                bool phase = 4 < (decrease_counter_ % 10);
+    
+                if (character_ == "mario") {
+                    if (30 < decrease_counter_) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_big_;
+                    else sprite = phase ? &mario_sprite_normal_ : &mario_sprite_medium_;
+                }
+                else {
+                    if (30 < decrease_counter_) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_big_;
+                    else sprite = phase ? &luigi_sprite_normal_ : &luigi_sprite_medium_;
+                }
+                
+                paint_sprite(window, pos, *sprite, looking_left_);
+            }
+        }
+        else {
+            if (!immune || (immune && (frame % 2 == 0))) {
+                if (character_ == "mario") {
+                    if (big_) {
+                        pos.y -= 4;
+                        if (speed_.x != 0) {
+                            int phase = (animation_counter_ / animation_speed_) % 3;
+                            if (phase == 0) sprite = &mario_sprite_big_walk1_;
+                            else if (phase == 1) sprite = &mario_sprite_big_walk2_;
+                            else sprite = &mario_sprite_big_walk3_;
+                        }
+                        else sprite = &mario_sprite_big_;
+                    }
+                    else {
+                        if (speed_.x != 0) {
+                            int phase = (animation_counter_ / animation_speed_) % 3;
+                            if (phase == 0) sprite = &mario_sprite_normal_walk1_;
+                            else if (phase == 1) sprite = &mario_sprite_normal_walk2_;
+                            else sprite = &mario_sprite_normal_walk3_;
+                        }
+                        else sprite = &mario_sprite_normal_;   
+                    }
+                }
+                else {
+                    if (big_) {
+                        pos.y -= 4;
+                        if (speed_.x != 0) {
+                            int phase = (animation_counter_ / animation_speed_) % 3;
+                            if (phase == 0) sprite = &luigi_sprite_big_walk1_;
+                            else if (phase == 1) sprite = &luigi_sprite_big_walk2_;
+                            else sprite = &luigi_sprite_big_walk3_;
+                        }
+                        else sprite = &luigi_sprite_big_;
+                    }
+                    else {
+                        if (speed_.x != 0) {
+                            int phase = (animation_counter_ / animation_speed_) % 3;
+                            if (phase == 0) sprite = &luigi_sprite_normal_walk1_;
+                            else if (phase == 1) sprite = &luigi_sprite_normal_walk2_;
+                            else sprite = &luigi_sprite_normal_walk3_;
+                        }
+                        else sprite = &luigi_sprite_normal_;
+                    }
+                }
+                paint_sprite(window, pos, *sprite, looking_left_);
+            }
         }
     }
 }
@@ -542,9 +775,9 @@ void MainChar::apply_physics_() {
 
 void MainChar::jump() {
     if (grounded_) {
-        accel_.y = -6;
-        grounded_ = false;
+        accel_.y = (star_mode_) ? -7 : -6;
         accel_time_ = 2;
+        grounded_ = false;
     }
 }
 
@@ -553,6 +786,9 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms,
     if (0 < growth_counter_) growth_counter_--;
     else if (0 < decrease_counter_) decrease_counter_--;
     else {
+        if (0 < star_counter_) star_counter_--;
+        else if (star_counter_ == 0) star_mode_ = false;
+
         last_pos_ = pos_;
     
         // Repositioning the secondary characters on the screen
@@ -571,8 +807,8 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms,
     
         // Horizontal speed
         speed_.x = 0;
-        if (window.is_key_down(left_key_)) speed_.x = -4;
-        else if (window.is_key_down(right_key_)) speed_.x = 4;
+        if (window.is_key_down(left_key_)) speed_.x = (star_mode_) ? -5 : -4;
+        else if (window.is_key_down(right_key_)) speed_.x = (star_mode_) ? 5 : 4;
     
         if (speed_.x != 0) {
             looking_left_ = speed_.x < 0;
@@ -637,4 +873,9 @@ void MainChar::eat_mushroom() {
         big_ = true;
         growth_counter_ = 60; // 1s at 60fps
     }
+}
+
+void MainChar::handle_star() {
+    star_counter_ = 600; // 10s at 60fps
+    star_mode_ = true;
 }
