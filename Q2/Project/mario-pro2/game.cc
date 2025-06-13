@@ -167,19 +167,21 @@ void Game::update_objects(pro2::Window& window) {
     // Check collisions with spikes
     for (const Spike* s : spike_actualObj_) {
         if (!immune_mario_ && objs_collision(mario_.rect(), s->get_rect())) {
-            mario_.lose_life();
             immune_mario_ = true;
-            immunity_mario_until_ = frame_counter_ + immunity_interval_;
+            immunity_mario_until_ = (mario_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
+                                    : frame_counter_ + immunity_interval_;
+            mario_.lose_life();
         }
 
         if (!immune_luigi_ && objs_collision(luigi_.rect(), s->get_rect())) {
-            luigi_.lose_life();
             immune_luigi_ = true;
-            immunity_luigi_until_ = frame_counter_ + immunity_interval_;
+            immunity_luigi_until_ = (luigi_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
+                                    : frame_counter_ + immunity_interval_;
+            luigi_.lose_life();
         }
     }
 
-    // Update Goombas
+    // Check collisions and update goombas
     for (auto it = goombas_actualObj_.begin(); it != goombas_actualObj_.end();) {
         Goomba* goomba = const_cast<Goomba*>(*it);
         const pro2::Rect goomba_rect = goomba->get_rect();
@@ -200,9 +202,10 @@ void Game::update_objects(pro2::Window& window) {
                 }
             }
             else if (!immune_mario_ && !goomba->is_squashed()) {
-                mario_.lose_life();
                 immune_mario_ = true;
-                immunity_mario_until_ = frame_counter_ + immunity_interval_;
+                immunity_mario_until_ = (mario_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
+                                        : frame_counter_ + immunity_interval_;
+                mario_.lose_life();
             }
         }
 
@@ -215,9 +218,10 @@ void Game::update_objects(pro2::Window& window) {
                 }
             } 
             else if (!immune_luigi_ && !goomba->is_squashed()) {
-                luigi_.lose_life();
                 immune_luigi_ = true;
-                immunity_luigi_until_ = frame_counter_ + immunity_interval_;
+                immunity_luigi_until_ = (luigi_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
+                                        : frame_counter_ + immunity_interval_;
+                luigi_.lose_life();
             }
         }
     

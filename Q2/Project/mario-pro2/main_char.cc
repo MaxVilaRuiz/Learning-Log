@@ -419,19 +419,37 @@ void MainChar::paint(pro2::Window& window, bool immune, int frame) const {
     Pt pos = {pos_.x - 6, pos_.y - 15};
     const vector<vector<int>>* sprite = nullptr;
 
-    if (0 < growth_counter) {
+    if (0 < growth_counter_) {
         pos.y -= 3;
-        bool phase = 4 < (growth_counter % 10);
+        bool phase = 4 < (growth_counter_ % 10);
 
         if (character_ == "mario") {
-            if (30 < growth_counter) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_normal_;
+            if (30 < growth_counter_) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_normal_;
             else sprite = phase ? &mario_sprite_big_ : &mario_sprite_medium_;
         }
         else {
-            if (30 < growth_counter) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_normal_;
+            if (30 < growth_counter_) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_normal_;
             else sprite = phase ? &luigi_sprite_big_ : &luigi_sprite_medium_;
         }
         paint_sprite(window, pos, *sprite, looking_left_);
+    }
+    else if (0 < decrease_counter_) {
+        pos.y -= 3;
+
+        if (!immune || (immune && (frame % 2 == 0))) {
+            bool phase = 4 < (decrease_counter_ % 10);
+
+            if (character_ == "mario") {
+                if (30 < decrease_counter_) sprite = phase ? &mario_sprite_medium_ : &mario_sprite_big_;
+                else sprite = phase ? &mario_sprite_normal_ : &mario_sprite_medium_;
+            }
+            else {
+                if (30 < decrease_counter_) sprite = phase ? &luigi_sprite_medium_ : &luigi_sprite_big_;
+                else sprite = phase ? &luigi_sprite_normal_ : &luigi_sprite_medium_;
+            }
+            
+            paint_sprite(window, pos, *sprite, looking_left_);
+        }
     }
     else {
         if (!immune || (immune && (frame % 2 == 0))) {
@@ -531,7 +549,8 @@ void MainChar::jump() {
 
 
 void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms, std::set<const Spike*> spikes) {
-    if (0 < growth_counter) growth_counter--;
+    if (0 < growth_counter_) growth_counter_--;
+    else if (0 < decrease_counter_) decrease_counter_--;
     else {
         last_pos_ = pos_;
     
@@ -597,7 +616,10 @@ int MainChar::lives() const {
 void MainChar::lose_life() {
     if (0 < lives_) {
         lives_--;
-        if (lives_ == 4) big_ = false;
+        if (big_) {
+            big_ = false;
+            decrease_counter_ = 60; // 1s at 60fps
+        }
     }
 }
 
@@ -612,6 +634,6 @@ void MainChar::eat_mushroom() {
     if (!big_) {
         lives_ = 5;
         big_ = true;
-        growth_counter = 60; // 1s at 60fps
+        growth_counter_ = 60; // 1s at 60fps
     }
 }

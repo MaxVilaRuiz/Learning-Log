@@ -22,7 +22,8 @@ class MainChar {
     int lives_ = 5;
 
     // Mushroom effect
-    int growth_counter = 0;
+    int growth_counter_ = 0;
+    int decrease_counter_ = 0;
     bool big_ = false;
 
     // Mario sprites
@@ -161,4 +162,7 @@ class MainChar {
      * @post The character is moved to the specified position.
      */
     void reset_position(pro2::Pt new_pos);
+
+    // COMMENT
+    bool is_big() { return big_; }
 };
