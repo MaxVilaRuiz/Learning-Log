@@ -38,11 +38,12 @@ const Color cyan = 0x0000ffff;
 const Color white = 0x00ffffff;
 const Color beige = 0xecc49b;
 const Color gray = 0xaaaaaa;
-const Color light_gray = 0xD7DBDD;
+const Color light_gray = 0xd7dbdd;
 const Color brown = 0x8d573c;
 const Color orange = 0xff9f00;
 const Color golden = 0xffb200;
 const Color taupe = 0x7f8cAA;
+const Color purple = 0xb33791;
 
 /**
  * @enum Keys

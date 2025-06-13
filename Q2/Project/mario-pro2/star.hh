@@ -15,6 +15,7 @@ class Star {
     static const std::vector<std::vector<int>> star_sprite_animation1_;
     static const std::vector<std::vector<int>> star_sprite_animation2_;
     static const std::vector<std::vector<int>> star_sprite_animation3_;
+    static const std::vector<std::vector<int>> star_sprite_animation4_;
 
   public:
     /// @brief Constructs a Star at a given position
