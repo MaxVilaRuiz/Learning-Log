@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "platform.hh"
+#include "utils.hh"
 
 class Coin { 
   private:

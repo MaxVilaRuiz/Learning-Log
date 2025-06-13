@@ -1,5 +1,4 @@
 #include "coin.hh"
-#include "utils.hh"
 using namespace std;
 using namespace pro2;
 
