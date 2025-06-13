@@ -185,4 +185,8 @@ class MainChar {
     pro2::Pt last_grounded_pos() { return last_grounded_pos_; }
 
     void handle_star();
+
+    bool is_in_starmode_() { return star_mode_; }
+
+    int star_countdown() { return star_counter_; }
 };

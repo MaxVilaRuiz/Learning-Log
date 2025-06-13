@@ -11,13 +11,14 @@ class Star {
     int animation_speed_ = 7;
 
     // Internal sprites for animation
-    static const std::vector<std::vector<int>> star_sprite_front_;
     static const std::vector<std::vector<int>> star_sprite_animation1_;
     static const std::vector<std::vector<int>> star_sprite_animation2_;
     static const std::vector<std::vector<int>> star_sprite_animation3_;
     static const std::vector<std::vector<int>> star_sprite_animation4_;
 
   public:
+    static const std::vector<std::vector<int>> star_sprite_front;
+
     /// @brief Constructs a Star at a given position
     Star(pro2::Pt pos) : pos_(pos) {}
 

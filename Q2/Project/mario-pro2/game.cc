@@ -340,8 +340,20 @@ void Game::paint(pro2::Window& window) {
         s->paint(window);
     }
 
-    // Draw the counter
+    // Draw the star mode logo
     const pro2::Rect cam_rect = window.camera_rect();
+    if (mario_.is_in_starmode_() || luigi_.is_in_starmode_()) {
+        Pt top_left = {cam_rect.left + 5, cam_rect.top + 51};
+
+        if (mario_.star_countdown() < 180 && luigi_.star_countdown() < 180) {
+            if ((frame_counter_ / 9) % 2 == 0) {
+                paint_sprite(window, top_left, Star::star_sprite_front, false);
+            }
+        }
+        else paint_sprite(window, top_left, Star::star_sprite_front, false);
+    }
+
+    // Draw the coin counter
     Pt top_left = {cam_rect.left + 5, cam_rect.top + 35}; 
     paint_sprite(window, top_left, Coin::coin_sprite_front, false);
     pro2::Color text_color = (day_time_) ? pro2::black : pro2::white;

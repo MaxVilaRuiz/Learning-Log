@@ -13,7 +13,7 @@ const int u = pro2::blue;
 const int p = pro2::purple;
 
 // clang-format off
-const vector<vector<int>> Star::star_sprite_front_ = {
+const vector<vector<int>> Star::star_sprite_front = {
     {_, _, _, _, _, _, b, _, _, _, _, _, _},
     {_, _, _, _, _, b, r, b, _, _, _, _, _},
     {_, _, _, _, _, b, r, b, _, _, _, _, _},
@@ -101,7 +101,7 @@ void Star::paint(pro2::Window& window) const {
     const int phase = (frame_ / animation_speed_) % 12;
     int pos_y = pos_.y;
 
-    if (phase == 0) sprite = &star_sprite_front_;
+    if (phase == 0) sprite = &star_sprite_front;
     else if (phase == 1) {
         sprite = &star_sprite_animation1_;
         pos_y -= 1;
@@ -123,7 +123,7 @@ void Star::paint(pro2::Window& window) const {
         pos_y -= 5;
     }
     else if (phase == 6) {
-        sprite = &star_sprite_front_;
+        sprite = &star_sprite_front;
         pos_y -= 5;
     }
     else if (phase == 7) {
