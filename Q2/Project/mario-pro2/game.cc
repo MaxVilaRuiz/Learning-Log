@@ -106,12 +106,13 @@ void Game::update_objects(pro2::Window& window) {
     const int bottom_limit = window.camera_rect().bottom + 320;
     if (mario_.pos().y > bottom_limit) {
         mario_.lose_life();
-        window.set_camera_topleft({window.camera_rect().left, window.camera_rect().top - 185});
-        mario_.reset_position({window.camera_center().x - 80, window.camera_center().y - 20});
+        Pt mario_last_pos = mario_.last_grounded_pos();
+        mario_.reset_position({mario_last_pos.x, mario_last_pos.y});
     }
     if (luigi_.pos().y > bottom_limit) {
         luigi_.lose_life();
-        luigi_.reset_position({window.camera_center().x - 60, window.camera_center().y - 20});
+        Pt luigi_last_pos = luigi_.last_grounded_pos();
+        luigi_.reset_position({luigi_last_pos.x, luigi_last_pos.y});
     }
 
     // Finish game if a character have run out of lives
@@ -242,7 +243,7 @@ void Game::update_camera(pro2::Window& window) {
     if (mario_pos.x != cam.x) dx = mario_pos.x - cam.x;
 
     // Follow vertically only if out of bounds
-    if (mario_pos.y < cam.y - limit_y || mario_pos.y > cam.y + limit_y) {
+    if ((mario_pos.y < cam.y - limit_y || mario_pos.y > cam.y + limit_y) && mario_.is_grounded()) {
         dy = mario_pos.y - cam.y;
         following_cam_ = true;
     }

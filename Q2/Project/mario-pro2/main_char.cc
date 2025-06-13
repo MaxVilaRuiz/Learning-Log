@@ -523,6 +523,7 @@ void MainChar::apply_physics_() {
     if (grounded_) {
         speed_.y = 0;
         accel_.y = 0;
+        last_grounded_pos_ = pos_;
     }
 
     // Gravity pull

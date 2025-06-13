@@ -10,7 +10,7 @@
 class MainChar {
  private:
     // Physics
-    pro2::Pt pos_, last_pos_;
+    pro2::Pt pos_, last_pos_, last_grounded_pos_;
     pro2::Pt speed_ = {0, 0};
     pro2::Pt accel_ = {0, 0};
     int accel_time_ = 0;
@@ -88,19 +88,13 @@ class MainChar {
     void paint_lives(pro2::Window& window, std::string character) const;
 
     // Returns current position
-    pro2::Pt pos() const {
-        return pos_;
-    }
+    pro2::Pt pos() const { return pos_; }
 
     // Sets vertical position directly
-    void set_y(int y) {
-        pos_.y = y;
-    }
+    void set_y(int y) { pos_.y = y; }
 
     // True if MainChar is on ground
-    bool is_grounded() const {
-        return grounded_;
-    }
+    bool is_grounded() const { return grounded_; }
 
     // Sets grounded state and resets vertical speed if grounded
     void set_grounded(bool grounded) {
@@ -163,6 +157,15 @@ class MainChar {
      */
     void reset_position(pro2::Pt new_pos);
 
-    // COMMENT
+    /**
+     * @brief Checks whether the character is in "big" state.
+     * @return true if the character is big, false otherwise.
+     */
     bool is_big() { return big_; }
+
+    /**
+     * @brief Returns the last position where the character was grounded.
+     * @return A point representing the last grounded position.
+     */
+    pro2::Pt last_grounded_pos() { return last_grounded_pos_; }
 };
