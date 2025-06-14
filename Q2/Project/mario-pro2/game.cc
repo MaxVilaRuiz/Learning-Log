@@ -97,7 +97,6 @@ Game::Game(int width, int height)
     {
         
     // Sorted objects
-
     // Generate platforms
     for (int i = 0; i < 5; i++) {
         platforms_.push_back(Platform(3170 + 55*i, 3190 + 55*i, 150, 161));
@@ -109,9 +108,7 @@ Game::Game(int width, int height)
         coins_.push_back(Coin({1665 + 15*i, 30}));
         coins_.push_back(Coin({2342 + 15*i, 110}));
     }
-    for (int i = 0; i < 5; i++) {
-        coins_.push_back(Coin({2902 + 20*i, 110}));
-    }
+    for (int i = 0; i < 5; i++) coins_.push_back(Coin({2902 + 20*i, 110}));
 
     // Generate spikes
     for (int i = 0; i < 2; i++) {
@@ -126,38 +123,17 @@ Game::Game(int width, int height)
         spikes_.push_back(Spike({1771 + 9*i, 42}));
         for (int j = 0; j < 3; j++) spikes_.push_back(Spike({1880 + 9*j + 57*i, 72}));
     }
-    for (int i = 0; i < 4; i++) {
-        spikes_.push_back(Spike({1391 + 75*i, 162 - 30*i}));
-    }
+    for (int i = 0; i < 4; i++) spikes_.push_back(Spike({1391 + 75*i, 162 - 30*i}));
     for (int i = 0; i < 6; i++) {
         spikes_.push_back(Spike({2520 + 38*i, 162}));
         spikes_.push_back(Spike({2529 + 38*i, 162}));
     }
-    for (int i = 0; i < 33; i++) {
-        spikes_.push_back(Spike({3142 + 9*i, 212}));
-    }
+    for (int i = 0; i < 33; i++) spikes_.push_back(Spike({3142 + 9*i, 212}));
 
     // Generate gooombas
     for (int i = 0; i < 2; i++) goombas_.push_back(Goomba({1171 + 100*i, 189}, 45));
     for (int i = 0; i < 4; i++) goombas_.push_back(Goomba({3491 + 100*i, 159}, 50));
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     // Add platforms to finder
     for (const auto& plataform : platforms_) {

@@ -30,7 +30,7 @@ void Spike::paint(pro2::Window& window) const {
 
 
 pro2::Rect Spike::get_rect() const {
-    return {pos_.x - 5, pos_.y - 1, pos_.x + 10, pos_.y + 25};
+    return {pos_.x - 3, pos_.y + 5, pos_.x + 10, pos_.y + 25};
 }
 
 
