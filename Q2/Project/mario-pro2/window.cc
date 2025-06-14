@@ -182,22 +182,22 @@ static const std::map<char, std::vector<std::string>> font5x7 = {
     }}
 };
 
-void Window::draw_num(Pt pt, const std::string& num, Color color) {
+void Window::draw_txt(Pt pt, const std::string& txt, Color color) {
     const int char_spacing = 1;
     int x = pt.x;
 
-    for (char c : num) {
+    for (char c : txt) {
         if (font5x7.count(c) == 0) x += 6;
         else {
-            const auto& num = font5x7.at(c);
-            for (int j = 0; j < int(num.size()); ++j) {
-                for (int k = 0; k < int(num[j].size()); ++k) {
-                    if (num[j][k] == '#') {
+            const auto& txt = font5x7.at(c);
+            for (int j = 0; j < int(txt.size()); ++j) {
+                for (int k = 0; k < int(txt[j].size()); ++k) {
+                    if (txt[j][k] == '#') {
                         set_pixel({x + k, pt.y + j}, color);
                     }
                 }
             }
-            x += int(num[0].size()) + char_spacing;
+            x += int(txt[0].size()) + char_spacing;
         }
     }
 }

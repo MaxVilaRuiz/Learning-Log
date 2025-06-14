@@ -55,8 +55,14 @@ class Game {
     std::set<const Star*> star_actualObj_;          // Star in view
 
     bool finished_ = false;                         // Game over flag
-    bool paused_ = false;                           // Pause flag
+    bool paused_ = true;                            // Pause flag
+    bool pregame_ = true;                            // Pre-game state
     bool following_cam_ = false;                    // Vertical camera tracking state
+
+    // Pre-game screen
+    std::list<std::string> options_;
+    std::list<std::string>::iterator options_it_ = options_.begin();
+    static const std::vector<std::vector<int>> option_pointer_sprite_;
 
     bool day_time_ = true;                          // Background status
     int frame_counter_ = 0;
@@ -67,6 +73,7 @@ class Game {
     int immunity_luigi_until_ = 0;
     bool immune_mario_ = false;    
     bool immune_luigi_ = false;
+    bool single_player_ = false;
 
     void process_keys(pro2::Window& window);        // Handle input
     void update_objects(pro2::Window& window);      // Update game logic

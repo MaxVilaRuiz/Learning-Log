@@ -401,19 +401,19 @@ class Window {
     void set_pixel(Pt xy, Color color);
 
     /**
-     * @brief Escribe un número en la ventana.
+     * @brief Escribe un texto en la ventana.
      * 
-     * `draw_num` utiliza el formato de fuente 5x7 para escribir en la ventana el número que se le
-     * introduce como parámetro. Primeramente, asocia el parámetro `num` con su correspondiente número
+     * `draw_txt` utiliza el formato de fuente 5x7 para escribir en la ventana el texto que se le
+     * introduce como parámetro. Primeramente, asocia el parámetro `txt` con su correspondiente letra
      * en el mapa `font5x7`. Seguidamente, utiliza un algoritmo para pintar un pixel (usando la función 
      * `set_pixel`) por cada '#' que encuentra en el elemento correspondiente del mapa, hasta que se 
      * termina formando el número completo.
      *
      * @param pt Coordenadas del número que se quiere mostrar
-     * @param num Número que se quiere mostrar en la ventana
+     * @param txt Texto que se quiere mostrar en la ventana
      * @param color Color que se quiere poner en el pixel indicado
      */
-    void draw_num(Pt pt, const std::string& num, Color color);
+    void draw_txt(Pt pt, const std::string& txt, Color color);
 
     /**
      * @brief Cambia los FPS de refresco de la ventana.

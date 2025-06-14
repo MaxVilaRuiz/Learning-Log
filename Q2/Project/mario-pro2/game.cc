@@ -2,6 +2,13 @@
 using namespace pro2;
 
 
+// clang-format off
+const std::vector<std::vector<int>> Game::option_pointer_sprite_ = {
+
+};
+// clang-format on
+
+
 Game::Game(int width, int height)
     : mario_({width / 2, 150}, Keys::Up, Keys::Down, Keys::Left, Keys::Right, "mario"),
       luigi_({(width / 2) - 30, 150}, Keys::W, Keys::S, Keys::A, Keys::D, "luigi"),
@@ -61,6 +68,10 @@ Game::Game(int width, int height)
 
     {
         
+    // Pre-game screen
+    options_.push_back("1 PLAYER GAME");
+    options_.push_back("2 PLAYER GAME");
+
     // Sorted objects
     // Generate platforms
     for (int i = 0; i < 2; i++) platforms_.push_back(Platform(625 + 75*i, 675 + 75*i, 170 - 30*i, 181 - 30*i));
@@ -148,6 +159,17 @@ void Game::process_keys(pro2::Window& window) {
         return;
     }
     else if (window.was_key_pressed(Keys::P)) paused_ = !paused_; // 'P' key to pause/unpause
+
+    // Process this keys if in pregame state
+    if (pregame_) {
+        if (window.was_key_pressed(Keys::Up) && *options_it_ == "2 PLAYER GAME") options_it_--;
+        else if (window.was_key_pressed(Keys::Down) && *options_it_ == "1 PLAYER GAME") options_it_++;
+        else if (window.was_key_pressed(Keys::Return)) {
+            if (*options_it_ == "1 PLAYER GAME") single_player_ = true;
+            paused_ = false;
+            pregame_ = false;
+        }
+    }
 }
 
 
@@ -334,21 +356,34 @@ void Game::update(pro2::Window& window) {
     if (!paused_) {
         update_objects(window);
         update_camera(window);
-    }
 
-    // To update the background status
-    frame_counter_++;
-    if (frame_counter_ % day_night_interval_ == 0) {
-        day_time_ = !day_time_;
-    }
+        // To update the background status
+        frame_counter_++;
+        if (frame_counter_ % day_night_interval_ == 0) {
+            day_time_ = !day_time_;
+        }
 
-    // To update the characters immunity
-    if (immune_mario_ && immunity_mario_until_ <= frame_counter_) immune_mario_ = false;
-    if (immune_luigi_ && immunity_luigi_until_ <= frame_counter_) immune_luigi_ = false;
+        // To update the characters immunity
+        if (immune_mario_ && immunity_mario_until_ <= frame_counter_) immune_mario_ = false;
+        if (immune_luigi_ && immunity_luigi_until_ <= frame_counter_) immune_luigi_ = false;
+    }
 }
 
 
 void Game::paint(pro2::Window& window) {
+    // Pre-game screen
+    if (pregame_) {
+        Pt top_center = {window.camera_center().x - 100, window.camera_center().y - 200};
+        int i = 0;
+    
+        for (std::string s : options_) {
+            window.draw_txt({top_center.x, top_center.y + 100*i}, s, white);
+        }
+
+        int diff = (*options_it_ == "1 PLAYER GAME") ? 0 : 100;
+        paint_sprite(window, {top_center.x - 25, top_center.y + diff}, option_pointer_sprite_, false);
+    }
+
     // Paint the background and its objects
     if (day_time_) window.clear(sky_blue);
     else window.clear(sky_dark);
@@ -400,7 +435,7 @@ void Game::paint(pro2::Window& window) {
     Pt top_left = {cam_rect.left + 5, cam_rect.top + 35}; 
     paint_sprite(window, top_left, Coin::coin_sprite_front, false);
     pro2::Color text_color = (day_time_) ? pro2::black : pro2::white;
-    window.draw_num({top_left.x + 17, top_left.y + 3}, std::to_string(num_coins_), text_color);
+    window.draw_txt({top_left.x + 17, top_left.y + 3}, std::to_string(num_coins_), text_color);
 
     // Draw characters
     mario_.paint(window, immune_mario_, frame_counter_);
