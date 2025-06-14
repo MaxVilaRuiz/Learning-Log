@@ -27,6 +27,10 @@ Game::Game(int width, int height)
         Platform(1350, 1400, 230, 241),
         Platform(1425, 1475, 260, 271),
         Platform(1500, 1550, 290, 301),
+        Platform(1585, 1635, 290, 301),
+        Platform(1670, 1700, 290, 301),
+        Platform(1670, 1700, 210, 221),
+        Platform(1670, 1700, 130, 141),
 
         Platform(1350, 1400, 170, 181),
         Platform(1425, 1475, 140, 151),
@@ -34,6 +38,12 @@ Game::Game(int width, int height)
         Platform(1575, 1625, 80, 91),
         Platform(1650, 1720, 50, 61),
         Platform(1750, 1820, 50, 61),
+        Platform(1850, 2051, 80, 91),
+        Platform(2080, 2155, 110, 121),
+        Platform(2105, 2130, 160, 171),
+        Platform(2180, 2230, 140, 151),
+
+        Platform(2260, 2600, 170, 420),
       },
 
       coins_ {
@@ -50,14 +60,17 @@ Game::Game(int width, int height)
         Goomba({496, 189}, 60),
         Goomba({921, 129}, 20),
         Goomba({1071, 189}, 20),
+        Goomba({2113, 99}, 35)
       },
 
       mushrooms_ {
         Mushroom({1220, 144}),
+        Mushroom({2112, 149}),
       },
 
       stars_ {
-        Star({781, 155})
+        Star({781, 155}),
+        Star({1678, 275}),
       }
 
     {
@@ -74,11 +87,13 @@ Game::Game(int width, int height)
     for (int i = 0; i < 2; i++) {
         spikes_.push_back(Spike({991 + 9*i, 162}));
         spikes_.push_back(Spike({666 + 75*i, 162 - 30*i}));
+        spikes_.push_back(Spike({2180 + 41*i, 132}));
     }
     for (int i = 0; i < 3; i++) {
         spikes_.push_back(Spike({1350 + 75*i, 222 + 30*i}));
         spikes_.push_back(Spike({1391 + 75*i, 222 + 30*i}));
         spikes_.push_back(Spike({1771 + 9*i, 42}));
+        for (int j = 0; j < 3; j++) spikes_.push_back(Spike({1880 + 9*j + 57*i, 72}));
     }
     for (int i = 0; i < 4; i++) {
         spikes_.push_back(Spike({1391 + 75*i, 162 - 30*i}));
