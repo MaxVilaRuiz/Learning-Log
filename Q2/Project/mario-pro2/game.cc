@@ -12,58 +12,23 @@ Game::Game(int width, int height)
         Platform(315, 385, 150, 161),
         Platform(400, 600, 200, 450),
         Platform(450, 550, 155, 166),
-
-        Platform(625, 675, 170, 181),
-        Platform(700, 750, 140, 151),
         Platform(775, 875, 110, 121),
         Platform(775, 800, 170, 181),
-        Platform(900, 950, 140, 151),
-        Platform(975, 1025, 170, 181),
-        Platform(1050, 1100, 200, 211),
-
         Platform(1125, 1325, 200, 450),
         Platform(1175, 1275, 155, 166),
-
-        Platform(1350, 1400, 230, 241),
-        Platform(1425, 1475, 260, 271),
-        Platform(1500, 1550, 290, 301),
         Platform(1585, 1635, 290, 301),
-        Platform(1670, 1700, 290, 301),
-        Platform(1670, 1700, 210, 221),
-        Platform(1670, 1700, 130, 141),
-
-        Platform(1350, 1400, 170, 181),
-        Platform(1425, 1475, 140, 151),
-        Platform(1500, 1550, 110, 121),
-        Platform(1575, 1625, 80, 91),
         Platform(1650, 1720, 50, 61),
         Platform(1750, 1820, 50, 61),
         Platform(1850, 2051, 80, 91),
         Platform(2080, 2155, 110, 121),
         Platform(2105, 2130, 160, 171),
         Platform(2180, 2230, 140, 151),
-
         Platform(2260, 2900, 170, 420),
         Platform(2325, 2400, 130, 141),
-
-        Platform(2500, 2520, 150, 170),
-        Platform(2538, 2558, 130, 170),
-        Platform(2576, 2596, 110, 170),
-        Platform(2614, 2634, 90, 170),
-        Platform(2652, 2672, 110, 170),        
-        Platform(2690, 2710, 130, 170),
-        Platform(2728, 2748, 150, 170),
-
         Platform(2890, 3000, 130, 141),
         Platform(2990, 3140, 170, 420),
         Platform(3140, 3440, 220, 420),
         Platform(3440, 3900, 170, 420),
-
-        Platform(3925, 3965, 140, 151),
-        Platform(3990, 4030, 110, 121),
-        Platform(4055, 4095, 80, 91),
-        Platform(4120, 4160, 50, 61),
-
         Platform(4185, 4600, 170, 420)
       },
 
@@ -98,9 +63,19 @@ Game::Game(int width, int height)
         
     // Sorted objects
     // Generate platforms
-    for (int i = 0; i < 5; i++) {
-        platforms_.push_back(Platform(3170 + 55*i, 3190 + 55*i, 150, 161));
+    for (int i = 0; i < 2; i++) platforms_.push_back(Platform(625 + 75*i, 675 + 75*i, 170 - 30*i, 181 - 30*i));
+    for (int i = 0; i < 3; i++) {
+        platforms_.push_back(Platform(900 + 75*i, 950 + 75*i, 140 + 30*i, 151 + 30*i));
+        platforms_.push_back(Platform(1350 + 75*i, 1400 + 75*i, 230 + 30*i, 241 + 30*i));
+        platforms_.push_back(Platform(1670, 1700, 290 - 80*i, 301 - 80*i));
+        platforms_.push_back(Platform(2652 + 38*i, 2672 + 38*i, 110 + 20*i, 170));
     }
+    for (int i = 0; i < 4; i++) {
+        platforms_.push_back(Platform(1350 + 75*i, 1400 + 75*i, 170 - 30*i, 181 - 30*i));
+        platforms_.push_back(Platform(2500 + 38*i, 2520 + 38*i, 150 - 20*i, 170));
+        platforms_.push_back(Platform(3925 + 65*i, 3965 + 65*i, 140 - 30*i, 151 - 30*i));
+    }
+    for (int i = 0; i < 5; i++) platforms_.push_back(Platform(3170 + 55*i, 3190 + 55*i, 150, 161));
 
     // Generate coins
     for (int i = 0; i < 3; i++) {
