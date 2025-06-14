@@ -43,7 +43,16 @@ Game::Game(int width, int height)
         Platform(2105, 2130, 160, 171),
         Platform(2180, 2230, 140, 151),
 
-        Platform(2260, 2600, 170, 420),
+        Platform(2260, 3000, 170, 420),
+        Platform(2325, 2400, 130, 141),
+
+        Platform(2500, 2520, 150, 170),
+        Platform(2538, 2558, 130, 170),
+        Platform(2576, 2596, 110, 170),
+        Platform(2614, 2634, 90, 170),
+        Platform(2652, 2672, 110, 170),        
+        Platform(2690, 2710, 130, 170),
+        Platform(2728, 2748, 150, 170),
       },
 
       coins_ {
@@ -81,6 +90,7 @@ Game::Game(int width, int height)
     for (int i = 0; i < 3; i++) {
         coins_.push_back(Coin({475 + 20*i, 135}));
         coins_.push_back(Coin({1665 + 15*i, 30}));
+        coins_.push_back(Coin({2342 + 15*i, 110}));
     }
 
     // Generate spikes
@@ -88,6 +98,7 @@ Game::Game(int width, int height)
         spikes_.push_back(Spike({991 + 9*i, 162}));
         spikes_.push_back(Spike({666 + 75*i, 162 - 30*i}));
         spikes_.push_back(Spike({2180 + 41*i, 132}));
+        spikes_.push_back(Spike({2491 + 257*i, 162}));
     }
     for (int i = 0; i < 3; i++) {
         spikes_.push_back(Spike({1350 + 75*i, 222 + 30*i}));
@@ -97,6 +108,10 @@ Game::Game(int width, int height)
     }
     for (int i = 0; i < 4; i++) {
         spikes_.push_back(Spike({1391 + 75*i, 162 - 30*i}));
+    }
+    for (int i = 0; i < 6; i++) {
+        spikes_.push_back(Spike({2520 + 38*i, 162}));
+        spikes_.push_back(Spike({2529 + 38*i, 162}));
     }
 
     // Generate gooombas
