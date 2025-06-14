@@ -12,6 +12,7 @@ Game::Game(int width, int height)
         Platform(315, 385, 150, 161),
         Platform(400, 600, 200, 450),
         Platform(450, 550, 155, 166),
+
         Platform(625, 675, 170, 181),
         Platform(700, 750, 140, 151),
         Platform(775, 875, 110, 121),
@@ -19,8 +20,20 @@ Game::Game(int width, int height)
         Platform(900, 950, 140, 151),
         Platform(975, 1025, 170, 181),
         Platform(1050, 1100, 200, 211),
+
         Platform(1125, 1325, 200, 450),
         Platform(1175, 1275, 155, 166),
+
+        Platform(1350, 1400, 230, 241),
+        Platform(1425, 1475, 260, 271),
+        Platform(1500, 1550, 290, 301),
+
+        Platform(1350, 1400, 170, 181),
+        Platform(1425, 1475, 140, 151),
+        Platform(1500, 1550, 110, 121),
+        Platform(1575, 1625, 80, 91),
+        Platform(1650, 1720, 50, 61),
+        Platform(1750, 1820, 50, 61),
       },
 
       coins_ {
@@ -40,7 +53,7 @@ Game::Game(int width, int height)
       },
 
       mushrooms_ {
-        
+        Mushroom({1220, 144}),
       },
 
       stars_ {
@@ -52,10 +65,24 @@ Game::Game(int width, int height)
     // Sorted objects
 
     // Generate coins
-    for (int i = 0; i < 3; i++) coins_.push_back(Coin({475 + 20*i, 135}));
+    for (int i = 0; i < 3; i++) {
+        coins_.push_back(Coin({475 + 20*i, 135}));
+        coins_.push_back(Coin({1665 + 15*i, 30}));
+    }
 
     // Generate spikes
-    for (int i = 0; i < 2; i++) spikes_.push_back(Spike({991 + 9*i, 162}));
+    for (int i = 0; i < 2; i++) {
+        spikes_.push_back(Spike({991 + 9*i, 162}));
+        spikes_.push_back(Spike({666 + 75*i, 162 - 30*i}));
+    }
+    for (int i = 0; i < 3; i++) {
+        spikes_.push_back(Spike({1350 + 75*i, 222 + 30*i}));
+        spikes_.push_back(Spike({1391 + 75*i, 222 + 30*i}));
+        spikes_.push_back(Spike({1771 + 9*i, 42}));
+    }
+    for (int i = 0; i < 4; i++) {
+        spikes_.push_back(Spike({1391 + 75*i, 162 - 30*i}));
+    }
 
     // Generate gooombas
     for (int i = 0; i < 2; i++) goombas_.push_back(Goomba({1171 + 100*i, 189}, 45));
@@ -164,12 +191,12 @@ void Game::update_objects(pro2::Window& window) {
     // Subtract lives from characters if they are out of bounds
     const int bottom_limit = window.camera_rect().bottom + 320;
     if (mario_.pos().y > bottom_limit) {
-        mario_.lose_life();
+        // mario_.lose_life();
         Pt mario_last_pos = mario_.last_grounded_pos();
         mario_.reset_position({mario_last_pos.x, mario_last_pos.y});
     }
     if (luigi_.pos().y > bottom_limit) {
-        luigi_.lose_life();
+        // luigi_.lose_life();
         Pt luigi_last_pos = luigi_.last_grounded_pos();
         luigi_.reset_position({luigi_last_pos.x, luigi_last_pos.y});
     }
@@ -231,14 +258,14 @@ void Game::update_objects(pro2::Window& window) {
             immune_mario_ = true;
             immunity_mario_until_ = (mario_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                     : frame_counter_ + immunity_interval_;
-            mario_.lose_life();
+            // mario_.lose_life();
         }
 
         if (!immune_luigi_ && objs_collision(luigi_.rect(), s->get_rect())) {
             immune_luigi_ = true;
             immunity_luigi_until_ = (luigi_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                     : frame_counter_ + immunity_interval_;
-            luigi_.lose_life();
+            // luigi_.lose_life();
         }
     }
 
@@ -266,7 +293,7 @@ void Game::update_objects(pro2::Window& window) {
                 immune_mario_ = true;
                 immunity_mario_until_ = (mario_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                         : frame_counter_ + immunity_interval_;
-                mario_.lose_life();
+                // mario_.lose_life();
             }
         }
 
@@ -282,7 +309,7 @@ void Game::update_objects(pro2::Window& window) {
                 immune_luigi_ = true;
                 immunity_luigi_until_ = (luigi_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                         : frame_counter_ + immunity_interval_;
-                luigi_.lose_life();
+                // luigi_.lose_life();
             }
         }
     
