@@ -63,6 +63,7 @@ class Game {
     std::list<std::string> options_;
     std::list<std::string>::iterator options_it_ = options_.begin();
     static const std::vector<std::vector<int>> option_pointer_sprite_;
+    std::vector<pro2::Color> color_vec_ = {pro2::red, pro2::green, pro2::yellow, pro2::blue};
 
     bool day_time_ = true;                          // Background status
     int frame_counter_ = 0;

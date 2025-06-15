@@ -469,11 +469,32 @@ void Game::paint(pro2::Window& window) {
         Pt top_center = {window.camera_center().x - 40, window.camera_center().y - 60};
         int i = 0;
     
+        // Draw options
         for (std::string s : options_) {
             window.draw_txt({top_center.x, top_center.y + 20*i}, s, white);
             i++;
         }
 
+        // Draw title
+        pro2::Rect title_rect;
+        title_rect.left = top_center.x - 10;
+        title_rect.top = top_center.y - 30;
+        title_rect.right = title_rect.left + 100;
+        title_rect.bottom = title_rect.bottom + 35; 
+        paint_rect(window, title_rect, pro2::pastel_orange);
+
+        int space = 7 , j = 0;
+        i = 0;
+        std::string s;
+        for (char c : "MARIO PRO2") {
+            s = c;
+            window.draw_txt({top_center.x + 5 + space*j, top_center.y - 50}, s, color_vec_[i]);
+            if (i == 3) i = 0;
+            else i++;
+            j++;
+        }
+
+        // Draw options pointer
         int diff = (*options_it_ == "1 PLAYER GAME") ? -1 : 19;
         paint_sprite(window, {top_center.x - 20, top_center.y + diff}, option_pointer_sprite_, false);
     }

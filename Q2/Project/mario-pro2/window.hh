@@ -30,6 +30,7 @@ typedef uint32_t Color;
 
 const Color black = 0x00000000;
 const Color red = 0x00ff0000;
+const Color pastel_orange = 0xEC8F6A;
 const Color green = 0x06d001;
 const Color blue = 0x5e6ddc;
 const Color yellow = 0x00ffff00;
