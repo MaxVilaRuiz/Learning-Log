@@ -177,6 +177,7 @@ void Game::process_keys(pro2::Window& window) {
         else if (window.was_key_pressed(Keys::Down) && *pregame_options_it_ == "1 PLAYER GAME") pregame_options_it_++;
         else if (window.was_key_pressed(Keys::Return)) {
             if (*pregame_options_it_ == "1 PLAYER GAME") single_player_ = true;
+            else single_player_ = false;
             paused_ = false;
             pregame_ = false;
         }
@@ -191,9 +192,11 @@ void Game::process_keys(pro2::Window& window) {
                 window.set_camera_topleft({0, 0});
                 restarting_game_ = true;
             }
-            // else if (*endgame_options_it_ == "MENU") {
-
-            // }
+            else if (*endgame_options_it_ == "MENU") {
+                window.set_camera_topleft({0, 0});
+                restarting_game_ = true;
+                pregame_ = true;
+            }
             else finished_ = true;
 
             paused_ = false;
