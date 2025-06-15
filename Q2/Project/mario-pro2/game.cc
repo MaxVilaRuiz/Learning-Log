@@ -481,7 +481,7 @@ void Game::paint(pro2::Window& window) {
         title_rect.top = top_center.y - 30;
         title_rect.right = title_rect.left + 100;
         title_rect.bottom = title_rect.bottom + 35; 
-        paint_rect(window, title_rect, pro2::pastel_orange);
+        paint_rect(window, title_rect, pro2::mid_blue);
 
         int space = 7 , j = 0;
         i = 0;
@@ -498,4 +498,7 @@ void Game::paint(pro2::Window& window) {
         int diff = (*options_it_ == "1 PLAYER GAME") ? -1 : 19;
         paint_sprite(window, {top_center.x - 20, top_center.y + diff}, option_pointer_sprite_, false);
     }
+
+    // Paused screen
+    if (paused_ && !pregame_) window.draw_txt({cam_rect.left + 223, cam_rect.top + 20}, "PAUSED", white);
 }
