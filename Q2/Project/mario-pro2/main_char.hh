@@ -163,7 +163,14 @@ class MainChar {
      * @pre The character must exist / be alive.
      * @post The character's life count is set to its maximum value.
      */
-    void eat_mushroom();
+    void reset_lives() { lives_ = 5; }
+
+    /**
+     * @brief Handles the effect of picking up a mushroom.  
+     *        If the character is not already big, sets the big state to true and
+     *        initializes the growth animation counter.
+     */    
+    void handle_mushroom();
 
     /**
      * @brief Resets the character's position to a new location.
@@ -194,11 +201,14 @@ class MainChar {
      * @brief Checks if the character is currently in star mode.
      * @return true if the character is in star mode, false otherwise.
      */
-    bool is_in_starmode_() { return star_mode_; }
+    bool is_in_starmode() { return star_mode_; }
 
     /**
      * @brief Gets the remaining duration of star mode.
      * @return The number of frames remaining in star mode.
      */
     int star_countdown() { return star_counter_; }
+
+    /// @brief Disables star mode for the character.
+    void remove_starmode();
 };

@@ -79,6 +79,10 @@ Game::Game(int width, int height)
 
     {
 
+    // Save screen size
+    width_ = width;
+    height_ = height;
+
     // Sorted objects
     // Generate platforms
     for (int i = 0; i < 2; i++) platforms_.push_back(Platform(625 + 75*i, 675 + 75*i, 170 - 30*i, 181 - 30*i));
@@ -182,18 +186,19 @@ void Game::process_keys(pro2::Window& window) {
     if (endgame_) {
         if (window.was_key_pressed(Keys::Up) && *endgame_options_it_ != "TRY AGAIN") endgame_options_it_--;
         else if (window.was_key_pressed(Keys::Down) && *endgame_options_it_ != "QUIT") endgame_options_it_++;
-        // else if (window.was_key_pressed(Keys::Return)) {
-        //     if (*endgame_options_it_ == "TRY AGAIN") {
-                
-        //     }
-        //     else if (*endgame_options_it_ == "MENU") {
+        else if (window.was_key_pressed(Keys::Return)) {
+            if (*endgame_options_it_ == "TRY AGAIN") {
+                window.set_camera_topleft({0, 0});
+                restarting_game_ = true;
+            }
+            // else if (*endgame_options_it_ == "MENU") {
 
-        //     }
-        //     else finished_ = true;
+            // }
+            else finished_ = true;
 
-        //     paused_ = false;
-        //     endgame_ = false;
-        // }
+            paused_ = false;
+            endgame_ = false;
+        }
     }
 }
 
@@ -202,6 +207,22 @@ void Game::update_objects(pro2::Window& window) {
     // Update main characters
     mario_.update(window, platform_actualObj_, spike_actualObj_);
     if (!single_player_) luigi_.update(window, platform_actualObj_, spike_actualObj_);
+
+    Pt cam_center = window.camera_center();
+    if (restarting_game_ && (cam_center.x == int(width_ / 2) && cam_center.y == int(height_ / 2))) {
+        restarting_game_ = false;
+        mario_.reset_lives();
+        mario_.reset_position({width_ / 2, 150});
+        mario_.remove_starmode();
+        immune_mario_ = false;
+        num_coins_ = 0;
+        if (!single_player_) {
+            luigi_.reset_lives();
+            luigi_.reset_position({width_ / 2 - 30, 150}); 
+            luigi_.remove_starmode();
+            immune_luigi_ = false;
+        }
+    }
 
     // Subtract lives from characters if they are out of bounds
     const int bottom_limit = window.camera_rect().bottom + 320;
@@ -255,12 +276,14 @@ void Game::update_objects(pro2::Window& window) {
         if (objs_collision(mario_.rect(), m->get_rect())) {
             mushroom_finder_.remove(m);    
             it = mushroom_actualObj_.erase(it);
-            mario_.eat_mushroom();            
+            mario_.reset_lives();    
+            mario_.handle_mushroom();        
         }
         else if (objs_collision(luigi_.rect(), m->get_rect()) && !single_player_) {
             mushroom_finder_.remove(m);    
             it = mushroom_actualObj_.erase(it);
-            luigi_.eat_mushroom();            
+            luigi_.reset_lives();      
+            luigi_.handle_mushroom();      
         }
         else {
             Mushroom* non_const_coin = const_cast<Mushroom*>(m);
@@ -453,7 +476,7 @@ void Game::paint(pro2::Window& window) {
 
     // Draw the star mode logo
     const pro2::Rect cam_rect = window.camera_rect();
-    if (mario_.is_in_starmode_() || (luigi_.is_in_starmode_() && !single_player_)) {
+    if (mario_.is_in_starmode() || (luigi_.is_in_starmode() && !single_player_)) {
         Pt top_left = {cam_rect.left + 5, (single_player_) ? cam_rect.top + 36 : cam_rect.top + 51};
 
         if (mario_.star_countdown() < 180 && luigi_.star_countdown() < 180) {

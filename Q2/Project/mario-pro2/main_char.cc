@@ -860,6 +860,7 @@ void MainChar::lose_life() {
     }
 }
 
+
 void MainChar::reset_position(pro2::Pt new_pos) {
     pos_ = new_pos;
     speed_ = {0, 0};
@@ -867,15 +868,22 @@ void MainChar::reset_position(pro2::Pt new_pos) {
     grounded_ = false;
 }
 
-void MainChar::eat_mushroom() {
+
+void MainChar::handle_mushroom() {
     if (!big_) {
-        lives_ = 5;
         big_ = true;
         growth_counter_ = 60; // 1s at 60fps
     }
 }
 
+
 void MainChar::handle_star() {
     star_counter_ = 600; // 10s at 60fps
     star_mode_ = true;
+}
+
+
+void MainChar::remove_starmode() {
+    star_mode_ = 0;
+    star_counter_ = 0;
 }
