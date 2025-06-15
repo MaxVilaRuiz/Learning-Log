@@ -78,11 +78,6 @@ Game::Game(int width, int height)
       }
 
     {
-        
-    // Pre-game screen
-    options_.push_back("1 PLAYER GAME");
-    options_.push_back("2 PLAYER GAME");
-    options_it_ = options_.begin();
 
     // Sorted objects
     // Generate platforms
@@ -174,13 +169,31 @@ void Game::process_keys(pro2::Window& window) {
 
     // Process this keys if in pregame state
     if (pregame_) {
-        if (window.was_key_pressed(Keys::Up) && *options_it_ == "2 PLAYER GAME") options_it_--;
-        else if (window.was_key_pressed(Keys::Down) && *options_it_ == "1 PLAYER GAME") options_it_++;
+        if (window.was_key_pressed(Keys::Up) && *pregame_options_it_ == "2 PLAYER GAME") pregame_options_it_--;
+        else if (window.was_key_pressed(Keys::Down) && *pregame_options_it_ == "1 PLAYER GAME") pregame_options_it_++;
         else if (window.was_key_pressed(Keys::Return)) {
-            if (*options_it_ == "1 PLAYER GAME") single_player_ = true;
+            if (*pregame_options_it_ == "1 PLAYER GAME") single_player_ = true;
             paused_ = false;
             pregame_ = false;
         }
+    }
+
+    // Process this keys if in endgame state
+    if (endgame_) {
+        if (window.was_key_pressed(Keys::Up) && *endgame_options_it_ != "TRY AGAIN") endgame_options_it_--;
+        else if (window.was_key_pressed(Keys::Down) && *endgame_options_it_ != "QUIT") endgame_options_it_++;
+        // else if (window.was_key_pressed(Keys::Return)) {
+        //     if (*endgame_options_it_ == "TRY AGAIN") {
+                
+        //     }
+        //     else if (*endgame_options_it_ == "MENU") {
+
+        //     }
+        //     else finished_ = true;
+
+        //     paused_ = false;
+        //     endgame_ = false;
+        // }
     }
 }
 
@@ -205,7 +218,8 @@ void Game::update_objects(pro2::Window& window) {
 
     // Finish game if a character have run out of lives
     if (mario_.lives() == 0 || luigi_.lives() == 0) {
-        finished_ = true;
+        endgame_ = true;
+        paused_ = true;
     }
 
     // Query visible objects
@@ -461,8 +475,10 @@ void Game::paint(pro2::Window& window) {
     if (!single_player_) luigi_.paint(window, immune_luigi_, frame_counter_);
 
     // Draw characters' lives
-    mario_.paint_lives(window, "mario");
-    if (!single_player_) luigi_.paint_lives(window, "luigi");
+    if (!endgame_) {
+        mario_.paint_lives(window, "mario");
+        if (!single_player_) luigi_.paint_lives(window, "luigi");
+    }
 
     // Pre-game screen
     if (pregame_) {
@@ -488,13 +504,13 @@ void Game::paint(pro2::Window& window) {
 
         // Draw options
         i = 0;
-        for (std::string s : options_) {
+        for (std::string s : pregame_options_) {
             window.draw_txt({top_center.x + 15, top_center.y + 40 + 20*i}, s, white);
             i++;
         }
 
         // Draw options pointer
-        int diff = (*options_it_ == "1 PLAYER GAME") ? 39 : 59;
+        int diff = (*pregame_options_it_ == "1 PLAYER GAME") ? 39 : 59;
         paint_sprite(window, {top_center.x - 5, top_center.y + diff}, option_pointer_sprite_, false);
     }
 
@@ -520,12 +536,38 @@ void Game::paint(pro2::Window& window) {
     }
 
     // Paused screen
-    if (paused_ && !pregame_) {
+    if (paused_ && !pregame_ && !endgame_) {
         // Draw paused' rectangle
         paint_rect(window, {cam_rect.left + 218, cam_rect.top + 32, cam_rect.left + 263, 
             cam_rect.top + 15}, pro2::soft_blue);
 
         // Draw paused
         window.draw_txt({cam_rect.left + 223, cam_rect.top + 20}, "PAUSED", white);
+    }
+
+    // End-game screen
+    if (endgame_) {
+        // Draw title' rectangle
+        Pt top_center = {window.camera_center().x - 60, window.camera_center().y - 120};
+        paint_rect(window, {top_center.x, top_center.y + 25, top_center.x + 90, 
+                            top_center.y}, pro2::mid_blue);
+
+        // Draw title
+        window.draw_txt({top_center.x + 19, top_center.y + 10}, "GAME OVER", red);
+    
+        // Draw options' rectangle
+        paint_rect(window, {top_center.x - 20, top_center.y + 101, top_center.x + 110, 
+            top_center.y + 25}, pro2::soft_blue);
+
+        // Draw options
+        int i = 0;
+        for (std::string s : endgame_options_) {
+            window.draw_txt({top_center.x + 20, top_center.y + 40 + 20*i}, s, white);
+            i++;
+        }
+
+        // Draw options pointer
+        int diff = (*endgame_options_it_ == "TRY AGAIN") ? 39 : (*endgame_options_it_ == "MENU") ? 59 : 79;
+        paint_sprite(window, {top_center.x, top_center.y + diff}, option_pointer_sprite_, false);
     }
 }
