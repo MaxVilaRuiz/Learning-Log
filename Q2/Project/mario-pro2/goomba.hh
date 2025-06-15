@@ -26,6 +26,7 @@ class Goomba {
 
 
  public:   
+    /// @brief Default constructor for data structures
     Goomba() {}
 
     /**

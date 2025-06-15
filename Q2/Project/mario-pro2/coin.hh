@@ -25,6 +25,7 @@ class Coin {
   public:
     static const std::vector<std::vector<int>> coin_sprite_front; // Public facing sprite
 
+    /// @brief Default constructor for data structures
     Coin() {}
 
     /// @brief Constructs a Coin at a given position

@@ -16,7 +16,8 @@ class Mushroom {
 
 
  public:
-   Mushroom() {}
+    /// @brief Default constructor for data structures
+    Mushroom() {}
 
     /**
      * @brief Constructs a Mushroom at a given position.

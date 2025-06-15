@@ -13,7 +13,8 @@ class Spike {
     pro2::Pt pos_;
 
  public:
-   Spike() {}
+    /// @brief Default constructor for data structures
+    Spike() {}
 
     /**
      * @brief Constructs a Spike at the given position.

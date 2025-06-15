@@ -19,6 +19,7 @@ class Star {
   public:
     static const std::vector<std::vector<int>> star_sprite_front;
 
+    /// @brief Default constructor for data structures
     Star() {}
 
     /// @brief Constructs a Star at a given position
