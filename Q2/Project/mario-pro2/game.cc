@@ -562,7 +562,7 @@ void Game::update_camera(pro2::Window& window) {
     const int limit_y = 140;
 
     // Always follow Mario horizontally
-    if (mario_pos.x != cam.x) dx = mario_pos.x - cam.x;
+    if (mario_pos.x != cam.x && 240 < mario_pos.x) dx = mario_pos.x - cam.x;
 
     // Follow vertically only if out of bounds
     if ((mario_pos.y < cam.y - limit_y || mario_pos.y > cam.y + limit_y) && mario_.is_grounded()) {

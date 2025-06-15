@@ -791,10 +791,13 @@ void MainChar::update(pro2::Window& window, std::set<const Platform*> platforms,
 
         last_pos_ = pos_;
     
+        // Repositioning the character if out of bounds
+        pro2::Rect char_rec = rect();
+        pro2::Rect cam_rec = window.camera_rect();
+        if (pos_.x < 5) pos_.x = 5;
+
         // Repositioning the secondary characters on the screen
         if (character_ != "mario") {
-            pro2::Rect char_rec = rect();
-            pro2::Rect cam_rec = window.camera_rect();
             // Horizontal position
             if (char_rec.right < cam_rec.left) pos_.x = cam_rec.left;
             else if (char_rec.left > cam_rec.right) pos_.x = cam_rec.right;
