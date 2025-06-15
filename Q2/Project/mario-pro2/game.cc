@@ -387,6 +387,7 @@ void Game::update_objects(pro2::Window& window) {
     if (mario_.lives() == 0 || luigi_.lives() == 0) {
         endgame_ = true;
         paused_ = true;
+        win_ = false;
     }
 
     // Query visible objects
