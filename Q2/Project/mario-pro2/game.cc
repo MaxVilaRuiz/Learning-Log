@@ -2,9 +2,20 @@
 using namespace pro2;
 
 
+const int _ = -1;
+const int w = pro2::white;
+
 // clang-format off
 const std::vector<std::vector<int>> Game::option_pointer_sprite_ = {
-
+    {_, _, _, _, _, _, _, _, _, _, _},
+    {_, _, _, _, _, _, _, w, _, _, _},
+    {_, _, _, _, _, _, _, _, w, _, _},
+    {_, _, _, _, _, _, _, _, _, w, _},
+    {w, w, w, w, w, w, w, w, w, w, w},
+    {_, _, _, _, _, _, _, _, _, w, _},
+    {_, _, _, _, _, _, _, _, w, _, _},
+    {_, _, _, _, _, _, _, w, _, _, _},
+    {_, _, _, _, _, _, _, _, _, _, _},
 };
 // clang-format on
 
@@ -71,6 +82,7 @@ Game::Game(int width, int height)
     // Pre-game screen
     options_.push_back("1 PLAYER GAME");
     options_.push_back("2 PLAYER GAME");
+    options_it_ = options_.begin();
 
     // Sorted objects
     // Generate platforms
@@ -176,17 +188,17 @@ void Game::process_keys(pro2::Window& window) {
 void Game::update_objects(pro2::Window& window) {
     // Update main characters
     mario_.update(window, platform_actualObj_, spike_actualObj_);
-    luigi_.update(window, platform_actualObj_, spike_actualObj_);
+    if (!single_player_) luigi_.update(window, platform_actualObj_, spike_actualObj_);
 
     // Subtract lives from characters if they are out of bounds
     const int bottom_limit = window.camera_rect().bottom + 320;
     if (mario_.pos().y > bottom_limit) {
-        // mario_.lose_life();
+        mario_.lose_life();
         Pt mario_last_pos = mario_.last_grounded_pos();
         mario_.reset_position({mario_last_pos.x, mario_last_pos.y});
     }
-    if (luigi_.pos().y > bottom_limit) {
-        // luigi_.lose_life();
+    if (luigi_.pos().y > bottom_limit && !single_player_) {
+        luigi_.lose_life();
         Pt luigi_last_pos = luigi_.last_grounded_pos();
         luigi_.reset_position({luigi_last_pos.x, luigi_last_pos.y});
     }
@@ -198,6 +210,7 @@ void Game::update_objects(pro2::Window& window) {
 
     // Query visible objects
     pro2::Rect cam_rec = window.camera_rect();
+
     // Increase the query rectangle to preload the objects at the bottom and top of the screen
     pro2::Rect query_rec = {cam_rec.left, cam_rec.top - 160, cam_rec.right, cam_rec.bottom + 160};
     platform_actualObj_ = platform_finder_.query(query_rec);
@@ -211,7 +224,7 @@ void Game::update_objects(pro2::Window& window) {
     for (auto it = coin_actualObj_.begin(); it != coin_actualObj_.end();) {
         const Coin* c = *it;
         if (objs_collision(mario_.rect(), c->get_rect()) ||
-            objs_collision(luigi_.rect(), c->get_rect())) {
+            (objs_collision(luigi_.rect(), c->get_rect()) && !single_player_)) {
             coin_finder_.remove(c);    
             it = coin_actualObj_.erase(it);
             num_coins_++;                   
@@ -230,7 +243,7 @@ void Game::update_objects(pro2::Window& window) {
             it = mushroom_actualObj_.erase(it);
             mario_.eat_mushroom();            
         }
-        else if (objs_collision(luigi_.rect(), m->get_rect())) {
+        else if (objs_collision(luigi_.rect(), m->get_rect()) && !single_player_) {
             mushroom_finder_.remove(m);    
             it = mushroom_actualObj_.erase(it);
             luigi_.eat_mushroom();            
@@ -248,14 +261,14 @@ void Game::update_objects(pro2::Window& window) {
             immune_mario_ = true;
             immunity_mario_until_ = (mario_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                     : frame_counter_ + immunity_interval_;
-            // mario_.lose_life();
+            mario_.lose_life();
         }
 
-        if (!immune_luigi_ && objs_collision(luigi_.rect(), s->get_rect())) {
+        if (!immune_luigi_ && objs_collision(luigi_.rect(), s->get_rect()) && !single_player_) {
             immune_luigi_ = true;
             immunity_luigi_until_ = (luigi_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                     : frame_counter_ + immunity_interval_;
-            // luigi_.lose_life();
+            luigi_.lose_life();
         }
     }
 
@@ -283,12 +296,12 @@ void Game::update_objects(pro2::Window& window) {
                 immune_mario_ = true;
                 immunity_mario_until_ = (mario_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                         : frame_counter_ + immunity_interval_;
-                // mario_.lose_life();
+                mario_.lose_life();
             }
         }
 
         // Luigi' collision
-        if (objs_collision(luigi_.rect(), goomba_rect)) {
+        if (objs_collision(luigi_.rect(), goomba_rect) && !single_player_) {
             if (luigi_.rect().bottom <= goomba_rect.top + 5) {
                 if (!goomba->is_squashed()) {
                     goomba->hit_from_above(frame_counter_);
@@ -299,7 +312,7 @@ void Game::update_objects(pro2::Window& window) {
                 immune_luigi_ = true;
                 immunity_luigi_until_ = (luigi_.is_big()) ? frame_counter_ + 1.5*immunity_interval_ 
                                         : frame_counter_ + immunity_interval_;
-                // luigi_.lose_life();
+                luigi_.lose_life();
             }
         }
     
@@ -315,7 +328,7 @@ void Game::update_objects(pro2::Window& window) {
             it = star_actualObj_.erase(it);
             mario_.handle_star();           
         }
-        else if (objs_collision(luigi_.rect(), s->get_rect())) {
+        else if (objs_collision(luigi_.rect(), s->get_rect()) && !single_player_) {
             star_finder_.remove(s);    
             it = star_actualObj_.erase(it);
             luigi_.handle_star();          
@@ -353,7 +366,26 @@ void Game::update_camera(pro2::Window& window) {
 void Game::update(pro2::Window& window) {
     process_keys(window);
 
-    if (!paused_) {
+    if (pregame_) {
+        // Update characters
+        if (!mario_.is_grounded() && !luigi_.is_grounded()) {
+            mario_.update(window, platform_actualObj_, spike_actualObj_);
+            luigi_.update(window, platform_actualObj_, spike_actualObj_);
+        }
+
+        // Query visible objects
+        pro2::Rect cam_rec = window.camera_rect();
+
+        // Increase the query rectangle to preload the objects at the bottom and top of the screen
+        pro2::Rect query_rec = {cam_rec.left, cam_rec.top - 160, cam_rec.right, cam_rec.bottom + 160};
+        platform_actualObj_ = platform_finder_.query(query_rec);
+        coin_actualObj_ = coin_finder_.query(query_rec);
+        spike_actualObj_ = spike_finder_.query(query_rec);
+        mushroom_actualObj_ = mushroom_finder_.query(query_rec);
+        goombas_actualObj_ = goombas_finder_.query(query_rec);
+        star_actualObj_ = star_finder_.query(query_rec);
+    }
+    else if (!paused_) {
         update_objects(window);
         update_camera(window);
 
@@ -371,19 +403,6 @@ void Game::update(pro2::Window& window) {
 
 
 void Game::paint(pro2::Window& window) {
-    // Pre-game screen
-    if (pregame_) {
-        Pt top_center = {window.camera_center().x - 100, window.camera_center().y - 200};
-        int i = 0;
-    
-        for (std::string s : options_) {
-            window.draw_txt({top_center.x, top_center.y + 100*i}, s, white);
-        }
-
-        int diff = (*options_it_ == "1 PLAYER GAME") ? 0 : 100;
-        paint_sprite(window, {top_center.x - 25, top_center.y + diff}, option_pointer_sprite_, false);
-    }
-
     // Paint the background and its objects
     if (day_time_) window.clear(sky_blue);
     else window.clear(sky_dark);
@@ -420,8 +439,8 @@ void Game::paint(pro2::Window& window) {
 
     // Draw the star mode logo
     const pro2::Rect cam_rect = window.camera_rect();
-    if (mario_.is_in_starmode_() || luigi_.is_in_starmode_()) {
-        Pt top_left = {cam_rect.left + 5, cam_rect.top + 51};
+    if (mario_.is_in_starmode_() || (luigi_.is_in_starmode_() && !single_player_)) {
+        Pt top_left = {cam_rect.left + 5, (single_player_) ? cam_rect.top + 36 : cam_rect.top + 51};
 
         if (mario_.star_countdown() < 180 && luigi_.star_countdown() < 180) {
             if ((frame_counter_ / 9) % 2 == 0) {
@@ -432,16 +451,30 @@ void Game::paint(pro2::Window& window) {
     }
 
     // Draw the coin counter
-    Pt top_left = {cam_rect.left + 5, cam_rect.top + 35}; 
+    Pt top_left = {cam_rect.left + 5, (single_player_) ? cam_rect.top + 20 : cam_rect.top + 35}; 
     paint_sprite(window, top_left, Coin::coin_sprite_front, false);
     pro2::Color text_color = (day_time_) ? pro2::black : pro2::white;
     window.draw_txt({top_left.x + 17, top_left.y + 3}, std::to_string(num_coins_), text_color);
 
     // Draw characters
     mario_.paint(window, immune_mario_, frame_counter_);
-    luigi_.paint(window, immune_luigi_, frame_counter_);
+    if (!single_player_) luigi_.paint(window, immune_luigi_, frame_counter_);
 
     // Draw characters' lives
     mario_.paint_lives(window, "mario");
-    luigi_.paint_lives(window, "luigi");
+    if (!single_player_) luigi_.paint_lives(window, "luigi");
+
+    // Pre-game screen
+    if (pregame_) {
+        Pt top_center = {window.camera_center().x - 40, window.camera_center().y - 60};
+        int i = 0;
+    
+        for (std::string s : options_) {
+            window.draw_txt({top_center.x, top_center.y + 20*i}, s, white);
+            i++;
+        }
+
+        int diff = (*options_it_ == "1 PLAYER GAME") ? -1 : 19;
+        paint_sprite(window, {top_center.x - 20, top_center.y + diff}, option_pointer_sprite_, false);
+    }
 }
