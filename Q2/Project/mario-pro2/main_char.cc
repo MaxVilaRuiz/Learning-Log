@@ -856,6 +856,7 @@ int MainChar::lives() const {
 void MainChar::lose_life() {
     if (0 < lives_) {
         lives_--;
+        remove_starmode();
         if (big_) {
             big_ = false;
             decrease_counter_ = 60; // 1s at 60fps
@@ -887,6 +888,6 @@ void MainChar::handle_star() {
 
 
 void MainChar::remove_starmode() {
-    star_mode_ = 0;
+    star_mode_ = false;
     star_counter_ = 0;
 }

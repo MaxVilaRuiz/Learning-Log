@@ -364,6 +364,12 @@ void Game::update_objects(pro2::Window& window) {
         endgame_ = true;
         win_ = true;
         paused_ = true;
+        mario_.remove_big();
+        mario_.remove_starmode();
+        if (!single_player_) {
+            luigi_.remove_big();
+            luigi_.remove_starmode();
+        }
     }
 
     // Update main characters

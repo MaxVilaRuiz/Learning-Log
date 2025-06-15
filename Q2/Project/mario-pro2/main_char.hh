@@ -211,4 +211,7 @@ class MainChar {
 
     /// @brief Disables star mode for the character.
     void remove_starmode();
+
+    /// @brief  Disables the big state
+    void remove_big() { big_ = false; }
 };
