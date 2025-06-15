@@ -466,39 +466,66 @@ void Game::paint(pro2::Window& window) {
 
     // Pre-game screen
     if (pregame_) {
-        Pt top_center = {window.camera_center().x - 40, window.camera_center().y - 60};
-        int i = 0;
-    
-        // Draw options
-        for (std::string s : options_) {
-            window.draw_txt({top_center.x, top_center.y + 20*i}, s, white);
-            i++;
-        }
+        // Draw title' rectangle
+        Pt top_center = {window.camera_center().x - 60, window.camera_center().y - 120};
+        paint_rect(window, {top_center.x, top_center.y + 25, top_center.x + 90, 
+                            top_center.y}, pro2::mid_blue);
 
         // Draw title
-        pro2::Rect title_rect;
-        title_rect.left = top_center.x - 10;
-        title_rect.top = top_center.y - 30;
-        title_rect.right = title_rect.left + 100;
-        title_rect.bottom = title_rect.bottom + 35; 
-        paint_rect(window, title_rect, pro2::mid_blue);
-
-        int space = 7 , j = 0;
-        i = 0;
+        int space = 7 , i = 0, j = 0;
         std::string s;
         for (char c : "MARIO PRO2") {
             s = c;
-            window.draw_txt({top_center.x + 5 + space*j, top_center.y - 50}, s, color_vec_[i]);
+            window.draw_txt({top_center.x + 10 + space*j, top_center.y + 10}, s, color_vec_[i]);
             if (i == 3) i = 0;
             else i++;
             j++;
         }
+    
+        // Draw options' rectangle
+        paint_rect(window, {top_center.x - 20, top_center.y + 80, top_center.x + 110, 
+            top_center.y + 25}, pro2::soft_blue);
+
+        // Draw options
+        i = 0;
+        for (std::string s : options_) {
+            window.draw_txt({top_center.x + 15, top_center.y + 40 + 20*i}, s, white);
+            i++;
+        }
 
         // Draw options pointer
-        int diff = (*options_it_ == "1 PLAYER GAME") ? -1 : 19;
-        paint_sprite(window, {top_center.x - 20, top_center.y + diff}, option_pointer_sprite_, false);
+        int diff = (*options_it_ == "1 PLAYER GAME") ? 39 : 59;
+        paint_sprite(window, {top_center.x - 5, top_center.y + diff}, option_pointer_sprite_, false);
+    }
+
+    // Draw instructions for pre-game & paused screen
+    if (paused_) {
+        // Draw instructions' rectangle
+        paint_rect(window, {cam_rect.right - 115, cam_rect.top + 80, cam_rect.right - 5, 
+                            cam_rect.top + 5}, pro2::soft_blue);
+
+        // Draw instructions
+        int i = 0, j = 0;
+        Pt top_right = {cam_rect.right - 45, cam_rect.top + 15};
+        int buttons = top_right.x - 40;
+        for (std::pair<std::string, std::vector<std::string>> p : instructions_) {
+            window.draw_txt({top_right.x, top_right.y + 10*i}, p.first, white);
+            j = 0;
+            for (std::string s : p.second) {
+                window.draw_txt({buttons - 15*j, top_right.y + 10*i}, s, white);
+                j++;
+            }
+            i++;
+        }
     }
 
     // Paused screen
-    if (paused_ && !pregame_) window.draw_txt({cam_rect.left + 223, cam_rect.top + 20}, "PAUSED", white);
+    if (paused_ && !pregame_) {
+        // Draw paused' rectangle
+        paint_rect(window, {cam_rect.left + 218, cam_rect.top + 32, cam_rect.left + 263, 
+            cam_rect.top + 15}, pro2::soft_blue);
+
+        // Draw paused
+        window.draw_txt({cam_rect.left + 223, cam_rect.top + 20}, "PAUSED", white);
+    }
 }
