@@ -25,6 +25,8 @@ class Coin {
   public:
     static const std::vector<std::vector<int>> coin_sprite_front; // Public facing sprite
 
+    Coin() {}
+
     /// @brief Constructs a Coin at a given position
     Coin(pro2::Pt pos) : pos_(pos) {}
 

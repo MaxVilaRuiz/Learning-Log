@@ -13,6 +13,8 @@ class Spike {
     pro2::Pt pos_;
 
  public:
+   Spike() {}
+
     /**
      * @brief Constructs a Spike at the given position.
      * @param pos Initial position of the Spike.

@@ -16,6 +16,8 @@ class Mushroom {
 
 
  public:
+   Mushroom() {}
+
     /**
      * @brief Constructs a Mushroom at a given position.
      * @param pos Initial position of the Mushroom.

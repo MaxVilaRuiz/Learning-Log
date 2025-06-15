@@ -19,6 +19,8 @@ class Star {
   public:
     static const std::vector<std::vector<int>> star_sprite_front;
 
+    Star() {}
+
     /// @brief Constructs a Star at a given position
     Star(pro2::Pt pos) : pos_(pos) {}
 
