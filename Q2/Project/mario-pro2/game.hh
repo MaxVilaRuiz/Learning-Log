@@ -59,7 +59,7 @@ class Game {
     static const std::vector<std::vector<int>> finish_flag_sprite_;
     std::vector<std::pair<std::string, std::vector<std::string>>> instructions_ = {
         {"UP", {"`", "W"}}, {"DOWN", {",", "S"}}, {"LEFT", {"<", "A"}}, {"RIGHT", {">", "D"}},
-        {"PAUSE", {"P"}}, {"QUIT", {"ESC"}}
+        {"(UN)PAUSE", {"P"}}, {"QUIT", {"ESC"}}, {"CONTINUE", {"RETURN"}}
     };
 
     // Pre-game screen

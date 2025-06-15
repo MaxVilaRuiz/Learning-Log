@@ -592,34 +592,22 @@ void Game::paint(pro2::Window& window) {
     else window.clear(sky_dark);
 
     // Draw platforms
-    for (const Platform* p : platform_actualObj_) {
-        p->paint(window);
-    }
+    for (const Platform* p : platform_actualObj_) p->paint(window);
 
     // Draw coins
-    for (const Coin* c : coin_actualObj_) {
-        c->paint(window);
-    }
+    for (const Coin* c : coin_actualObj_) c->paint(window);
 
     // Draw spikes
-    for (const Spike* s : spike_actualObj_) {
-        s->paint(window);
-    }
+    for (const Spike* s : spike_actualObj_) s->paint(window);
 
     // Draw mushrooms
-    for (const Mushroom* m : mushroom_actualObj_) {
-        m->paint(window);
-    }
+    for (const Mushroom* m : mushroom_actualObj_) m->paint(window);
 
     // Draw goombas
-    for (const Goomba* g : goombas_actualObj_) {
-        g->paint(window);
-    }
+    for (const Goomba* g : goombas_actualObj_) g->paint(window);
 
     // Draw stars
-    for (const Star* s : star_actualObj_) {
-        s->paint(window);
-    }
+    for (const Star* s : star_actualObj_) s->paint(window);
 
     // Draw finish flab
     paint_sprite(window, {4245, 20}, finish_flag_sprite_, false);
@@ -686,15 +674,15 @@ void Game::paint(pro2::Window& window) {
     }
 
     // Draw instructions for pre-game & paused screen
-    if (paused_) {
+    if (paused_ || pregame_ || endgame_) {
         // Draw instructions' rectangle
-        paint_rect(window, {cam_rect.right - 115, cam_rect.top + 80, cam_rect.right - 5, 
+        paint_rect(window, {cam_rect.right - 135, cam_rect.top + 92, cam_rect.right - 5, 
                             cam_rect.top + 5}, pro2::soft_blue);
 
         // Draw instructions
         int i = 0, j = 0;
-        Pt top_right = {cam_rect.right - 45, cam_rect.top + 15};
-        int buttons = top_right.x - 40;
+        Pt top_right = {cam_rect.right - 63, cam_rect.top + 15};
+        int buttons = top_right.x - 50;
         for (std::pair<std::string, std::vector<std::string>> p : instructions_) {
             window.draw_txt({top_right.x, top_right.y + 10*i}, p.first, white);
             j = 0;
