@@ -56,6 +56,7 @@ class Game {
 
     // Utils
     static const std::vector<std::vector<int>> option_pointer_sprite_;
+    static const std::vector<std::vector<int>> finish_flag_sprite_;
     std::vector<std::pair<std::string, std::vector<std::string>>> instructions_ = {
         {"UP", {"`", "W"}}, {"DOWN", {",", "S"}}, {"LEFT", {"<", "A"}}, {"RIGHT", {">", "D"}},
         {"PAUSE", {"P"}}, {"QUIT", {"ESC"}}
@@ -72,10 +73,6 @@ class Game {
     std::vector<std::string>::iterator endgame_options_it_ = endgame_options_.begin();
     bool win_ = false;
 
-    bool day_time_ = true;                          // Background status
-    int frame_counter_ = 0;
-    static const int day_night_interval_ = 900;     // 15s at 60fps
-
     // Characters' immunity
     const int immunity_interval_ = 60;              // 1s at 60fps
     int immunity_mario_until_ = 0;
@@ -90,6 +87,9 @@ class Game {
     bool endgame_ = false;                          // End-game state
     bool following_cam_ = false;                    // Vertical camera tracking state
     bool restarting_game_ = false;
+    bool day_time_ = true;                          // Background status
+    int frame_counter_ = 0;
+    static const int day_night_interval_ = 900;     // 15s at 60fps
 
     // Screen size
     int width_;
