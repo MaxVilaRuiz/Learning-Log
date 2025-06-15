@@ -98,6 +98,6 @@ pro2::Rect Goomba::get_rect() const {
 
 void Goomba::hit_from_above(int global_frame) {
     squashed_ = true;
-    deadtime_ = global_frame + 30; // 0.5s
+    deadtime_ = global_frame + 30; // 0.5s at 60fps
     pos_.y += 4;
 }

@@ -188,6 +188,22 @@ void Game::process_keys(pro2::Window& window) {
         if (window.was_key_pressed(Keys::Up) && *endgame_options_it_ != "TRY AGAIN") endgame_options_it_--;
         else if (window.was_key_pressed(Keys::Down) && *endgame_options_it_ != "QUIT") endgame_options_it_++;
         else if (window.was_key_pressed(Keys::Return)) {
+            // Restore goombas
+            goombas_finder_.clear();
+            while (!goombas_.empty()) goombas_.pop_back();
+            goombas_.push_back(Goomba({496, 189}, 60));
+            goombas_.push_back(Goomba({921, 129}, 20));
+            goombas_.push_back(Goomba({1071, 189}, 20));
+            goombas_.push_back(Goomba({2113, 99}, 35));
+            for (int i = 0; i < 2; i++) goombas_.push_back(Goomba({1171 + 100*i, 189}, 45));
+            for (int i = 0; i < 4; i++) goombas_.push_back(Goomba({3491 + 100*i, 159}, 50));
+
+            // Add objects to finder
+            for (const auto& coin : coins_) coin_finder_.add(&coin);
+            for (const auto& mushroom : mushrooms_) mushroom_finder_.add(&mushroom);
+            for (const auto& goomba : goombas_) goombas_finder_.add(&goomba);
+            for (const auto& star : stars_) star_finder_.add(&star);
+            
             if (*endgame_options_it_ == "TRY AGAIN") {
                 window.set_camera_topleft({0, 0});
                 restarting_game_ = true;
@@ -207,10 +223,7 @@ void Game::process_keys(pro2::Window& window) {
 
 
 void Game::update_objects(pro2::Window& window) {
-    // Update main characters
-    mario_.update(window, platform_actualObj_, spike_actualObj_);
-    if (!single_player_) luigi_.update(window, platform_actualObj_, spike_actualObj_);
-
+    // Restarting Game
     Pt cam_center = window.camera_center();
     if (restarting_game_ && (cam_center.x == int(width_ / 2) && cam_center.y == int(height_ / 2))) {
         restarting_game_ = false;
@@ -226,6 +239,17 @@ void Game::update_objects(pro2::Window& window) {
             immune_luigi_ = false;
         }
     }
+
+    // Check if game is finished
+    if (4250 < mario_.pos().x || 4250 < luigi_.pos().x) {
+        endgame_ = true;
+        win_ = true;
+        paused_ = true;
+    }
+
+    // Update main characters
+    mario_.update(window, platform_actualObj_, spike_actualObj_);
+    if (!single_player_) luigi_.update(window, platform_actualObj_, spike_actualObj_);
 
     // Subtract lives from characters if they are out of bounds
     const int bottom_limit = window.camera_rect().bottom + 320;
@@ -501,10 +525,8 @@ void Game::paint(pro2::Window& window) {
     if (!single_player_) luigi_.paint(window, immune_luigi_, frame_counter_);
 
     // Draw characters' lives
-    if (!endgame_) {
-        mario_.paint_lives(window, "mario");
-        if (!single_player_) luigi_.paint_lives(window, "luigi");
-    }
+    mario_.paint_lives(window, "mario");
+    if (!single_player_) luigi_.paint_lives(window, "luigi");
 
     // Pre-game screen
     if (pregame_) {
@@ -579,7 +601,9 @@ void Game::paint(pro2::Window& window) {
                             top_center.y}, pro2::mid_blue);
 
         // Draw title
-        window.draw_txt({top_center.x + 19, top_center.y + 10}, "GAME OVER", red);
+        if (win_) window.draw_txt({top_center.x + 25, top_center.y + 10}, "VICTORY", green);
+        else window.draw_txt({top_center.x + 19, top_center.y + 10}, "GAME OVER", red);
+
     
         // Draw options' rectangle
         paint_rect(window, {top_center.x - 20, top_center.y + 101, top_center.x + 110, 

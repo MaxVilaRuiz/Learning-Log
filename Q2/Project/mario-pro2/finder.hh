@@ -116,4 +116,10 @@ class Finder {
 
         return res;
     }
+
+    /**
+     * @brief Clears all objects from the spatial grid.
+     * @post All internal grid cells are emptied.
+     */
+    void clear() { objects_.clear(); }
 };

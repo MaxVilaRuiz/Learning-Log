@@ -70,6 +70,7 @@ class Game {
     // End-game screen
     std::vector<std::string> endgame_options_ = {"TRY AGAIN", "MENU", "QUIT"};
     std::vector<std::string>::iterator endgame_options_it_ = endgame_options_.begin();
+    bool win_ = false;
 
     bool day_time_ = true;                          // Background status
     int frame_counter_ = 0;
