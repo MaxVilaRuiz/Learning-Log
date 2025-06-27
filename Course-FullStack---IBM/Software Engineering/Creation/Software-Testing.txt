@@ -1,0 +1,13 @@
+Types of Software Testing:
+- Functional Testing:
+    * Black Box testing: only test the input with the expected results (do not test de internal system).
+- Non-Funcional Testing:
+    * Test the performance, security, scalability and availability (technical tests).
+- Regression Testing:
+    * Confirms changes don't break the application.
+
+Testing levels:
+- Unit: checks the functionality of a single module.
+- Integration: checks the functionality of a group of modules that have resently been united.
+- System: checks the functionality of all the application (databases, modules, hardware...).
+- Acceptance: checks wether the application works under the users demand (habitual behaviors).
