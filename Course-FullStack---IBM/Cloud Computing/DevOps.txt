@@ -1,0 +1,7 @@
+DevOps: is a collaborative approach that allows the team to collaborate in business, development, operations and quality assurance, creating continuously good quality and efficient software.
+
+DevOps Process: Ideation --> Coding --> Building --> Deploying --> Managing --> Continuous Improvement --> (again).
+
+An Cloud Native Application is an app made to work only in the cloud (common for DevOps):
+- Is build with multiple microservices that, all communicated, makes the whole app work perfectly.
+- The microservices can be organized with volumnes and containers, to make sure the functionality of a group of microservices.
