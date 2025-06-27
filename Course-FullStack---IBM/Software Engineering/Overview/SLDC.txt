@@ -1,0 +1,7 @@
+SLDC - Software Development Life Cycle
+1. Planning: analyze, document (*) and prioritized.
+2. Design: develop the architecture and create a design document to use it as a guide at the Development phase.
+3. Development: develop the design document and documents correctly the code (README files, comments...).
+4. Testing: identify and fix bugs (must pass the requirements of the SRS).
+5. Deployment: releases (Alpha: preview of functioning version; Beta: meets requirements and has less errors; General Availability: full completed).
+6. Maintenance
