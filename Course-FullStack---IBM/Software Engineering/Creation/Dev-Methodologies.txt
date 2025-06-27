@@ -1,0 +1,38 @@
+Waterfall (sequential):
+- You only can start the next step if you have already finished the previous (1).
+- Easy to define the goals and budgets.
+- Difficult to adapt changes (2).
+1. Planning
+2. Design
+3. Develop
+4. Test
+5. Deploy
+6. Maintain
+
+V-shape (sequential):
+- (1).
+- Organized and structured.
+- Very (2).
+- 1-9, 2-8, 3-7, 4-6
+1. Plan
+2. System Design
+3. Architecture Design
+4. Module Design
+5. Coding
+6. Unit Testing
+7. Integration Testing
+8. System Testing
+9. Acceptance Testing
+
+Agile (iterative):
+- Short steps and iterative process (when you finish the cicle you do it again to see if there's something more to develop).
+- Very flexible.
+- Difficult to determinate the budget or the main goals.
+1. Plan
+2. Design
+3. Develop
+4. Test
+5. Deploy
+6. Feedback
+
+* See Programming Languages / Organization Methods to learn multiple ways to represent and organize projects or algorithms.
