@@ -1,0 +1,16 @@
+body {
+    background-color: white;
+  }
+  
+  p {
+    font-family: arial;
+    font-size: 20px;
+    color: white;
+  }
+  
+  div {
+    background-color: white;
+    width: 300px;
+    color: black;
+  }
+  
