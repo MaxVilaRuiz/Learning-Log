@@ -1,0 +1,5 @@
+(*) Documentation:
+- Describe rols and objectives.
+- Create the Software Requirements Specification document [SRS]: contain the software rules, objectives, requirements and describe specific functionalities.
+- Create the User Requirements Specification document [URS]: describe business goals and end-user expectations (what type of users is for and what they need). Can be integrated in the SRS.
+- Create the System Requirements Specification document [SysRS]: outlines requirements of the system and contain system capabilities, interfaces characteristics, policy, regulation, performance, hardware expectations and security. Can be integrated in the SRS.
