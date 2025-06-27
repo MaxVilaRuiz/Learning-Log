@@ -1,0 +1,11 @@
+* IOPS (Input / Output Operations Per Second): The speed at which the disks can write and read data. Higher IOPS --> faster speed of the disk --> higher costs.
+
+* Metadata: data about the data.
+
+* API: Application Program Interface.
+
+* CDN (Content Delivery Networks): Distribute the content of a service all arount de world (as much endpoints it find). Then when the users try to access the service, it won't be necessary to send the content from the central server to the user locations. Instead, the content will be send from the nearest endpoint to the user location (Faster).
+
+* Microservices: applications design to satisfy a specific tasks. Big services or applications are decomposed into multiples microservices. Three methods of microservices communication are: APIs, event streaming and message brokers.
+
+* DevOps: is a collaborative approach that allows the team to collaborate in business, development, operations and quality assurance, creating continuously good quality and efficient software. 
