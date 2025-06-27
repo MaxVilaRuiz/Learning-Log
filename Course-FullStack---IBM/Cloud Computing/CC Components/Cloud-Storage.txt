@@ -1,0 +1,19 @@
+Fila Storage:
+- Attached to, at least, one computer node to store data (can be mounted onto more than one).
+- The speed vary (mid performance) --> Less expensive
+- Less disk management and maintenance.
+- Provision much larger amounts of file storage.
+- Offer encrypted transit of data (secure).
+- Common uses: departamental file share, landing zone for incoming files, repository files...
+
+Block Storage:
+- Breaks files into blocks of data and stores each block separately under a unique address. Must be attached to, at least, one computer node.
+- Faster --> More expensive
+- Adjust IOPS as you need.
+- Data is more secure.
+- Common uses: databases and mail servers.
+
+Object Storage:
+- Can be used without connecting to particular compute node (API - Application Program Interface). Good for large amount of unstructured data. The storage is organized with Buckets (Metadata - data about the data).
+- Less expensive --> You pay for what you use (capacity). Higher frequency of acces to data --> Higher cost (Multiple tiers depending on the frequency of acces: Standard, Vault, Cold Vault).
+- Can be used to store everything, but can't be suiztable for operating systems and databases.
