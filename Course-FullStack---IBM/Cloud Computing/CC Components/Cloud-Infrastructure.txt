@@ -1,0 +1,13 @@
+Virtual Machines:
+- Are multiple types so that can satisfy all the customers intereses in storage terms.
+- Similar to Public Cloud services.
+
+Bare Metal Server:
+- Are physical servers owned by only one person who use it for his enterprise.
+- Are made for public uses.
+- Very fast and efficient, ideal for application with high performance or high security necessities.
+
+Containers:
+- The containers is a smart way to connect multiple documents, libraries, dependences and services in a commun and efficient package. 
+- When a project is launch into production, the containters make sure that all the developers are developing with the same tools, so anyone will have unique problems.
+- Containers are lighter than Virtual Machines so can agile the development and the implementation of native applications in the cloud.
