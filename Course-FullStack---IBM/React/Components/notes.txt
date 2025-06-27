@@ -1,0 +1,57 @@
+Components are made to create independent modules that can be reused in other codes.
+
+Creation of Components (lifecycle):
+- Mounting:
+    1. Constructor
+    2. getDerivedStateFromProps()
+    3. render()
+    4. componentDidMount()
+- Updating:
+    1. getDerivedStateFromProps()
+    2. shouldComponentUpdate()
+    3. render()
+    4. getSnapshotBeforeUpdate()
+    5. componentDidUpdate()
+- Unmounting:
+    1. componentWillUnmount()
+
+Class Component Lifecycle:
+- Mounting methods:
+    1. componentWillMount()
+    2. render()
+    3. componentDidMount()
+- Update methods:
+    1. getDerivedStateFromProps()
+    2. getSnapshotBeforeUpdate()
+    3. componentDidUpdate()
+    4. render()
+- Unmount methods:
+    1. componentWillUnmount()
+
+
+States:
+- Cannot access or modify data from outsite
+- Components create and manage their own state data
+- State management allows you to manage data that can change over time within a component
+- Used to manage data and make a component dynamic and interactive (useState())
+- Modify with 'setState()'
+
+Props (propieties):
+- Receives data from parent in form of propieties
+- You pass a props object as a parameter into a component.
+- Used to pass data
+- Read-only data
+
+
+Functions:
+- 'useEffect()' is used to perform side effects and execute the function as soon as the page loads.
+-> Look the notes.jsx
+
+
+Redux:
+- Redux is a container for states that provides a centralized store for managing application state and enables predictable state updates through actions and reducers.
+- To install, run 'npm install @reduxjs/toolkit.' in the terminal
+-> Consult Redux functions before creating a project to look for efficiencies
+
+
+-> See examples in nodes.jsx
