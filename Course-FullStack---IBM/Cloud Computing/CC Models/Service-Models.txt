@@ -1,0 +1,16 @@
+Infrastructure as a Service (IaaS):
+- Delivers: compute (memory and storage), network (virtualization and APIs) and storage (Types: object, file and block).
+- The users can create Virtual Machines (VMs), where they can deploy middleware, install applications and run workloads. They can also create storage.
+- The users can always track and monitor their data.
+- Services: infrastructure. So the customer have to manage the plataform and software.
+- Pros: helpful infrastructure, prevention of data disasters, economical ways to compute big data and power the efficientcy of your application.
+
+Plataform as a Service (PaaS):
+- Provide a complete application plataform: Develop, Deploy, Run and Manage.
+- Services: servers, network, storage, operating system, application runtimes, APIs, middleware and databases. Also, the provider manage the installation, configuration, operation and application infrastructure. So, the customer only have to do the application code.
+- Pros: scalability, help the user to launch the app before and perform the agility and the innovation of company.
+
+Software as a Service (SaaS):
+- Providers offer access to software services to the user, such as: maintain of the server, databases, creation of code...
+- Characteristics: monitor data, security, compliance, maintenance, subscription model.
+- Usage: run application with minimal input, manage websites, marketing, sales...
