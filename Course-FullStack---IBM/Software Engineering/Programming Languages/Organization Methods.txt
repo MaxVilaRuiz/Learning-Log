@@ -1,0 +1,8 @@
+Flowcharts:
+- Graphical / Pictorial representation of an algorithm.
+- The hierarchy of colors, symbols and other elements is used to mark the program process.
+- Connectors: arrow; Data (input/output): parallelogram; Decision: diamond; Process (operations): rectangle; Start/End: circle.
+- Flowcharts softwares: Microsoft Visio, Lucidchart, Draw.io, DrawAnyWhere.
+
+Pseudocode:
+...
