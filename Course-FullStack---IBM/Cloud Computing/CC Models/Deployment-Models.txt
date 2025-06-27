@@ -1,0 +1,23 @@
+Public Cloud:
+- Users can access to servers, storage, network, security and applications through the use of web consoles and APIs.
+- The provider manage and mantain the infrastructure. So the user don't own any of the services that is using, he/she is only renting it.
+- Benefics: is scalable, self-service and economical.
+- Public Cloud isn't the most secure way to store data.
+
+Private Cloud:
+- Exclusively used by a single organization. 
+- Is owned and managed by the own organization, but the infrastructure can be operated by other organization (cloud) or by the own organization too.
+- Virtual Private Cloud (VPC): external cloud that offers a private, secure and computing environment in a public cloud. 
+- Have the benefics of the public cloud but is more secure and accessive.
+
+Hybrid Cloud:
+- Provides both services Public and Private Cloud, so the customer have the flexibility to decide whatever they want whenever they want.
+- Have the Benefics of both services Public and Private Cloud.
+- Cons: Hybrid Cloud are complex to maintain.
+
+Multi-Cloud Hybrid:
+- Similar to Hybrid Cloud, but it includes more cloud types.
+
+Community Cloud:
+- Is a cloud owned and managed by a community with similar intereses so they work for the same goals.
+- All the users have equal power, so all have to pass control and security test to make sure the community have a good security infrastructure.
