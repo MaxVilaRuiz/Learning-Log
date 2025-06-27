@@ -1,0 +1,30 @@
+/* Positions */
+element {
+    position: relative; /* Sets the element's position realtive to its normal position */
+    position: static; /* Default position */
+    position: absolute; /* Positioned relative to the nearest positioned ancestor */
+    position: fixed; /* Positioned relative to the browser window */ 
+    position: sticky; /* Switches between relative and fixed based on the scroll position */
+}
+
+/* jusitfy-content */
+element {
+    justify-content: space-between; /* Distributes items with the first item at the start and the last item at the end */ 
+    justify-content: space-around; /* Distributes items with equal space around them */
+    justify-content: space-evenly; /* Distributes evenly with equal space between them */
+}
+
+/* flex-wrap */
+/* Specifies whether flex items should wrap onto multiple lines when they overflow the container */
+element {
+    flex-wrap: wrap;
+    flex-wrap: nowrap;
+}
+
+/* stretch propiety */
+/* Stretch items to fill the container */
+element {
+    align-items: stretch;
+    align-self: stretch;
+    justify-self: stretch;
+}

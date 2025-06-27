@@ -1,0 +1,2 @@
+Bootstrap: 
+Is a framework of CSS implemented with classes in HTML that provide general styles for certain classes. Similar to the idea of the classes as components.
