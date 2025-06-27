@@ -1,0 +1,27 @@
+ES6 = EcmaScript
+- Standards organization that creates a wide range of global information standards.
+
+Variables:
+* var: global scope (can be whatever)
+* let: local scope (can change)
+* const: constant values (cannot change)
+
+Functions:
+* Arrow functions: similar to calling variables, but with functions (can be declared with let and const - const is more frequent). Moreover, can be passed as parameters for callbacks
+    No ES6: function sayHello() {
+        console.log("Hello World!");
+    }
+    ES6: const sayHello = () => 
+            console.log("Hello World!");
+    ES6 (with parameters): const oneParam = (name) => {
+                                return "hello" + name;
+                            };
+
+Classes:
+* Constructor: method that creates an object of a class 
+* Ex: class Rectangle {
+        constructor(height, width) {
+            this.height = height;
+            this.width = width;
+        }
+}
