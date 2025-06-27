@@ -1,0 +1,8 @@
+Software development project roles:
+- Project manager
+- System / Software architect
+- UX Designer
+- Developer
+- Tester / QA engineer
+- Site reliability / Ops engineer
+- Product manager
