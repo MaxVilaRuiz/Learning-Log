@@ -1,0 +1,20 @@
+To create a React:
+1. npx create-react-app app-name // npm create vite@latest (creation with Vue / Vite)
+2. Select a framework (React)
+3. Select a variant (JS)
+4. cd nameOfTheFolder
+5. npm install
+6. npm run dev
+
+React Folder Structure:
+* node_modules: Dependencies through npm and yarn
+* public: HTML, files, assets (images, fonts...)
+* src: source code for the React application
+* main.jsx: entry point for the React application
+* App.jsx: root component of the React application
+* package.json: metadata, scripts for running, building and testing
+* vite.config.js: configuration settings for the Vite build tool
+* .gitignore: files and directions to be ignored
+* README.md: setup instructions, project documentation...
+* Index.html: entry point for web applications
+* eslintrc.cjs: configuration file used by ESLint
