@@ -1,12 +1,12 @@
-# 📘 Learning Log
+# Learning Log
 
 **Continuous Learning Tracker** — A structured repository that organizes the courses, exercises, and projects I've worked on. This serves both as a personal learning record and as a way to share knowledge and resources with the developer community.
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 | Folder / File                 | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| `Course-FullStack---IBM/`    | Training in SWE, Cloud Computing, Git & GitHub, JavaScript, HTML, CSS, React, Node.js, Python (Data Science, AI & Development), <br> Django, Containers, SQL, Databases, Capstone Projects, and Microservices & Serverless Development |
+| `Course-FullStack---IBM/`    | Training in SWE, Cloud Computing, Git & GitHub, JavaScript, HTML, CSS, React, Node.js, Python (Data Science, AI & Development), Django, Containers, SQL, Databases, Capstone Projects, and Microservices & Serverless Development |
 | `Course-CC---UPC/`           | In-depth projects and exercises in C++, part of the Computer Engineering program at UPC                         |
 | `Course-JavaScript---Udemy/` | Advanced JavaScript projects with notes exploring different paradigms and use cases of the language             |
 | `Course-HTML---Udemy/`       | Advanced projects in HTML & CSS with practical implementations of layout, responsive design, and animation      |
@@ -14,7 +14,7 @@
 | `Course-Ino---IEdT/`         | Real-world projects and simulations using Arduino, as part of electronics training at IEdT                      |
 | `README.md`                  | This file: overview and guide to the repository                                                                 |
 
-## 📚 Included Courses
+## Included Courses
 
 - **IBM Full Stack Software Developer Professional Certificate**
 - **C++ Course** — Degree in Computer Engineering (UPC)
@@ -23,7 +23,7 @@
 - **Python Course** — IEdT Technological Baccalaureate
 - **Arduino Projects** — IEdT Technological Baccalaureate
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 <table>
   <tr>
