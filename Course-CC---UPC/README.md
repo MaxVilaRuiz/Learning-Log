@@ -1,11 +1,17 @@
 # Course-CC---UPC
 
-**C++ Course** — Degree in Computer Engineering (UPC).
-In-depth projects and exercises in C++, part of the Computer Engineering program at UPC.
+- **C++ Course** — Degree in Computer Engineering (UPC).
+- In-depth projects and exercises in C++, part of the Computer Engineering program at UPC.
 
 ## Tech Stack
 
-  <!-- C++ - UPC -->
+<table>
+  <tr>
+    <th>Course</th>
+    <th>Languages</th>
+    <th>Frameworks / Tools</th>
+  </tr>
+
   <tr>
     <td><strong>Course-CC---UPC</strong></td>
     <td align="center">
@@ -13,3 +19,4 @@ In-depth projects and exercises in C++, part of the Computer Engineering program
     </td>
     <td align="center">—</td>
   </tr>
+</table>
