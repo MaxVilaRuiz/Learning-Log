@@ -109,6 +109,6 @@
 
 </table>
 
-## 📄 License
+## License
 
 This repository is licensed under the [MIT License](https://choosealicense.com/licenses/mit/) © Max Vilà Ruiz, 2025.
