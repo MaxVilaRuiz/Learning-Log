@@ -1,20 +1,95 @@
-To create a React:
+To create a React project:
 1. npx create-react-app app-name // npm create vite@latest (creation with Vue / Vite)
-2. Select a framework (React)
-3. Select a variant (JS)
+(2). Select a framework (React)
+(3). Select a variant (JS)
 4. cd nameOfTheFolder
 5. npm install
-6. npm run dev
+6. npm start // npm run dev (without Vite, Next.js / with)
+7. Make the appropriate installations (npm install import-name-library)
+
 
 React Folder Structure:
 * node_modules: Dependencies through npm and yarn
 * public: HTML, files, assets (images, fonts...)
 * src: source code for the React application
 * main.jsx: entry point for the React application
-* App.jsx: root component of the React application
+* index.js: renders the app (App.js / App.jsx) - entry point of React
+* App.jsx: root component of the React application - integrated sections and general layouts
+* index.css: global classes and Tailwind CSS installation
 * package.json: metadata, scripts for running, building and testing
 * vite.config.js: configuration settings for the Vite build tool
 * .gitignore: files and directions to be ignored
 * README.md: setup instructions, project documentation...
 * Index.html: entry point for web applications
 * eslintrc.cjs: configuration file used by ESLint
+* src/sections/: to store sections like Home, About, Contact...
+* src/components/: reusable components like Buttons, Navbar...
+* src/styles/: personalized CSS, Tailwind extended classes, pure CSS... (optional)
+
+Exemplary Structure with Vue:
+.
+├── LICENSE
+├── README.md
+├── package-lock.json
+├── package.json
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── robots.txt
+└── src
+    ├── App.js
+    ├── assets
+    ├── components
+    ├── context
+    │   └── UserContext.js
+    ├── index.js
+    ├── sections
+    │   └── Home.jsx
+    └── styles
+        ├── App.css
+        └── index.css
+
+Exemplary Structure with Vite:
+.
+├── LICENSE
+├── README.md
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+├── src
+│   ├── App.jsx
+│   ├── assets
+│   ├── components
+│   ├── context
+│   ├── hooks
+│   ├── main.jsx
+│   ├── pages
+│   │   └── Home.jsx
+│   ├── styles
+│   │   ├── App.css
+│   │   └── index.css
+│   └── utils
+└── vite.config.js
+
+
+Tailwind CSS installation to a React-Vite project:
+1. Run: 
+> npm install tailwindcss @tailwindcss/vite
+
+2. Replace the content of the following docs:
+vite.config.js:
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite' // MODIFIED
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),                          // MODIFIED
+  ],
+})
+
+App.css:
+@import "tailwindcss";
