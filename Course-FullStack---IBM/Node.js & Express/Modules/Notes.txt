@@ -1,8 +1,12 @@
-- A module is an encapsulated JS code that can be reusabled and is for a single and specific purpose
+- Server: to start the server in Node.js type: node index.js
+
+- Module: encapsulated JS code that can be reusabled and is for a single and specific purpose
 
 - Package: a directory with one or more modules. Every package have a package.json file that describes details about Node.js module (if it don't exist, the main script is index.js)
 
 - Module specification: conventions and standards used to create packages (CommonJS, ES)
+
+- Dependencies: code in the form of libraries and packages that are called from other modules and reused in a program.
 
 - import() and require() are used by external applications to interact with the code of an specific module
 
