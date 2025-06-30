@@ -1,0 +1,26 @@
+- A module is an encapsulated JS code that can be reusabled and is for a single and specific purpose
+
+- Package: a directory with one or more modules. Every package have a package.json file that describes details about Node.js module (if it don't exist, the main script is index.js)
+
+- Module specification: conventions and standards used to create packages (CommonJS, ES)
+
+- import() and require() are used by external applications to interact with the code of an specific module
+
+CommonJS:
+.js
+- Import a module: require()
+- Export from a module: module.exports
+require(): 
+    * Can be called anywhere in the code
+    * Dynamic -> binding errors not identified until run-time
+    * Synchronous (modules are executed one after other)
+    * Use the require function to import a Node.js module (create an object that represents the imported module - then you can access to internal functions / methods of the module (similar to classes)):
+        let today = require('./today');
+
+ES:
+.mjs
+- Import a module: import()
+- Export from a module: export
+import(): can only be called at the beginning of the code
+          static -> binding errors not identified until compile-time
+          asynchronous (multiple modules can be executed at the same time - faster)
