@@ -1,3 +1,14 @@
+// Callback function
+weather.current(location, function(error, temp_f) { // Assign an error parameter to check if an error has occurred
+    if (error) {
+        console.error(error);
+        return;
+    }
+    console.log(temp_f);
+});
+response.end(`... ${temp_f} ...`);
+
+
 // Passing an error object
 exports.current = function(location, resultCallback) {
     // ...
@@ -20,13 +31,3 @@ exports.current = function(location, resultCallback) {
         });
     });
 }
-
-// Callback function
-weather.current(location, function(error, temp_f) { // Assign an error parameter to check if an error has occurred
-    if (error) {
-        console.error(error);
-        return;
-    }
-    console.log(temp_f);
-});
-response.end(`... ${temp_f} ...`);

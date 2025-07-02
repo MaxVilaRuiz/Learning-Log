@@ -1,3 +1,7 @@
+// Def of Callback function:
+// A function passed as an argument to another function
+// Used to ensure an action is executed only after a result is produced
+
 // Structure of callback functions
 // http.request(options, [callback function]);
 
