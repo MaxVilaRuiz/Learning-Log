@@ -1,0 +1,22 @@
+* Node.js: is a runtime enviroment that executes JS on server and needs an framework to be executed properly.
+
+* Framework: is the squeleton in whick an application is built
+
+* Approaches to building backend (can use both):
+    - Model-View-Controller (MVC):
+        Used for apps that need separation of the data, the data presentation and from the manipulation of data.
+        -> Model: manages data & interacts with DB and handles data logic
+        -> View: renders presentation of the data
+        -> Controller: regulates data flow & processes data provided by user
+        Popular framework:
+            * Koa: uses async functions such that callbacks are not necessary & is designed for applications that are high-performance, demanding, complex...
+            * Django:
+            * Express: handles multiple operation requests concurrently 
+            * NestJS: appropiate for dynamic, scalable, enterprise apps. Compatible with TypeScript & works with Angular
+            * Socker.io: works well for application such as: Chat rooms, texting, video conferencing, multiplayer games (real-time bidirectional data exchange)
+            * Hapi.js: lots of build-in security and good for developing: Proxy servers, API servers, HTTP proxy apps, REST APIs
+    
+    - REST APIs (): 
+        Allow multiple web services to communicate with each other and the client
+        Uses HTTP meths such as: GET, POST, PATCH and DELETE
+        Usually return JSON from the web service server
