@@ -1,0 +1,20 @@
+Status Code Range       Meaning
+200-299                 Everything is OK
+300-399                 Resource has moved
+400-499                 Client-side error
+500-599                 Server-side error
+
+Defs:
+    * REST: A set of architectural guidelines that describe how to write an interface (API) between two components, usually a client and server, that describe how these components communicate with each other. REST stands for REpresentational State Transfer. REST describes a standard way to identify and manipulate resources. REST ensures the messages passed between the client and server are self-descriptive and define how the client interacts with the server to access resources on the server.
+
+    * Endpoint: The location of the resource specified by a REST API that is being accessed on the server. It is usually identified through the URL in the HTTP method of the API.
+
+    * GET: The GET method is used as a request that retrieves a representation of a resource. GET() should never modify a resource and only return a representation of the requested resource.
+
+    * POST: HTTP method that sends data to the server to create a resource and should return 201_CREATED status code.
+
+    * PUT: HTTP method that updates a resource or replaces an existing one. Calling PUT multiple times in a row does not have side effects, whereas POST does. It should return a 200_OK code if the resource exists and can be updated or return a 404_NOT_FOUND code if the resource doesn't exist.
+
+    * DELETE: HTTP method that deletes a resource and returns 204_NO_CONTENT if the resource exists and can be deleted by the server or if the resource cannot be found, which means it has already been deleted.
+
+    * PATCH: HTTP method that applies partial modifications to a resource.
