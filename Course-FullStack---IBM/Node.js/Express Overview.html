@@ -1,0 +1,293 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+                <style>
+                    .linenums {
+                        list-style-type: none;
+                    }
+
+                    .formatted-line-numbers {
+                        display: none;
+                    }
+                    .action-code-block {
+                        display: none;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        width: 100%;
+                    }
+                    table, th, td {
+                        border: 1px solid black;
+                        padding: 8px;
+                        text-align: left;
+                    }
+                </style>
+            </head><body><div>
+    
+<h2><span class="header-link octicon octicon-link"></span>Developing Back-End Apps with Node.js and Express</h2><h3><span class="header-link octicon octicon-link"></span>Module 3 Cheat Sheet: Express Web Application Framework</h3></div><br><p></p><table width="100%">
+<tbody><tr>
+<th width="20%">Package/Method </th><th width="30%">Description </th><th width="50%">Code Example</th>
+</tr>
+
+<tr>
+<td><b>Dependencies in `package.json` </b></td>
+    <td>A dependency of <b>express</b> version between <b>4.0 to 5.0</b> will be declared as: </td>
+<td> <pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li></ol><ol class="linenums"><li class="L0"><code><span class="str">"dependencies"</span><span class="pun">:{</span><span class="str">"express"</span><span class="pun">:</span><span class="str">"4.x"</span><span class="pun">}</span></code></li></ol>
+          <div class="code-block-actions z-0 single-line">
+            <button title="Copy" class="action-code-block copy-code-block">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-0">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-0">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre> </td>
+</tr>
+
+<tr>
+<td><b>new express()</b></td>
+<td>Creates an express object which acts as a server <br> application.  </td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li></ol><ol class="linenums"><li class="L0"><code><span class="kwd">const</span><span class="pln"> express </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(“</span><span class="pln">express</span><span class="pun">”);</span></code></li><li class="L1"><code><span class="kwd">const</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> express</span><span class="pun">();</span></code></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-1">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-1">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre>
+</td>
+</tr>
+
+<tr>
+<td><b>express.listen() </b></td>
+<td>The listen method is invoked on the express object with the port 
+number on which the server listens. The function is executed when the 
+server starts listening. </td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li></ol><ol class="linenums"><li class="L0"><code><span class="pln">app</span><span class="pun">.</span><span class="pln">listen</span><span class="pun">(</span><span class="lit">3333</span><span class="pun">,</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code><span class="pln">  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(“</span><span class="typ">Listening</span><span class="pln"> at</span></code></li><li class="L2"><code><span class="pln">  http</span><span class="pun">:</span><span class="com">//localhost:3333)</span></code></li><li class="L3"><code><span class="pun">})</span></code></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-2">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-2">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre> </td>
+</tr>
+
+<tr>
+<td><b>express.get();  </b></td>
+<td>This method is meant to serve the retrieve requests to the server. 
+The get() method is to be implemented with two parameters; the first 
+parameter defining the end-point and the second parameter is a function 
+taking the request-handler and response-handler. </td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol><ol class="linenums"><li class="L0"><code><span class="com">// handles GET queries to end point /user/about/id.</span></code></li><li class="L1"><code><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(“</span><span class="pln">user</span><span class="pun">/</span><span class="pln">about</span><span class="pun">/:</span><span class="pln">id</span><span class="pun">”,</span><span class="pln"> </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln">res</span><span class="pun">)=&gt;{</span></code></li><li class="L2"><code><span class="pln">  res</span><span class="pun">.</span><span class="pln">send</span><span class="pun">(“</span><span class="typ">Response</span><span class="pln"> about user </span><span class="pun">”</span></code></li><li class="L3"><code><span class="pln">  </span><span class="pun">+</span><span class="pln">req</span><span class="pun">.</span><span class="kwd">params</span><span class="pun">.</span><span class="pln">id</span><span class="pun">)</span></code></li><li class="L4"><code></code></li><li class="L5"><p><code><span class="pun">})</span></code></p></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-3">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-3">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre></td>
+</tr>
+
+<tr>
+<td><b>express.post(); </b></td>
+<td> This method is meant to serve the create requests to the server. 
+The post() method is to be implemented with two parameters: the first 
+parameter defines the end-point and the second parameter is a function 
+taking the request-handler and response-handler.  </td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ol><ol class="linenums"><li class="L0"><code><span class="com">// handles POST queries to the same end point.</span></code></li><li class="L1"><code><span class="pln">app</span><span class="pun">.</span><span class="pln">post</span><span class="pun">(“</span><span class="pln">user</span><span class="pun">/</span><span class="pln">about</span><span class="pun">/:</span><span class="pln">id</span><span class="pun">”,</span><span class="pln"> </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln">res</span><span class="pun">)=&gt;{</span></code></li><li class="L2"><code><span class="pln">  res</span><span class="pun">.</span><span class="pln">send</span><span class="pun">(“</span><span class="typ">Response</span><span class="pln"> about user </span><span class="pun">”</span></code></li><li class="L3"><code><span class="pln">  </span><span class="pun">+</span><span class="pln">req</span><span class="pun">.</span><span class="kwd">params</span><span class="pun">.</span><span class="pln">id</span><span class="pun">)</span></code></li><li class="L4"><code><span class="pun">})</span></code></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-4">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-4">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre></td>
+</tr>
+
+<tr>
+<td><b>express.use()  </b></td>
+<td> This method takes middleware as a parameter. Middleware acts as a 
+gatekeeper in the same order that it is used, before  the request 
+reaches the get() and post() handlers. The order in which the middleware
+ is chained depends on the order in which the .use() method is used to 
+bind them. The middleware myLogger() function takes three parameters, 
+which are request, response, and next. You can define a  method that 
+takes these three parameters and then bind it with express.use() or 
+router.use(). Here, you are creating middleware named myLogger and 
+making the application use it.&nbsp; The output rendered includes the 
+time the request is  received. </td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ol><ol class="linenums"><li class="L0"><code><span class="kwd">const</span><span class="pln"> express </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(</span><span class="str">"express"</span><span class="pun">);</span></code></li><li class="L1"><code><span class="kwd">const</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> express</span><span class="pun">();</span></code></li><li class="L2"><code><span class="kwd">function</span><span class="pln"> myLogger</span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">next</span><span class="pun">){</span></code></li><li class="L3"><code><span class="pln">  req</span><span class="pun">.</span><span class="pln">timeReceived </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">();</span></code></li><li class="L4"><code><span class="pln">  </span><span class="kwd">next</span><span class="pun">();</span></code></li><li class="L5"><code><span class="pun">}</span></code></li><li class="L6"><code><span class="pln">app</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(“/”,</span><span class="pln"> </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">)=&gt;{</span></code></li><li class="L7"><code><span class="pln">  res</span><span class="pun">.</span><span class="pln">send</span><span class="pun">(“</span><span class="typ">Request</span><span class="pln"> received at</span></code></li><li class="L8"><code><span class="pln">  </span><span class="str">"+req.timeReceived+“ is a success!"</span><span class="pun">)</span></code></li><li class="L9"><code><span class="pun">})</span></code></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-5">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-5">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre>
+
+ </td>
+</tr>
+
+<tr>
+<td><b>express.Router()  </b></td>
+<td> Router-level middleware is not bound to the application. Instead, 
+it is bound to an instance of express.Router(). You can use specific 
+middleware for a specific route instead of having all requests going 
+through the same middleware. Here, the route is /user and you want the 
+request to go through the user router.  Define the router, define the 
+middleware function that the router will use and what happens next, and 
+then you bind the application route to the router.</td>
+<td>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li></ol><ol class="linenums"><li class="L0"><code><span class="kwd">const</span><span class="pln"> express </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(“</span><span class="pln">express</span><span class="pun">”);</span></code></li><li class="L1"><code><span class="kwd">const</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> express</span><span class="pun">();</span></code></li><li class="L2"><code><span class="kwd">let</span><span class="pln"> userRouter </span><span class="pun">=</span><span class="pln"> express</span><span class="pun">.</span><span class="typ">Router</span><span class="pun">();</span></code></li><li class="L3"><code><span class="kwd">let</span><span class="pln"> itemRouter </span><span class="pun">=</span><span class="pln"> express</span><span class="pun">.</span><span class="typ">Router</span><span class="pun">();</span></code></li><li class="L4"><code><span class="pln">userRouter</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">next</span><span class="pun">){</span></code></li><li class="L5"><code><span class="pln">  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(“</span><span class="typ">User</span><span class="pln"> quert time</span><span class="pun">:”,</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">());</span></code></li><li class="L6"><code><span class="pln">  </span><span class="kwd">next</span><span class="pun">();</span></code></li><li class="L7"><code><span class="pun">})</span></code></li><li class="L8"><code><span class="pln">userRouter</span><span class="pun">.</span><span class="kwd">get</span><span class="pun">(“/:</span><span class="pln">id</span><span class="pun">”,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">req</span><span class="pun">,</span><span class="pln"> res</span><span class="pun">,</span></code></li><li class="L9"><code><span class="pln">  </span><span class="kwd">next</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L0"><code><span class="pln">  res</span><span class="pun">.</span><span class="pln">send</span><span class="pun">(“</span><span class="typ">User</span><span class="pln"> </span><span class="pun">”+</span><span class="pln">req</span><span class="pun">.</span><span class="kwd">params</span><span class="pun">.</span><span class="pln">id</span><span class="pun">+</span><span class="pln"> </span><span class="pun">“</span><span class="pln"> </span><span class="kwd">last</span></code></li><li class="L1"><code><span class="pln">  successful login </span><span class="pun">”+</span><span class="typ">Date</span><span class="pun">())</span></code></li><li class="L2"><code><span class="pun">})</span></code></li><li class="L3"><code><span class="pln">app</span><span class="pun">.</span><span class="pln">listen</span><span class="pun">(</span><span class="lit">3333</span><span class="pun">,</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L4"><code><span class="pln">  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(“</span><span class="typ">Listening</span><span class="pln"> at http</span><span class="pun">:</span><span class="com">//localhost:3333)</span></code></li><li class="L5"><code><span class="pun">})</span></code></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-6">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-6">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre>
+ </td>
+</tr>
+
+<tr>
+<td><b> express.static()  </b></td>
+<td> This is an example of static middleware that is used to render 
+static HTML pages and the images from the server side. At the 
+application level, the static files can be rendered from the 
+cad220_staticfiles directory. Notice that the URL has only the server 
+address and the port number followed by the filename. </td>
+<td>
+
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li></ol><ol class="linenums"><li class="L0"><code><span class="kwd">const</span><span class="pln"> express </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">require</span><span class="pun">(“</span><span class="pln">express</span><span class="pun">”);</span></code></li><li class="L1"><code><span class="kwd">const</span><span class="pln"> app </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> express</span><span class="pun">();</span></code></li><li class="L2"><code><span class="pln">app</span><span class="pun">.</span><span class="kwd">use</span><span class="pun">(</span><span class="pln">express</span><span class="pun">.</span><span class="kwd">static</span><span class="pun">(</span><span class="str">"cad220_staticfiles"</span><span class="pun">))</span></code></li><li class="L3"><code><span class="pln">app</span><span class="pun">.</span><span class="pln">listen</span><span class="pun">(</span><span class="lit">3333</span><span class="pun">,</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">=&gt;</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L4"><code><span class="pln">  console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="str">"Listening at  http://localhost:3333"</span><span class="pun">)</span></code></li><li class="L5"><code><span class="pun">})</span></code></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-7">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-7">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre>
+</td>
+</tr>
+
+<tr>
+<td><b>jsonwebtoken.sign()</b></td>
+<td>Used for signing-in based on a generated JWT (JSON Web token)</td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li></ol><ol class="linenums"><li class="L0"><code><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">uname </span><span class="pun">===</span><span class="pln"> </span><span class="str">"user"</span><span class="pln"> </span><span class="pun">&amp;&amp;</span><span class="pln"> pwd </span><span class="pun">===</span><span class="pln"> </span><span class="str">"password"</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code><span class="pln">    </span><span class="kwd">return</span><span class="pln"> res</span><span class="pun">.</span><span class="pln">json</span><span class="pun">({</span></code></li><li class="L2"><code><span class="pln">      token</span><span class="pun">:</span><span class="pln"> jsonwebtoken</span><span class="pun">.</span><span class="pln">sign</span><span class="pun">({</span><span class="pln"> user</span><span class="pun">:</span><span class="pln"> </span><span class="str">"user"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> JWT_SECRET</span><span class="pun">),</span></code></li><li class="L3"><code><span class="pln">    </span><span class="pun">});</span></code></li><li class="L4"><code><span class="pln">  </span><span class="pun">}</span></code></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-8">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-8">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre>
+</td>
+</tr>
+
+<tr>
+<td><b>jsonwebtoken.verify() </b></td>
+<td> Verifies a JWT by passing the token value &amp; the JWT secret as arguments.
+</td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li></ol><ol class="linenums"><li class="L0"><code><span class="kwd">const</span><span class="pln"> verificationStatus </span><span class="pun">=</span><span class="pln">   jsonwebtoken</span><span class="pun">.</span><span class="pln">verify</span><span class="pun">(</span><span class="pln">tokenValue</span><span class="pun">,</span><span class="pln"> </span><span class="str">"aVeryVerySecretString"</span><span class="pun">);</span></code></li></ol>
+          <div class="code-block-actions z-0 single-line">
+            <button title="Copy" class="action-code-block copy-code-block">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-9">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-9">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre>
+
+</td>
+</tr>
+
+<tr>
+<td><b>Project folder strucure</b></td>
+<td>A fairly established project structure for API's built using Express.js is: </td>
+<td>
+<pre class="prettyprint linenums prettyprinted" style=""><ol class="formatted-line-numbers"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li><li>13</li><li>14</li></ol><ol class="linenums"><li class="L0"><span class="pln">test</span><span class="pun">-</span><span class="pln">project</span><span class="pun">/</span></li><li class="L1"><span class="pln">   node_modules</span><span class="pun">/</span></li><li class="L2"><span class="pln">   config</span><span class="pun">/</span></li><li class="L3"><span class="pln">     db</span><span class="pun">.</span><span class="pln">js           </span><span class="com">//Database connection and configuration</span></li><li class="L4"><span class="pln">     credentials</span><span class="pun">.</span><span class="pln">js  </span><span class="com">//Passwords/API keys for external services used by your app</span></li><li class="L5"><span class="pln">   models</span><span class="pun">/</span><span class="pln">            </span><span class="com">//For mongoose schemas</span></li><li class="L6"><span class="pln">      items</span><span class="pun">.</span><span class="pln">js</span></li><li class="L7"><span class="pln">      prices</span><span class="pun">.</span><span class="pln">js</span></li><li class="L8"><span class="pln">   routes</span><span class="pun">/</span><span class="pln">           </span><span class="com">//All routes for different entities in different files</span></li><li class="L9"><span class="pln">      items</span><span class="pun">.</span><span class="pln">js</span></li><li class="L0"><span class="pln">      prices</span><span class="pun">.</span><span class="pln">js</span></li><li class="L1"><span class="pln">   app</span><span class="pun">.</span><span class="pln">js</span></li><li class="L2"><span class="pln">   routes</span><span class="pun">.</span><span class="pln">js         </span><span class="com">//Require all routes in this and then require this file in</span></li><li class="L3"><span class="pln">   </span><span class="kwd">package</span><span class="pun">.</span><span class="pln">json</span></li></ol>
+          <div class="code-block-actions multiple-lines z-0">
+            <button title="Copy" class="action-code-block copy-code-block multiple-lines">
+              <i class="fa fa-copy" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-copy-10">Copied!</span>
+            </button>
+            <button title="Toggle Wrap" class="action-code-block wrap-code-block multiple-lines">
+              <i class="fa fa-align-left" aria-hidden="true"></i>
+              <span class="popuptext" id="md-code-block-wrap-10">Wrap Toggled!</span>
+            </button>
+            
+            
+          </div>
+        </pre>
+   </td>
+</tr>
+
+</tbody></table><footer> 
+
+<img src="express%20overview_files/SNIBMfooter.png" alt=""> 
+
+</footer></body></html>
