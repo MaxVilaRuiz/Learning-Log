@@ -41,3 +41,46 @@ app.get('/temperature/:location_code', function (request, response) { // Listen 
 let server = app.listen(port, function() { // To create a web server object that listens to incoming requests on the specific port (`port` paramenter)
     console.log(`Listening on URL http://localhost:${port}`);
 })
+
+
+
+// Best Practices
+
+// Folder Structure
+//  Project:
+//      node_modules: modules & packages
+//      config: configuration files such as DB connections, environment variables, credentials files (API keys for external services...)...
+//      models: data models, which specify the type if data store defined by an ORM library
+//      routes: specify routes for all entries, one file of each logical set of routes
+//      views: contain templates dynamically write HTML, CSS, JS for the client
+//      public: contain static content such as images, CSS & JS (helpful to have sub-folder for each type of content)
+//      app.js: main configuration of the project
+//      routes.js: central location to access routes (imports all files from routes folder & exports them as a single module to app.js)
+//      package.json
+
+// Folder Structure for API
+//  Project:
+//      node_modules: modules & packages
+//      config: configuration files such as DB connections, environment variables, credentials files (API keys for external services...)...
+//      models: data models, which specify the type if data store defined by an ORM library
+//      routes: specify routes for all entries, one file of each logical set of routes
+//      app.js: main configuration of the project
+//      routes.js: central location to access routes (imports all files from routes folder & exports them as a single module to app.js)
+//      package.json
+
+// Testing REST APIs
+// For black-box test use SuperTest (module included in the Mocha framework)
+
+// API documentation
+// Documentation open-source projects: API Blueprint, Swagger
+
+// Using Node Package Manager (npm)
+// `npm init` when initializing
+// `--save` or `--save-dev` to make suree correct dependencies are installed when moving to a different platform
+// `npm ...` to install module
+
+// Conventions
+// files: all with lowercase
+// variables: camel case
+// npm modules: lowercase separated with '-'
+// requiring npm modules: camel case (ex: require('myModule'))
