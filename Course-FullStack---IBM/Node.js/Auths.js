@@ -38,6 +38,7 @@ app.get('/dashboard', (req, res) => {
 
 
 //  * Token-based:
+//      More scalability, flexible and secure
 //      1. Authentication: user gets a token
 //      2. Authorization: token used to access resources
 //      Token contain three parts:
@@ -113,4 +114,77 @@ app.post('/verify-code', (req, res) => {
         // Code matches, access granted
         res.send('Access granted')
     }
+})
+
+
+
+// Creating an authentication Express API server
+
+// Doc "apiServer.js":
+const express = require('express');
+const myapp = expres();
+
+// Creating a web server module
+myapp.get("/employees", (req, res) => {
+    return res
+        .status(401) // Not autorized
+        .json({message: "Please login to access this resource"})
+})
+
+myapp.listen(5000, () => {
+    console.log("API Server is localhost:5000")
+})
+
+
+// node apiServer.js
+
+
+// To verify that the endpoint cannot be accessed unless the user is authorized, run:
+// curl -i localhost:5000/employee 
+
+
+// npm install -save jsonwebtoken
+
+
+// Require the JWT module
+const jsonwebtoken = require('jsonwebtoken');
+const JWT_SECRET = "aVerySecretString";
+
+
+// Define POST API method
+myapp.use(express.json());
+myapp.post("/signin", (req, res) => {
+    const {uname, pwd} = req.body; // Example
+    // ...
+})
+
+// Return the JWT token
+if (uname === "user" && pwd === "password") {
+    return res.json({
+        token: jsonwebtoken.sign({user: "user"}, JWT_SECRET)
+    })
+}
+else return res.status(401).json({message: "Invalid username and / or password"})    
+
+// Define GET API method
+myapp.get("/employees", (req, res) => {
+    let tkn = req.header('Authorization')
+    if (!tkn) return
+        res.status(401).send("No Token")
+    if (tkn.startWith('Bearer ')) {
+        tokenValue = tkn.slice(7, tkn.length).trimLeft()
+    }
+    // ...
+
+    const verificationStatus = jsonwebtoken.verify(tokenValue, "aVerySecretString");
+    if (verificationStatus.user === "user") {
+        return res.status(200).json({message: "Access Successful to Employee Endpoint"})
+    }
+    return res
+
+    .status(401).json({message: "Please login to access this resource"})
+})
+
+myapp.listen(5000, () => {
+    console.log("API Server is localhost:5000")
 })
