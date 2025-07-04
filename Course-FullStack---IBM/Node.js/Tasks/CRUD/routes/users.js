@@ -15,7 +15,7 @@ let users = [
         email:"johnsmith@gamil.com",
         DOB:"21-07-1983",
     },
-    {
+    { 
         firstName: "Joyal",
         lastName: "white",
         email:"joyalwhite@gamil.com",
