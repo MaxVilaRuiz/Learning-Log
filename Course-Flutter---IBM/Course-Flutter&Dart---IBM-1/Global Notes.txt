@@ -1,0 +1,15 @@
+To start a Flutter project:
+    1. To enable web development in Flutter run:
+        > flutter config --enable-web
+    2. Verify that Flutter recognized the web enviroment by running (you should see "Chrome (web)" as one of the devices of the output. If it don't appear, install Google Chrome):
+        > flutter devices
+    3. Run flutter doctor to verify whether "Flutter", "Chrome" and "Connected Devices" are checked by running:
+        > flutter doctor
+    4. To create a new Flutter project run:
+        > flutter create <name_of_the_project>
+    5. To update all libraries run:
+        > flutter pub get
+
+To run a Flutter project run:
+    > flutter run -d <platform>
+    Ex: > flutter run -d chrome
