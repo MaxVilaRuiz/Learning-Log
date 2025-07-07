@@ -14,12 +14,30 @@ To run a Flutter project run:
     > flutter run -d <platform>
     Ex: > flutter run -d chrome
 
+IDEs:
+    VSCode: intuitive, rich debugging, extensions...
+    Android Studio: Advanced code editing, robust debugging tools, project wizard and templates...
+    IntellJ IDEA: similar to Android Studio
+
 Other commands:
     * Verify that Dart is installed run:
         > dart --version
-
     * Run a .dart doc:
         > dart <name_of_the_doc>.dart
+    * To list the dart commands run:
+        > dart
+    * To add new dependencies to your project run:
+        > dart pub add <name_of_the_dependecy>
+    * To update the dependencies of your project run:
+        > dart pub upgrade 
+    * To install all dependencies listed in the pubspec.yaml file run:
+        > dart pub get
+    
+Third-party tools:
+    - Useful to enhace the efficiency and productivity
+    - Shell scripting: automates repetitive tasks by writing shell scripts
+    - Makefiles: allows defining rules to build and manage project
+    - Continuous integration (CI): ensures code is always in a deployable state   
 
 Libraries:
     - To import a library type `import 'dart:<name_of_the_library>` at the beginning of the doc

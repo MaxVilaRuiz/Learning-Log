@@ -104,3 +104,13 @@ void main () {
   print(General.pi);
   print(General.square(4));
 }
+
+
+// Libraries:
+//     - To import a library type `import 'dart:<name_of_the_library>` at the beginning of the doc
+//     - Common libraries: math, async, convert, http package, intl package, path package
+//     - To create a library:
+//         1. Create a doc (ex: math_utils.dart)
+//         2. Type `library <name_of_the_doc>;` at the beginning of the doc
+//         3. Add the content (functions, variables, classes...)
+//         4. Import your library with `import '<name_of_the_doc>;` in another doc to use it.
