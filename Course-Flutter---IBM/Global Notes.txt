@@ -14,6 +14,16 @@ To run a Flutter project run:
     > flutter run -d <platform>
     Ex: > flutter run -d chrome
 
+Good project structure:
+lib/
+├── models/
+│   ├── student.dart
+│   └── user.dart
+├── providers/
+├── screens/
+├── widgets/
+└── main.dart
+
 IDEs:
     VSCode: intuitive, rich debugging, extensions...
     Android Studio: Advanced code editing, robust debugging tools, project wizard and templates...
