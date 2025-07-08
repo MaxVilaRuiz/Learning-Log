@@ -62,3 +62,44 @@ Firebases:
         - Add dependencies
         - Initialize Firebase in your app
         - Connect your app to the Firebase project
+
+Publishing an App:
+    * Android:
+        1. Identify as a developer in the Play Store platform
+        2. Generate a keystore:
+            >  keytool -genkey -v -keystore release-key.jks -keyalg RSA -keysize 2048 -validity 10000 -alias key
+            - Save the password used
+            - Open the android/app/build.gradle file:
+                android {
+                    ...
+                    defaultConfig { ... }
+                    signingConfigs {
+                        release {
+                            keyAlias 'my-key-alias'
+                            keyPassword 'your-key-password'
+                            storeFile file('your-keystore-path/my-release-key.jks')
+                            storePassword 'your-keystore-password' // Usually same as keyPassword
+                        }
+                    }
+                    buildTypes {
+                        release {
+                            signingConfig signingConfigs.release
+                        }
+                    }
+                }
+        3. Building the release version: `flutter build apk -release`
+        4. Set up your app in the Google Play Console
+        5. Upload the Android App Bundle
+        6. Conduct pre-launch testing
+        7. Use the Play Console for post-release management
+
+    * iOS: 
+        1. Identify as a developer in the App Store platform
+        2. Set up your app in App Store Connect
+        3. Prepare your app for submission:
+            - Open Xcode and archive your app by going to Product > Archive.
+            - Once the archive is complete, click on "Distribute App" and select "App Store Connect".
+            - Follow the prompts to upload the app binary to App Store Connect.
+        4. Submit your app for review 
+        5. Use App Store Connect analytics for post-release management
+        ( For building the release version: `flutter build appbundle -release` )
