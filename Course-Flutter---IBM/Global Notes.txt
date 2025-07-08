@@ -103,3 +103,19 @@ Publishing an App:
         4. Submit your app for review 
         5. Use App Store Connect analytics for post-release management
         ( For building the release version: `flutter build appbundle -release` )
+
+Google Analytics:
+    - Very useful to have a constant track and information about your app users. With this information, you can enhace the app by improving the most liked sections and refactor the most unliked...
+
+    - To implement Google Analytics to your project:
+        1. Add Firebase to your project
+        2. Add firebase_analytics to pubspec.yaml:
+            dependencies:
+                firebase_core: latest_version
+                firebase_analytics: latest_version
+        3. Update the main.dart file:
+            void main() async {
+                WidgetsFlutterBinding.ensureInitialized(); // Initialize the Flutter framework
+                await Firebase.initializeApp(); // Initialize a Firebase instance
+                runApp(MyApp());
+            }
