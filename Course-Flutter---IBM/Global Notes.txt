@@ -110,9 +110,13 @@ Google Analytics:
     - To implement Google Analytics to your project:
         1. Add Firebase to your project
         2. Add firebase_analytics to pubspec.yaml:
-            dependencies:
-                firebase_core: latest_version
-                firebase_analytics: latest_version
+            - Modify the .yaml file and run `flutter pub get`:
+                dependencies:
+                    firebase_core: latest_version
+                    firebase_analytics: latest_version
+            - Or run:
+                > flutter pub add firebase_core
+                > flutter pub add firebase_analytics            
         3. Update the main.dart file:
             void main() async {
                 WidgetsFlutterBinding.ensureInitialized(); // Initialize the Flutter framework
