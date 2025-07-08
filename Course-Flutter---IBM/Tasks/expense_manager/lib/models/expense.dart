@@ -1,11 +1,11 @@
 class Expense {
   final String id;
   final double amount;
-  final String categoryId;
+  final String categoryId; // This will link to ExpenseCategory
   final String payee;
   final String note;
   final DateTime date;
-  final String tag;
+  final String tag; // This assumes you have a tagging system. Adjust if needed.
 
   Expense({
     required this.id,
@@ -17,6 +17,7 @@ class Expense {
     required this.tag,
   });
 
+  // Convert a JSON object to an Expense instance
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
       id: json['id'],
@@ -29,6 +30,7 @@ class Expense {
     );
   }
 
+  // Convert an Expense instance to a JSON object
   Map<String, dynamic> toJson() {
     return {
       'id': id,
