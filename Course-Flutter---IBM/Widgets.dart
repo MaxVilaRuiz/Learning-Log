@@ -94,6 +94,74 @@ void buttonWidgets() {
   //   onPressed: () {},
   //   icon: Icon(Icons.thumb_up),
   // )
+
+  // DropdownButton
+  //   DropdownButton<String>(
+  //   value: dropdownValue,
+  //   onChanged: (String newValue) {
+  //     setState(() {
+  //       dropdownValue = newValue;
+  //     });
+  //   },
+  //   items: <String>['One', 'Two', 'Three', 'Four']
+  //     .map<DropdownMenuItem<String>>((String value) {
+  //       return DropdownMenuItem<String>(
+  //         value: value,
+  //         child: Text(value),
+  //       );
+  //     }).toList(),
+  // )
+
+  // List-view 
+  //   ListView.builder(
+  //   itemCount: items.length,
+  //   itemBuilder: (context, index) {
+  //     return ListTile(title: Text(items[index]));
+  //   },
+  // )
+
+  // Snack Bar
+  //  - Provides lightweight feedback about an operation by showing a brief message
+  //   final snackBar = SnackBar(content: Text('Yay! A SnackBar!'));
+  // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+  // Dialogs
+  //     showDialog(
+  //   context: context,
+  //   builder: (BuildContext context) {
+  //     return AlertDialog(
+  //       title: Text('Alert!'),
+  //       content: Text('You have been alerted.'),
+  //       actions: <Widget>[
+  //         TextButton(
+  //           onPressed: () {
+  //             Navigator.of(context).pop();
+  //           },
+  //           child: Text('Close'),
+  //         ),
+  //       ],
+  //     );
+  //   },
+  // );
+
+  // Expasion pannel
+  //   - Provides a way to expand and collapse content
+  //   ExpansionPanelList(
+  //   expansionCallback: (int index, bool isExpanded) {
+  //     setState(() {
+  //       items[index].isExpanded = !isExpanded;
+  //     });
+  //   },
+  //   children: items.map<ExpansionPanel>((Item item) {
+  //     return ExpansionPanel(
+  //       headerBuilder: (BuildContext context, bool isExpanded) {
+  //         return ListTile(title: Text(item.headerValue));
+  //       },
+  //       body: ListTile(title: Text(item.expandedValue)),
+  //       isExpanded: item.isExpanded,
+  //     );
+  //   }).toList(),
+  // )
 }
 
 void listWidgets() {
