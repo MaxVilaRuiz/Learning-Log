@@ -47,3 +47,18 @@ Libraries:
         2. Type `library <name_of_the_doc>;` at the beginning of the doc
         3. Add the content (functions, variables, classes...)
         4. Import your library with `import '<name_of_the_doc>;` in another doc to use it.
+
+Firebases:
+    Useful for all the services that can use with it, such as: user authentication, cloud firestore, cloud storage, firebase analytics, firebases cloud messages... (use firebase for best practises)
+    1. Create a new Firebase project:
+        - Go to the Firebase console
+        - Click 'Add project'
+        - Set up a project & proceed to the project dashboard
+    2. Add your app to the project:
+        - Click the Android or iOS icon
+        - Provide a package name (Android) or bundle ID (iOS)
+        - Download google-services.json (Android) or GoogleService-Info.plist (iOS) and add to your project
+    3. Configure your Flutter project
+        - Add dependencies
+        - Initialize Firebase in your app
+        - Connect your app to the Firebase project
