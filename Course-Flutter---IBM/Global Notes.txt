@@ -42,6 +42,9 @@ Other commands:
         > dart pub upgrade 
     * To install all dependencies listed in the pubspec.yaml file run:
         > dart pub get
+    * If have changed the root of the project, it might have an error during the project execution. To resolve, restart the building volumes
+        > rm -rf build/<platform>
+        > flutter run -d <platform>
     
 Third-party tools:
     - Useful to enhace the efficiency and productivity

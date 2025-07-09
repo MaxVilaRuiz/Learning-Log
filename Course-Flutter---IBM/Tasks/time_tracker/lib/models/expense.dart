@@ -1,6 +1,6 @@
 class Expense {
   final String id;
-  final double amount;
+  final double time;
   final String categoryId; // This will link to ExpenseCategory
   final String payee;
   final String note;
@@ -9,7 +9,7 @@ class Expense {
 
   Expense({
     required this.id,
-    required this.amount,
+    required this.time,
     required this.categoryId,
     required this.payee,
     required this.note,
@@ -21,7 +21,7 @@ class Expense {
   factory Expense.fromJson(Map<String, dynamic> json) {
     return Expense(
       id: json['id'],
-      amount: json['amount'],
+      time: json['time'],
       categoryId: json['categoryId'],
       payee: json['payee'],
       note: json['note'],
@@ -34,7 +34,7 @@ class Expense {
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'amount': amount,
+      'time': time,
       'categoryId': categoryId,
       'payee': payee,
       'note': note,
