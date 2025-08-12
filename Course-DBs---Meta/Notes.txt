@@ -1,0 +1,81 @@
+General Information:
+- Relational Databases are organized systematically by table / entities (for organized data).
+- No sequel databases (NoSQL) can store data in a variety of different formats (e.g. document dbs, key-value dbs, graphs dbs). 
+- Big Data can manage a combination of structured, semistructured & unstructured data. Is more powerful & complex that traditional data when solving problems (improves decision making)
+
+
+SQL subsets:
+    * Data definition language (DDL):
+        - DDL Create cmd: Used to create storage objects in a db.
+        - DDL Alter cmd: Modify the structure of a table object in a db.
+        - DDL Drop cmd: Remove an existing object from a db.
+    * Data manipulation language (DML):
+        - DML Insert cmd: Insert records of data into a db table.
+        - DML Update cmd: Edit data that already exists in a db table.
+        - DML Delete cmd: Delete data that already exists.
+    * Data query language (DQL): Defines a select cmd to be able to retrieve data.
+    * Data control language (DCL): Control access to the db.
+
+
+Tables:
+- Integrity Constraints (db rules):
+    * Key Constraints: specifies that there should be a column, or columns, in a table that can be used to fetch data for any row.
+    * Domain Constraints: refer to the rules defined for the values that can be stored for a certain column.
+    * Referential Integrity Constraint: When a table is related to another table via a foreign key column, then the referenced column value must exist in the other table.
+
+
+Types of keys:
+- Candidate Key Attribute: any attribute that contains a unique value in each row of the table.
+- Composite Key Attribute: a key composed of two or more attributes to form a unique value in each new row.
+- Primary Key: a selected candidate key.
+- Alternate Key: a candidate key no selected as the primary key.
+- Foreign Key: an attribute that references a unique key in another table.
+
+
+Basic Syntax:
+- Create a DB: 
+    CREATE DATABASE database_name (column_name1 datatype(size), column_name2 datatype(size));
+
+- To delete a db or a table inside a db:
+    DROP TABLE table_name;
+
+- Create a table: CREATE TABLE table_name;
+
+- Add data to a table: 
+    INSERT INTO table_name (column_one, columne_two...) VALUES (value1, value2...)
+
+- Update data in a table:
+    UPDATE table_name
+    SET column_name (e.g. column1) = 'value'
+    WHERE ID = row_id;
+
+- Delete data from a table:
+    DELETE FROM table_name
+    WHERE ID = row_id;
+
+- Query data within a table:
+    SELECT column_name1, column_name2,
+    FROM table_name
+    WHERE ID =  'row_id';
+
+- To add a column into a table:
+    ALTER TABLE table_name ADD (column_name datatype(size));
+
+- To add a primary key to a table: 
+    ALTER TABLE table_name ADD primary key (column_name);
+
+- To empty a table but not delete the table itself:
+    TRUNCATE TABLE table_name;
+
+- Use '--' to comment.
+
+- To select data from a table:
+    SELECT * FROM table_name;
+
+
+Datatypes:
+- String: CHAR, VARCHAR
+- Numeric: INT, TYNYINT, BIGINT, FLOAT, REAL
+- Date and time: DATE, TIME, DATETIME
+- Binary (for images...): BINARY, VARBINARY
+- Miscellaneous: Character Large Object (CLOB), Binary Large Object (BLOB)
