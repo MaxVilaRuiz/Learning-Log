@@ -22,18 +22,21 @@ Tables:
     * Key Constraints: specifies that there should be a column, or columns, in a table that can be used to fetch data for any row.
     * Domain Constraints: refer to the rules defined for the values that can be stored for a certain column.
     * Referential Integrity Constraint: When a table is related to another table via a foreign key column, then the referenced column value must exist in the other table.
+    * NOT NULL SQL Constraint: Ensures data fields never left blank.
+    * DEFAULT Constraint: Sets a default value for a column if no value is specified. 
 
 
 Types of keys:
 - Candidate Key Attribute: any attribute that contains a unique value in each row of the table.
 - Composite Key Attribute: a key composed of two or more attributes to form a unique value in each new row.
-- Primary Key: a selected candidate key.
+- Primary Key: a selected candidate key (e.g. PRIMARY KEY (column_name1)).
 - Alternate Key: a candidate key no selected as the primary key.
-- Foreign Key: an attribute that references a unique key in another table.
+- Foreign Key: an attribute that references a unique key in another table (e.g. FOREIGN KEY (column_name1) REFERENCES table_name(column_name2)).
 
 
 Basic Syntax:
 - Create a DB: 
+    CREATE DATABASE database_name;
     CREATE DATABASE database_name (column_name1 datatype(size), column_name2 datatype(size));
 
 - To delete a db or a table inside a db:
@@ -44,19 +47,24 @@ Basic Syntax:
 - Add data to a table: 
     INSERT INTO table_name (column_one, columne_two...) VALUES (value1, value2...)
 
+- Add data of a columne of a table into another table:
+    INSERT INTO target_tbl (column_name) 
+    SELECT column_name 
+    FROM source_tbl;
+
 - Update data in a table:
     UPDATE table_name
     SET column_name (e.g. column1) = 'value'
-    WHERE ID = row_id;
+    WHERE ID (column_name) = row_id;
 
 - Delete data from a table:
     DELETE FROM table_name
-    WHERE ID = row_id;
+    WHERE ID (column_name) = row_id;
 
 - Query data within a table:
     SELECT column_name1, column_name2,
     FROM table_name
-    WHERE ID =  'row_id';
+    WHERE ID (column_name) = 'row_id';
 
 - To add a column into a table:
     ALTER TABLE table_name ADD (column_name datatype(size));
@@ -69,13 +77,64 @@ Basic Syntax:
 
 - Use '--' to comment.
 
-- To select data from a table:
-    SELECT * FROM table_name;
+- To select data from a table ('*' into the column_name to select all columns):
+    SELECT column_name1, column_name2 FROM table_name; 
+
+- To do operations, write 'SELECT' before the operation (e.g. SELECT column_name1 + column_name2 FROM table_name).
+
+- ORDER BY clause:
+    SELECT column_name1, column_name2, column_name3...
+    FROM table_name
+    ORDER BY column_name4 ASC (for ascending order), column_name5 DESC (for descending order), column_name6;
+
+- To select without duplicates:
+    SELECT DISTINCT column_name
+    FROM table_name;
+
+- To count the multiple distinct values:    
+    SELECT COUNT(DISTINCT column_name)
+    FROM table_name;
+
+
+Operators:
+    BETWEEN: Filter records within a range (e.g. SELECT * FROM table_name WHERE column_name BETWEEN x AND y;). 
+    LIKE: Specify a pattern within the search criteria (e.g. SELECT * FROM table_name WHERE column_name LIKE 'hello%' (% = any other value)).
+    IN: Specify multiple possible values for a column (e.g. SELECT * FROM table_name WHERE column_name IN('value1', 'value2'...)).
 
 
 Datatypes:
-- String: CHAR, VARCHAR
-- Numeric: INT, TYNYINT, BIGINT, FLOAT, REAL
+- String: CHAR (defined length), VARCHAR (variable length), TINYTEXT, TEXT, MEDIUMTEXT, LONGTEXT
+- Numeric: INT, TYNYINT (small intengers - max: 255), BIGINT (big intengers - max: 4B), FLOAT, REAL
 - Date and time: DATE, TIME, DATETIME
 - Binary (for images...): BINARY, VARBINARY
 - Miscellaneous: Character Large Object (CLOB), Binary Large Object (BLOB)
+
+
+Schemas:
+- Logical Database Schema: components within a schema, illustrating relationships between entity types (Entity Relationship Modeling)
+- Physical Schema: how the physical structure of a database is stored on a disk.
+- Tables Relationships: one-to-one, many-to-one, many-to-many.
+- Entity Relationship Diagrams (ER-Diagrams): rectangules = entity, diamonds = relationship.
+
+
+Attributes:
+- Simple attributes: cannot be splited in multiple attributes (e.g. Grade).
+- Composite attributes: can be splited in multiple attributes (e.g. Name -> First Name, Second Name).
+- Single Value attributes: can only store one value (e.g. Age). 
+- Multi-valued attributes: can store multiple values on the field (e.g. Emails)
+- Derived attributes: the value of an attribute is derived from another (e.g. Age).
+- Key attributes: unique value that is useful to identify the record.
+
+
+Normalization:
+-> Process for structuring tables that minimizes challenges facing db systems. Optimizes the db design by creating a single purpose for each table.
+- Normalization Challenges: 
+    * Insert anomaly: insertion of one record leads to the insertion of several more required data sets.
+    * Update anomaly: updating a record in a table column requires further updates in other columns.
+    * Deletion anomaly: deletion of one record leads to the deletion of several more required data sets.
+- First Normal Form (1NF): enforces data atomicity (ensuring that there is only one single instance value per column field) & eliminates unnecessary repeating groups of data in database tables.
+- Second Normal Form (2NF): ensure you have a proper structure, reduce duplication, allow for accurate data analysis & retrieval.
+    * Functional Dependency: relationship between two attributes in a table.
+    * Partial Dependency: a table with a composite primary key.
+- Third Normal Form (3NF): 
+    * Transitive Dependency: a non-key attribute cannot be functionally dependent on another non-key attribute.
