@@ -1,0 +1,100 @@
+🔹 Basic Shell Commands
+These commands help navigate and manage files in the terminal:
+    •	mkdir NameOfTheFolder → Create a new folder named NameOfTheFolder.
+    •	touch NameOfTheDocument → Create a new file named NameOfTheDocument.
+    •	cd NameOfTheFolder → Navigate into the folder NameOfTheFolder.
+    •	ls → List all files and folders in the current directory.
+
+🔹 Installation
+	•	GitHub for Windows: https://windows.github.com
+	•	GitHub for Mac: https://mac.github.com
+	•	Git for All Platforms: http://git-scm.com
+
+🔹 Initial Configuration (Tooling)
+Configure user information for all local repositories:
+    git config --global user.name "[name]"
+    git config --global user.email "[email]"
+    git config --global color.ui auto
+
+🔹 Create Repositories
+    • Initialize a new repository in the current directory:
+        git init
+    • Clone an existing repository from GitHub:
+        git clone [url]
+
+🔹 The .gitignore File
+Use .gitignore to exclude files from being tracked by Git.
+Helpful templates available at: github.com/github/gitignore
+
+🔹 Working with Files and Changes
+    • Add specific file changes to the staging area:
+        git add NameOfTheDocument
+    • Add all modified files:
+        git add .
+    • Commit staged changes with a message:   
+        git commit -m "Description of the commit"
+    • View repository status:
+        git status
+    • View commit history:
+        git log
+        git log --follow [file]
+    • Show differences between working directory and last commit:
+        git diff
+        git diff Branch1 Branch2
+    • Show details of a specific commit:
+        git show [commit]
+
+🔹 Branches
+    • List existing branches:
+        git branch
+    • Create a new branch:
+        git branch [branch-name]
+    • Switch to another branch:
+        git checkout [branch-name]
+    • Merge changes from one branch into another (checkout to target branch first):
+        git merge [branch-name]
+    • Delete a branch:
+        git branch -d [branch-name]
+
+🔹 Synchronize Changes with Remote
+    • Download history from remote branches:
+        git fetch
+    • Merge remote changes into local branch:
+        git merge
+    • Temporarily save uncommitted changes to clean the working directory:
+        git stash
+    • Reapply the last stashed changes after pulling or merging:
+        git stash pop
+    • Pull changes (fetch + merge || stash + pull + stash pop):
+        git pull
+    • Push local commits to a specific branch:
+        git push origin [branch-name]
+
+🔹 Undo and Redo Commits
+    • Undo commits after a specific one (preserve local changes): 
+        git reset [commit]
+    • Discard all history and reset to a specific commit:
+        git reset --hard [commit]
+    • Discard all uncommitted changes and return to last commit:
+        git reset --hard
+    • Revert last commit (create a new commit that undoes changes):
+        git revert
+
+🔹 GitHub Flow
+A simple branching workflow:
+	1.	Create a feature branch from master.
+	2.	Make commits on the feature branch.
+	3.	Submit a Pull Request.
+	4.	Discuss proposed changes, review, and make further commits.
+	5.	Merge the feature branch into master.
+
+🔹 Glossary
+	•	git → Open-source, distributed version-control system.
+	•	GitHub → Platform for hosting and collaborating on Git repositories.
+	•	commit → A snapshot of repository changes compressed into a SHA.
+	•	branch → A lightweight movable pointer to a commit.
+	•	clone → Local copy of a repository including commits and branches.
+	•	remote → Shared repository on GitHub used by all team members.
+	•	fork → A copy of a repository on GitHub under a different user.
+	•	pull request → A place to review, compare, and discuss branch changes.
+	•	HEAD → Represents the current working directory; can move to commits, branches, or tags using git checkout.

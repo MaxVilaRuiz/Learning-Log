@@ -74,6 +74,7 @@ Basic Syntax:
 
 - To empty a table but not delete the table itself:
     TRUNCATE TABLE table_name;
+    DELETE FROM table_name; 
 
 - Use '--' to comment.
 
