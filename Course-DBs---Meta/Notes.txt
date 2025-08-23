@@ -98,9 +98,15 @@ Basic Syntax:
 
 
 Operators:
-    BETWEEN: Filter records within a range (e.g. SELECT * FROM table_name WHERE column_name BETWEEN x AND y;). 
-    LIKE: Specify a pattern within the search criteria (e.g. SELECT * FROM table_name WHERE column_name LIKE 'hello%' (% = any other value)).
-    IN: Specify multiple possible values for a column (e.g. SELECT * FROM table_name WHERE column_name IN('value1', 'value2'...)).
+    WHERE clause: to determinate how data is filtered in a table 
+        (e.g. SELECT <cols> FROM <table> WHERE <condition1> AND <condition2> OR (<condition3> NOT(<condition4>));).
+    BETWEEN: Filter records within a range 
+        (e.g. SELECT * FROM table_name WHERE column_name BETWEEN <value1> AND <value2>;). 
+    LIKE: Specify a pattern within the search criteria 
+        (e.g. SELECT * FROM table_name WHERE column_name LIKE 'hell_%' 
+        (% = any other value, _ = a single character that can be any)).
+    IN: Specify multiple possible values for a column 
+        (e.g. SELECT * FROM table_name WHERE column_name IN('value1', 'value2'...)).
 
 
 Datatypes:
@@ -139,3 +145,28 @@ Normalization:
     * Partial Dependency: a table with a composite primary key.
 - Third Normal Form (3NF): 
     * Transitive Dependency: a non-key attribute cannot be functionally dependent on another non-key attribute.
+
+
+Aliases:
+-> Provide temporary names within the database for ease-of-use (AS).
+- Renaming tables: 
+    SELECT column1_name AS column1_alias, column2, column3 AS column3_alias FROM table_name;
+- Concat functions:
+    SELECT CONCAT (column1, " ", column2) AS 'new_column_name' FROM table_name;
+- Multiple tables:
+    SELECT x.column1, x.column2, y.column1, y.column2 FROM table1_name AS x, table2_name AS y WHERE x.column2 < 12...;
+
+
+Joins:
+-> Links records of data between one or multiple tables based on a common column between them (e.g. you want to retrieve data from a db, but these data exists in more than one table, so you use SQL JOINS clause to query the required data from multiple tables).
+- INNER JOIN: 
+    -> Returns data that have matching values in the joined tables 
+    (e.g. SELECT Customers.FullName, Bookings.BookingID FROM Customers INNER JOIN Bookings ON Customers.CustomerID = Bookings.CustomerID;).
+- LEFT JOIN: 
+    -> Extracts all records of data from left table and matching records from right table 
+    (e.g. SELECT Customers.FullName, Bookings.BookingID FROM Customers LEFT JOIN Bookings ON Customers.CustomerID =  Bookings.CustomerID;).
+- RIGHT JOIN:
+    -> Extracts all records of data from right table and matching records from left table 
+    (e.g. SELECT Customers.FullName, Bookings.BookingID FROM Customers RIGHT JOIN Bookings ON Customers.CustomerID = Bookings.CustomerID;).
+- SELF JOIN:
+    -> When you need to join a table with itself to get specific information existing in the same table (you may choose the INNER, LEFT or RIGHT JOIN).
