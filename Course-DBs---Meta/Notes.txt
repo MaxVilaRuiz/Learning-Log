@@ -107,6 +107,14 @@ Operators:
         (% = any other value, _ = a single character that can be any)).
     IN: Specify multiple possible values for a column 
         (e.g. SELECT * FROM table_name WHERE column_name IN('value1', 'value2'...)).
+    UNION: Combines results sets from multiple statements in the same query. 
+           The column number in both tables must be the same. Similar datatypes in related columns. 
+           All related columns must have same order.
+        (e.g. SELECT column1, column2 FROM table1 UNION (ALL) SELECT column1, column2 FROM table2;) -> 'ALL' to ensure that all values remain, even the duplicates.
+    GROUP BY: Groups rows in a table based on given columns, into summary rows, or subgroups
+        (e.g. SELECT column1, column2 (, AggregateFunction(column_x)) FROM  table1 (WHERE ...) GROUP BY column1, column2;).
+    HAVING: Specifies a filter condition for groups of rows or aggregates 
+        (e.g. SELECT column(s) FROM table WHERE filter_condition GROUP BY group_by_column_or_expression HAVING group_filter_condition;).
 
 
 Datatypes:
@@ -170,3 +178,11 @@ Joins:
     (e.g. SELECT Customers.FullName, Bookings.BookingID FROM Customers RIGHT JOIN Bookings ON Customers.CustomerID = Bookings.CustomerID;).
 - SELF JOIN:
     -> When you need to join a table with itself to get specific information existing in the same table (you may choose the INNER, LEFT or RIGHT JOIN).
+
+
+Aggregate Functions:
+- SUM()
+- AVERAGE()
+- MAX()
+- MIN()
+- COUNT()
