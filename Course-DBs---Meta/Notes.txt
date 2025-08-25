@@ -17,13 +17,12 @@ SQL subsets:
     * Data control language (DCL): Control access to the db.
 
 
-Tables:
-- Integrity Constraints (db rules):
-    * Key Constraints: specifies that there should be a column, or columns, in a table that can be used to fetch data for any row.
-    * Domain Constraints: refer to the rules defined for the values that can be stored for a certain column.
-    * Referential Integrity Constraint: When a table is related to another table via a foreign key column, then the referenced column value must exist in the other table.
-    * NOT NULL SQL Constraint: Ensures data fields never left blank.
-    * DEFAULT Constraint: Sets a default value for a column if no value is specified. 
+Constraints (db rules):
+* Key Constraints: specifies that there should be a column, or columns, in a table that can be used to fetch data for any row.
+* Domain Constraints: refer to the rules defined for the values that can be stored for a certain column.
+* Referential Integrity Constraint: When a table is related to another table via a foreign key column, then the referenced column value must exist in the other table.
+* NOT NULL SQL Constraint: Ensures data fields never left blank.
+* DEFAULT Constraint: Sets a default value for a column if no value is specified. 
 
 
 Types of keys:
@@ -72,6 +71,18 @@ Basic Syntax:
 - To add a primary key to a table: 
     ALTER TABLE table_name ADD primary key (column_name);
 
+- To modify an existing column: 
+    ALTER TABLE table_name MODIFY COLUMN column_name <datatype> NOT NULL...;
+
+- To delete an existing column from a table:
+    ALTER TABLE table_name DROP COLUMN column_name;
+
+- To rename an existing column from a table:
+    ALTER TABLE table_name CHANGE from_column_name to_column_name datatype;
+
+- To change a table name:
+    ALTER TABLE table_name RENAME new_table_name;
+
 - To empty a table but not delete the table itself:
     TRUNCATE TABLE table_name;
     DELETE FROM table_name; 
@@ -96,8 +107,11 @@ Basic Syntax:
     SELECT COUNT(DISTINCT column_name)
     FROM table_name;
 
+- To review the table structure:
+    SHOW COLUMNS FROM table;
 
-Operators:
+
+Operators / Commands:
     WHERE clause: to determinate how data is filtered in a table 
         (e.g. SELECT <cols> FROM <table> WHERE <condition1> AND <condition2> OR (<condition3> NOT(<condition4>));).
     BETWEEN: Filter records within a range 
@@ -115,6 +129,16 @@ Operators:
         (e.g. SELECT column1, column2 (, AggregateFunction(column_x)) FROM  table1 (WHERE ...) GROUP BY column1, column2;).
     HAVING: Specifies a filter condition for groups of rows or aggregates 
         (e.g. SELECT column(s) FROM table WHERE filter_condition GROUP BY group_by_column_or_expression HAVING group_filter_condition;).
+    REPLACE: Insert or update data in a table by deleting and replacing existing records (by its primary or UNIQUE key)
+        (e.g. REPLACE INTO table (column1, column2...) VALUES (column1_value, column2_value...); 
+        REPLACE INTO table (column1, column2...) SET column_name = new_value;).
+    ANY operator: return data for any values that meet the specified contidition.
+    ALL operator: return data for all values 
+        (e.g. SELECT column_name(s) FROM table_name WHERE expression operator > ALL (SELECT column_name FROM table_name WHERE column DATA TYPE (value1, value2, value3));).
+    SOME operator: returns data for one or more matching values.
+    EXISTS operator: true if it does return at least one row of results
+        (e.g. SELECT column_name(s) FROM table_name WHERE (NOT) EXISTS (SELECT column_name FROM table_name WHERE condition);).
+    NOT EXISTS: true if it doesn't return any row of results. 
 
 
 Datatypes:
@@ -186,3 +210,34 @@ Aggregate Functions:
 - MAX()
 - MIN()
 - COUNT()
+
+
+Views:
+-> Virtual tables used for accessing and manipulating data with MySQL.
+-> Useful to: 
+    * Create a subset: focus on a subset of a table's data.
+    * Combine data: combine data from multiple tables into one.
+-> Creating a virtual table:
+    1. Create the virtual table.
+    2. Select the table's columns.
+    3. Specify a table to extract data from.
+    4. Set the conditions.
+    5. Set data order and filtering rule.
+-> Syntax:
+    * One table:
+        CREATE VIEW view_name AS 
+        SELECT table1.column1, table1.column2 
+        FROM table_name 
+        WHERE condition;
+    * Multiple tables: 
+        CREATE VIEW view_name AS 
+        SELECT table1.column1, table2.column1 
+        FROM table1_name INNER JOIN table2_name 
+        ON table1.column1 = table2.column1 
+        WHERE condition;
+-> To display a view:
+    SELECT * FROM view_name;
+-> Rename a view:
+    RENAME TABLE old_name TO new_name;
+-> Delete a view:
+    DROP VIEW view_name;
