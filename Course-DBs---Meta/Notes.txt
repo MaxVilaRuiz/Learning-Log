@@ -66,7 +66,7 @@ Basic Syntax:
     WHERE ID (column_name) = 'row_id';
 
 - To add a column into a table:
-    ALTER TABLE table_name ADD (column_name datatype(size));
+    ALTER TABLE table_name ADD column_name datatype(size);
 
 - To add a primary key to a table: 
     ALTER TABLE table_name ADD primary key (column_name);
@@ -204,14 +204,6 @@ Joins:
     -> When you need to join a table with itself to get specific information existing in the same table (you may choose the INNER, LEFT or RIGHT JOIN).
 
 
-Aggregate Functions:
-- SUM()
-- AVERAGE()
-- MAX()
-- MIN()
-- COUNT()
-
-
 Views:
 -> Virtual tables used for accessing and manipulating data with MySQL.
 -> Useful to: 
@@ -241,3 +233,104 @@ Views:
     RENAME TABLE old_name TO new_name;
 -> Delete a view:
     DROP VIEW view_name;
+
+
+Functions:
+-> 2 types: Aggregate funcs (perform tasks on a set of values) & Math funcs (perform basic maths tasks on data).
+- Types of functions:
+    * Numeric functions:
+        - CEIL(): returns the smallest integer value, which is not less than the passed value.
+            SELECT CEIL(15.20); // Output = 16
+        - FLOOR(): opposite of CEIL func.
+            SELECT FLOOR(VALUE);
+    * String functions
+        - CONCAT(): to add several string together.
+            SELECT CONCAT("string1", "string2")
+            FROM table_name
+            WHERE condition;
+        - SUBSTR(): extracts a segment of a string.
+            SELECT SUBSTR("string", start index, length)
+            FROM table_name
+            WHERE condition;
+        - UCASE(): convert the string to upper case.
+            SELECT UCASE(column_name)
+            FROM table_name;
+        - PCASE(): convert the string to lower case.
+            SELECT PCASE(column_name)
+            FROM table_name;
+        - FORMAT(): function formats the number passed into a format like '#,###,###.##'.
+            SELECT FORMAT(number_to_be_formatted, number_of_decimal_places);
+        - LENGTH()
+        - REPLACE()
+    * Date functions
+        - CURRENT_DATE():
+            SELECT CURRENT_DATE();
+        - CURRENT_TIME():
+            SELECT CURRENT_TIME();
+        - DATE_FORMAT(): 1st param = date to be formatted
+                         2nd param = the format to use, can be a combination of multiple formats (look the manual)
+            DATE_FORMAT('YYY-MM-DD', "format")
+        - DATEDIFF():
+            SELECT DATEDIFF("date1", "date2");
+        - ADDDATE(): to perform arithmetic with dates.
+            SELECT ADDDATE(date, INTERVAL expr unit);
+            (INTERVAL = keyword, expr = represents a quantity, unit represents the unit for interpreting the quantity (e.g. DAY))
+    * Comparison functions
+        - GREATEST():
+            SELECT column1
+            GREATEST (column2, column3, column4) AS highest,
+            FROM table_name;
+        - LEAST():
+            SELECT column1
+            LEAST (column2, column3, column4) AS lowest,
+            FROM table_name;
+        - ISNULL():
+            SELECT ISNULL(column_name)
+            FROM table_name;
+            ---
+            SELECT *
+            FROM table_name
+            WHERE ISNULL(column_name)
+        - COALESCE(): takes several arguments and returns the first non-NULL argument.
+            SELECT COALESCE(value1, value2...);
+    * Control flow functions
+        -> Evaluate conditions & determinate the execution path of a query
+        - CASE(): Runs through a set of conditions contained within a CASE block & returns a value when the first condition is met.
+            CASE 
+                WHEN condition1 THEN result1
+                WHEN condition2 THEN result2
+                WHEN conditionN THEN resultN
+                ELSE result1
+            END
+        - IFNULLL()
+            SELECT IFNULL(evaluated_expression, alternative_value);
+        - NULLIF(): given two values or expressions, returns null if both values are equal.
+            SELECT NULLIF(expression1, expression2);
+            
+- Aggregate functions:
+    * SUM()
+    * AVERAGE() / AVG()
+    * MAX()
+    * MIN()
+    * COUNT()
+
+- Math functions:
+    * ROUND(): 1st param = column_name || numeric value 
+        SELECT column_name, ROUND(column_name, decimal places) 
+        FROM table;
+    * MOD(): 1st param = table column || numeric value
+        SELECT column_name, MOD(column/value, divide by value)
+        FROM table;
+
+- Stored procedures:
+    -> Reusable block of code invoked on command.
+    * Basic syntax:
+        CREATE PROCEDURE ProcedureName(parameter_value INT)
+        SELECT column_name
+        FROM table_name
+        WHERE value = parameter_value;
+    * Invoke:
+        CALL ProcedureName();
+    * Delete a procedure:
+        DROP PROCEDURE ProcedureName;
+    * Modify a procedure: you have to drop the procedure & create a new one.
