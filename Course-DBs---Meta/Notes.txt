@@ -377,3 +377,45 @@ Variables:
     SELECT @variable_name := value; // Assignation
     SELECT @variable_name; // Access to the value
     SELECT function() INTO variable_name FROM table_name;
+
+
+Triggers:
+-> Set of actions available in the form of a stored program invoked when a event occurs (insert, update & detele data in a table).
+-> Useful for maintaining audit trails (keeping a log of records) & are a alternative to constraints (maintain data integrity).
+* Create syntax:
+    CREATE TRIGGER trigger_name
+    MODIFIER TYPE
+    ON table_name FOR EACH ROW
+    BEGIN 
+        statement1
+        statement2
+    END
+* Deletes syntax:
+    DROP TRIGGER IF EXISTS schema_name.trigger_name
+* Types:
+    - Row-level: Invoked for each row inserted, updated or deleted in a table.
+    - Statement-level: Invoked for each statement & occurs just once, no matter how many rows are inserted.
+
+    - Modifiers: BEFORE & AFTER (when a trigger can be invoked), NEW & OLD (depends on BEFORE & AFTER mods).
+    - Types: INSERT, UPDATE, DELETE.
+* Show:
+    SHOW TRIGGERS 
+    [{FROM | IN} database_name]
+    [LIKE 'pattern' | WHERE search_condition]; 
+
+
+Scheduled events:
+-> A task that takes place at a specific time according to a schedule.
+-> Each event has a unique Name, contains one or more Statements & can be executed just once or they can be a recurring event.
+* Syntax: 
+    CREATE EVENT [IF NOT EXISTS] event_name
+    ON SCHEDULE <schedule_logic>
+    DO 
+    Event_body
+* Schedule_logic:
+    - One-time syntax:
+        AT CURRENT_TIMESTAMP [+ INTERVAL]
+    - Recurring syntax:
+        EVERY interval STARTS timestamp [+INTERVAL] ENDS timestamp [+INTERVAL]
+* Delete an event:
+    DROP EVENT [IF EXISTS] event_name;
