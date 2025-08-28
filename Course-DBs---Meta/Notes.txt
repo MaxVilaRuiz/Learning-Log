@@ -237,6 +237,7 @@ Views:
 
 Functions:
 -> 2 types: Aggregate funcs (perform tasks on a set of values) & Math funcs (perform basic maths tasks on data).
+-> Must return a single value, takes IN params only, must specify the data type of the return value & are invoked using the SELECT statement.
 - Types of functions:
     * Numeric functions:
         - CEIL(): returns the smallest integer value, which is not less than the passed value.
@@ -323,7 +324,9 @@ Functions:
         FROM table;
 
 - Stored procedures:
-    -> Reusable block of code invoked on command.
+    -> Reusable block of code invoked on command that can accept both input & output parameters (IN, OUT, INOUT). 
+    -> Useful to manipulating, processing & modifying data.
+    -> Can return a single value, multiple values or no value.
     * Basic syntax:
         CREATE PROCEDURE ProcedureName(parameter_value INT)
         SELECT column_name
@@ -334,3 +337,43 @@ Functions:
     * Delete a procedure:
         DROP PROCEDURE ProcedureName;
     * Modify a procedure: you have to drop the procedure & create a new one.
+
+- User-defined functions:
+    -> Created to perform operations that can't be completed with build-in functions.
+    -> Use 'DELIMITER //' before writing the func & '//', 'DELIMITER ;' after the func to compile the whole func as a single compound statement using begin end keywords.
+    * Basic syntax:
+        CREATE FUNCTION function_name()
+        RETURNS datatype DETERMINISTIC // 'DETERMINISTIC' = Always returns the same output for the same input params
+        RETURN
+    * Delete the func:
+        DROP FUNCTION function_name;
+
+- Parameters:
+    * IN: Default param, used to pass a param to a stored procedure.
+        e.g. CREATE PROCEDURE procedure_name(IN logic(value1, value2)) SELECT logic;
+    * OUT: To pass a value to a variable outside of the procedure.
+        e.g.    CREATE PROCEDURE GetLowestCost (OUT LowestCost DECIMAL(6,2))
+                SELECT MIN(Cost) INTO LowestCost FROM Orders;
+                CALL GetLowestCost(@order_lowest_cost);
+    * INOUT: To pass an argument to the procedure & then pass the new value back to the outside.
+        e.g.    CREATE PROCEDURE SquareAnumber(INOUT aNumber INT)
+                BEGIN
+                    SET aNumber = aNumber * aNumber;
+                END
+                SET @x_number = 5;
+                CALL SquareAnumber(@x_number);
+
+
+Variables:
+-> You can create variables inside or outside of a stored procedure or a SELECT statements.
+* Syntax: 
+    @variable_name = value;
+
+    - Stored Procedures:
+    SET @variable_name = value; // Assignation
+    DECLARE variable_name DATATYPE DEFAULT VALUE; // Declaration
+
+    - SELECT statements:
+    SELECT @variable_name := value; // Assignation
+    SELECT @variable_name; // Access to the value
+    SELECT function() INTO variable_name FROM table_name;
