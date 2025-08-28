@@ -419,3 +419,59 @@ Scheduled events:
         EVERY interval STARTS timestamp [+INTERVAL] ENDS timestamp [+INTERVAL]
 * Delete an event:
     DROP EVENT [IF EXISTS] event_name;
+
+
+Optimization:
+- Retrieving data: 
+    * Use target required columns
+    * Avoid functions & leading wildcards (e.g. LIKE)
+    * Use INNER JOIN & clauses sparingly (e.g. DISTINCT, UNION)
+    * Create specific columns to search through the db more efficiently if necessary
+- SELECT statement:
+    SELECT column1, column2
+    FROM table_name;
+    // While using only a few columns, intead of:
+    SELECT * FROM table_name;
+- EXPLAIN: 
+    -> Used to see what the execution plan looks like
+    * Syntax:
+        EXPLAIN SELECT column_name
+        FROM table_name
+        WHERE value...;
+    * Results:
+        - Column 1: ID column as a sequential identifier for each SELECT statement.
+        - Column 2: Type of SELECT query to be executed.
+            * SIMPLE: Simple SELECT query without any subqueries or UNIONs.
+            * PRIMARY: The SELECT is in the outermost query in a JOIN.
+            * DERIVED: The SELECT is part of a subquery within a FROM clause.    
+            * SUBQUERY: The first SELECT in a subquery.
+            * DEPENDENT SUBQUERY: The SELECT statements is a subquery dependent on an outer query.    
+            * UNCACHEABLE SUBQUERY: Subquery which is not cacheable (there are certain conditions for a query to be cacheable).
+            * UNION: The SELECT query is the second or later statement of a UNION.
+            * DEPENDENT UNION: The second or later SELECT of a UNION is dependent on an outer query.
+            * UNION RESULT: The SELECT is a result of a UNION.
+        - Column 3: Displays the name of the table referred.
+        - Column 4: Displays the partition in which the data resides (the area of physical storage that's scanned).
+        - Column 5:
+            * system: The table has only one row or zero rows. This return value typically indicates that the search was performed on a system table.   
+            * const: Indicates that the value of the searched column can be treated as a constant (there is one row matching the query).
+            * eq_ref: Indicates that the index is clustered and is being used by the operation (either the index is a PRIMARY KEY or UNIQUE INDEX with all key columns defined as NOT NULL).
+            * ref: Indicates that the indexed column was accessed using an equality operator. You can see an example of this in the optimized Lucky Shrub query EXPLAIN statement results, as the indexed column FullName is matched or accessed using the = operator in the WHERE clause. 
+            * full text: The scan uses the table’s FULLTEXT index. Full-text indexes are created on text-based columns (CHAR , VARCHAR , or TEXT columns).    
+            * index: The entire index is scanned to find a match for the query.
+            * all: The entire table is scanned to find matching rows. This is the worst scan type and usually indicates the lack of appropriate indexes on the table. 
+        - Column 6: Shows the keys that can be used by MySQL to find rows from the table.
+        - Column 7: Actual index used by MySQL.
+        - Column 8: Indicates the length of the index the Query Optimizer chooses to use.
+        - Column 9: Shows which table columns have been compared to the index to perform the search.
+        - Column 10: Lists the number of records that were examined to produce the output.
+        - Column 11: indicates an approximate percentage of the number of table rows that have been filtered by a specified condition (the higher the percentage is, the better the performance of the query).
+        - Column 12: Additional information regarding the query execution plan.
+            -> Pay attention if there are values like  Using temporary or Using filesort in this column as they indicate a problematic query.
+- Indexes:
+    -> Data structure that provides pointers to sorted data.
+    -> Use 'idx' followed by the column name when creating a name for an index.
+
+    * Primary / Clustered index: is stored within the table itself.
+    * Secondary / Non-Clustered index:
+        CREATE INDEX index_name FROM table_name (column_list)
