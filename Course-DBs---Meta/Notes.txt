@@ -522,3 +522,8 @@ Optimization:
         + Executting:
             EXECUTE prepared_name (USING parameter_name)
             -> the param must be defined before the execution of the prepared, if a param is required.
+
+
+Data analytics:
+-> Converting and processing data into useful & meaningful information.
+-> Using the topics learned previously, you can perform data analysis by extracting specific information and looking for patterns in the data to improve the usability of data insights.
