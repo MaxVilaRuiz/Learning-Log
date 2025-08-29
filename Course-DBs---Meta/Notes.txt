@@ -427,11 +427,13 @@ Optimization:
     * Avoid functions & leading wildcards (e.g. LIKE)
     * Use INNER JOIN & clauses sparingly (e.g. DISTINCT, UNION)
     * Create specific columns to search through the db more efficiently if necessary
+
 - SELECT statement:
     SELECT column1, column2
     FROM table_name;
     // While using only a few columns, intead of:
     SELECT * FROM table_name;
+
 - EXPLAIN: 
     -> Used to see what the execution plan looks like
     * Syntax:
@@ -468,6 +470,7 @@ Optimization:
         - Column 11: indicates an approximate percentage of the number of table rows that have been filtered by a specified condition (the higher the percentage is, the better the performance of the query).
         - Column 12: Additional information regarding the query execution plan.
             -> Pay attention if there are values like  Using temporary or Using filesort in this column as they indicate a problematic query.
+
 - Indexes:
     -> Data structure that provides pointers to sorted data.
     -> Use 'idx' followed by the column name when creating a name for an index.
@@ -475,3 +478,47 @@ Optimization:
     * Primary / Clustered index: is stored within the table itself.
     * Secondary / Non-Clustered index:
         CREATE INDEX index_name FROM table_name (column_list)
+
+- Transactions:
+    -> One or more queries that can be commited permanently to the database.
+    -> Statements to manage db transactions:
+        * START TRANSACTION: Standard SQL statement to start the transaction process.
+        * BEGIN / BEGIN WORK 
+        * COMMIT 
+        * ROLL BACK 
+    + Syntax: 
+        * Starting:
+            [START TRANSACTION / BEGIN]
+            SQL_statement1
+            SQL_statement2
+            SQL_statement3
+        * Commiting: commit transactions changes to the db.
+            COMMIT 
+        * Cancelling changes: Rollback transaction after commiting.
+            ROLLBACK
+
+- Common Table Expressions (CTE):
+    -> Optimizing complex database queries by compiling them as simple blocks of code.
+    * Syntax for a single CTE:
+        WITH common_table_name AS
+        (query code)
+        SELECT * FROM common_table_name
+    * Syntax for a CTE with multiple queries:
+        WITH 
+        cte1 AS (query1),
+        cte2 AS (query2),
+        cte3 AS (query3),
+        SELECT * FROM cte1
+        UNION
+        SELECT * FROM cte2
+        UNION
+        SELECT * FROM cte3
+
+- Prepared Statements:
+    -> A reusable MySQL statement that acts as a template & holds unspecified values as parameters.
+    * Syntax: 
+        + Creating:
+            PREPARE prepared_name <query>
+        + Executting:
+            EXECUTE prepared_name (USING parameter_name)
+            -> the param must be defined before the execution of the prepared, if a param is required.
