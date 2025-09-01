@@ -7,7 +7,9 @@
 | Folder / File                 | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | `Course-FullStack---IBM/`    | Training in SWE, Cloud Computing, Git & GitHub, JavaScript, HTML, CSS, React, Node.js, Python (Data Science, AI & Development), Django, Containers, SQL, Databases, Capstone Projects, and Microservices & Serverless Development |
+| `Course-Database---Meta/`    | Professional certificate covering relational and non-relational databases, SQL, database design, ER modeling, query optimization, cloud databases & practical projects in backend data management |
 | `Course-CC---UPC/`           | In-depth projects and exercises in C++, part of the Computer Engineering program at UPC                         |
+| `Course-Flutter---IBM/`      | Mobile app development training with Flutter & Dart, including cross-platform design for iOS & Android, database integration, notifications, deployment to app stores & a capstone project |
 | `Course-JavaScript---Udemy/` | Advanced JavaScript projects with notes exploring different paradigms and use cases of the language             |
 | `Course-HTML---Udemy/`       | Advanced projects in HTML & CSS with practical implementations of layout, responsive design, and animation      |
 | `Course-Py---IEdT/`          | Python exercises and concept notes, taught in the Technological Baccalaureate at IEdT                           |
@@ -17,7 +19,9 @@
 ## Included Courses
 
 - **IBM Full Stack Software Developer Professional Certificate**
+- **Meta Database Engineer Professional Certificate**
 - **C++ Course** — Degree in Computer Engineering (UPC)
+- **IBM Developing Mobile Apps with Flutter Specialization**
 - **The Modern JavaScript Bootcamp Course** — Udemy
 - **Build Responsive Real World Websites with HTML5 and CSS3** — Udemy
 - **Python Course** — IEdT Technological Baccalaureate
@@ -40,7 +44,6 @@
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="35" title="HTML5"/>&nbsp;
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="35" title="CSS3"/>&nbsp;
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="35" title="Python"/>&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" width="35" title="SQL"/>
     </td>
     <td align="center">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="35" title="React"/>&nbsp;
@@ -53,13 +56,38 @@
     </td>
   </tr>
 
+  <!-- Database Engineer - Meta -->
+  <tr>
+    <td><strong>Course-Database-Engineer---Meta</strong></td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="35" title="Python"/>&nbsp;
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="50" title="MySQL"/>&nbsp;
+    </td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="35" title="Git"/>&nbsp;
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="35" title="GitHub"/>
+    </td>
+  </tr>
+
   <!-- C++ - UPC -->
   <tr>
     <td><strong>Course-CC---UPC</strong></td>
     <td align="center">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" width="35" title="C++"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" width="35" title="C"/>&nbsp;
     </td>
     <td align="center">—</td>
+  </tr>
+
+  <!-- Flutter - IBM -->
+  <tr>
+    <td><strong>Course-Flutter---IBM</strong></td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="50" title="Dart"/>
+    </td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="50" title="Flutter"/>
+    </td>
   </tr>
 
   <!-- JavaScript - Udemy -->
