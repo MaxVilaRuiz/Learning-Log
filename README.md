@@ -7,7 +7,7 @@
 | Folder / File                 | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | `Course-FullStack---IBM/`    | Training in SWE, Cloud Computing, Git & GitHub, JavaScript, HTML, CSS, React, Node.js, Python (Data Science, AI & Development), Django, Containers, SQL, Databases, Capstone Projects, and Microservices & Serverless Development |
-| `Course-Database---Meta/`    | Professional certificate covering relational and non-relational databases, SQL, database design, ER modeling, query optimization, cloud databases & practical projects in backend data management |
+| `Course-DBs---Meta/`    | Professional certificate covering relational and non-relational databases, SQL, database design, ER modeling, query optimization, cloud databases & practical projects in backend data management |
 | `Course-CC---UPC/`           | In-depth projects and exercises in C++, part of the Computer Engineering program at UPC                         |
 | `Course-Flutter---IBM/`      | Mobile app development training with Flutter & Dart, including cross-platform design for iOS & Android, database integration, notifications, deployment to app stores & a capstone project |
 | `Course-JavaScript---Udemy/` | Advanced JavaScript projects with notes exploring different paradigms and use cases of the language             |
@@ -61,7 +61,7 @@
     <td><strong>Course-Database-Engineer---Meta</strong></td>
     <td align="center">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="35" title="Python"/>&nbsp;
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="50" title="MySQL"/>&nbsp;
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="35" title="MySQL"/>&nbsp;
     </td>
     <td align="center">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="35" title="Git"/>&nbsp;
@@ -83,10 +83,10 @@
   <tr>
     <td><strong>Course-Flutter---IBM</strong></td>
     <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="50" title="Dart"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="35" title="Dart"/>
     </td>
     <td align="center">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="50" title="Flutter"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="35" title="Flutter"/>
     </td>
   </tr>
 
