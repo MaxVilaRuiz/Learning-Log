@@ -1,3 +1,4 @@
+# STATEMENTS:
 # Match Statement: 
 #   -> allows comparations with literal values and not with boolean expressions, like if statements.
 http_status = 200
@@ -11,9 +12,17 @@ match http_status:
     case _: # else ('_' to ignore) 
         print('Unknown')
 
+# Try Statement:
+#   -> To handle errors.
+try:
+    ans = 40 / 0
+except Exception as e:
+    print('Something went wrong!', e)
+except:
+    print("Something went wrong & I don't know why!")
 
+# Loop control statements:
 '''
-Loop control statements
 * Break: 
     -> To break the loop in some specific case.
 * Continue:
@@ -23,6 +32,7 @@ Loop control statements
 '''
 
 
+# FUNCTIONS PARAMS:
 # Args & Kwargs:
 # Args: 
 #   -> Use all the arguments that can be assigned as a parameters in a function.
@@ -39,16 +49,6 @@ def show_info(**kwargs):
     for key, value in kwargs.items():
         print(f"{key}: {value}")
 show_info(name="Max", age=19, city="Barcelona")
-
-
-# Try Statement:
-#   -> To handle errors.
-try:
-    ans = 40 / 0
-except Exception as e:
-    print('Something went wrong!', e)
-except:
-    print("Something went wrong & I don't know why!")
 
 
 # File Handling:
