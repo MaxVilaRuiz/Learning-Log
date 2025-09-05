@@ -78,3 +78,45 @@ show_info(name="Max", age=19, city="Barcelona")
 #       file.readlines() -> reads the entire content of the file & returns it in an ordered list
 #       file.read() -> reads the entire content of the file & store it as a string
 #       file.writelines()
+
+
+# Classes:
+class MyClass:
+    a = 5
+    def hello():
+        print('Hello, world!')
+
+    def __new__(cls: type[Self]) -> Self: # 'cls' = convention for passing the class as its first argument, which will be used for creating the new empty obj
+        pass
+
+    # To initialize the constructor of the class
+    def __init__(self, dish, items, time) -> None: # 'self' = convention.
+        self.dish = dish
+        self.items = items
+        self.time = time
+
+    def contents(self):
+        print("The " + str(self.dish) + " has " + str(self.items) + " and takes " + str(self.time) + " min to prepare.")
+
+myc = MyClass()
+print(MyClass.a)
+print(myc.a)
+print(myc.hello())
+pizza = MyClass('Pizza', ['cheese', 'bread', 'tomato'], 45)
+pasta = MyClass('Pasta', ['penne', 'sauce'], 55)
+print (pizza.items)
+print(pasta.items)
+
+# Abstract classes
+# -> Class that is designed to be specifically used as a base class.
+# Steps:
+#   * Import ABC
+#   * Create inheriting class
+#   * Import abstract method
+#   * Call abstract method
+# Structure:
+from abc import ABC, abstractmethod
+class SomeAbstractClass(ABC):
+    @abstractmethod
+    def someabstractmethod(self):
+        pass
