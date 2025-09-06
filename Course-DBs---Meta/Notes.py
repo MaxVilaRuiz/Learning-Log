@@ -120,3 +120,27 @@ class SomeAbstractClass(ABC):
     @abstractmethod
     def someabstractmethod(self):
         pass
+
+
+# Modules:
+import math # importing math library
+import math as m # importing math library & using a pseudo to the library name
+m.acosh();
+from math import sqrt, factorial # importing only the function sqrt from the math library
+print(sqrt(9))
+from math import sqrt as s # all together
+
+# Scopes:
+def func1():
+    id = 1
+    def func2():
+        nonlocal id # 'nonlocal' to modify a variable with the same name outside the nestedd function
+        id = 2
+        print('Inside the nested function: ' + id)
+    print('Before calling the function: ' + id)
+    func2()
+    print('After nested function: ' + id)
+
+id = 3
+func1()
+print('Global id: ' + id)
