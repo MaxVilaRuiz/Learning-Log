@@ -144,3 +144,26 @@ def func1():
 id = 3
 func1()
 print('Global id: ' + id)
+
+# Reload: to make dynamic changes within your code with import statements
+import importlib
+import module
+importlib.reload(module) # executes again the module 'module'
+
+# Packages: you import modules from packages (parent of a module, but with a similar structure)
+#   -> Most populars: OS, SYS, CSV, JSON, importlib, re, math, intertools
+#       * Data Science: NumPy, SciPy, NLTK, Pandas
+#       * Data analysis: Numpy, Scipy, Matplotlib, Scikit-Learn
+#       * Image processing & data visualization: open CV, matplotlib
+#       * ML & AI: Tensor Flow, PyTorch, Keras, SciPy, Scikit-learn, Theano
+#       * Web development (Flash & Django): cherry pie, pyramid, beautiful soup, selenium
+
+
+# Testing:
+#   -> Pytest: python testing framework
+import file_name # file that I want to test
+import pytest
+def test_add():
+    assert file_name.func1(4, 5) == 9 # If the output is true, the func passed this test
+#   -> For running a test file: 'python -m pytest name_of_this_file.py'
+#   -> To run only a function of the test file: 'python -m pytest name_of_this_file.py::func_name'
