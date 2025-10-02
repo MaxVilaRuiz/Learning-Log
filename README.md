@@ -87,7 +87,9 @@
     <td align="center">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" width="35" title="C"/>&nbsp;
     </td>
-    <td align="center">—</td>
+    <td align="center">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="50" title="Linux"/>
+    </td>
   </tr>
 
   <!-- Flutter - IBM -->
