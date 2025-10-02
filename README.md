@@ -9,6 +9,7 @@
 | `Course-FullStack---IBM/`    | Training in SWE, Cloud Computing, Git & GitHub, JavaScript, HTML, CSS, React, Node.js, Python (Data Science, AI & Development), Django, Containers, SQL, Databases, Capstone Projects, and Microservices & Serverless Development |
 | `Course-DBs---Meta/`    | Professional certificate covering relational and non-relational databases, SQL, database design, ER modeling, query optimization, cloud databases & practical projects in backend data management |
 | `Course-CC---UPC/`           | In-depth projects and exercises in C++, part of the Computer Engineering program at UPC                         |
+| `Course-SO---UPC/`           | Projects and exercises in Operating Systems with terminal commands, C programming and process management at UPC                         |
 | `Course-Flutter---IBM/`      | Mobile app development training with Flutter & Dart, including cross-platform design for iOS & Android, database integration, notifications, deployment to app stores & a capstone project |
 | `Course-JavaScript---Udemy/` | Advanced JavaScript projects with notes exploring different paradigms and use cases of the language             |
 | `Course-HTML---Udemy/`       | Advanced projects in HTML & CSS with practical implementations of layout, responsive design, and animation      |
@@ -21,6 +22,7 @@
 - **IBM Full Stack Software Developer Professional Certificate**
 - **Meta Database Engineer Professional Certificate**
 - **C++ Course** — Degree in Computer Engineering (UPC)
+- **SO Course** — Degree in Computer Engineering (UPC)
 - **IBM Developing Mobile Apps with Flutter Specialization**
 - **The Modern JavaScript Bootcamp Course** — Udemy
 - **Build Responsive Real World Websites with HTML5 and CSS3** — Udemy
@@ -74,6 +76,15 @@
     <td><strong>Course-CC---UPC</strong></td>
     <td align="center">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" width="35" title="C++"/>
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" width="35" title="C"/>&nbsp;
+    </td>
+    <td align="center">—</td>
+  </tr>
+
+  <!-- SO - UPC -->
+  <tr>
+    <td><strong>Course-SO---UPC</strong></td>
+    <td align="center">
       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" width="35" title="C"/>&nbsp;
     </td>
     <td align="center">—</td>
