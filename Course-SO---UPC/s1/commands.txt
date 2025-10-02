@@ -1,0 +1,34 @@
+Pregunta 1:
+>cd Documents
+>mdkir s1 s2 s3 s4 s5
+
+Pregunta 2:
+>ls
+>ls- a
+
+Pregunta 3:
+>ls -l
+Permisos ('d' = directory, '-' = regular file; 1o = permisos del propietario; 2o = permisos del grupo; 3o = permisos para otros usuarios), número de enlaces, propietario, grupo, tamaño, fecha y hora de la última modificación, nombre del archivo.
+w = write; r = read; x = execute
+
+Pregunta 4:
+Hamgurger button de la parte superior derecha > Mostrar la información addicial > Seleccionar los campos deseados (e.g. Mida, Modificat, Creat...).
+Control + H para ver los archivos ocultos.
+
+Pregunta 5:
+>rmdir s1
+>ls
+>mkdir s1
+
+Pregunta 6:
+cat = Muestra directamente todo el contenido de un archivo (concatenar).
+less = Abre un visualizador de archivos que permite navegar por el contenido del archivo cómodamente.
+
+Pregunta 7:
+>cp -i // Sirve para mostrar un diálogo en caso de que se vaya a sobreescribir un archivo para confirmar la ejecución.
+>alias cp='cp -i'
+
+Pregunta 8:
+>rm -i // Muestra un diálogo para confirmar que se va a eliminar un archivo para cada ejecución del comando.
+>mv -i // Muestra un diálogo antes se sobreescribir un archivo por haberle cambiado el nombre o haberlo movido a una ruta donde existan otros archivos con el mismo nombre.
+>alias rm='rm -i'
