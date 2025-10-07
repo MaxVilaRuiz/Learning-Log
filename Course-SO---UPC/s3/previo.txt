@@ -1,0 +1,68 @@
+Ex 1: 
+Soy el proceso 46295
+Soy el proceso 46296
+-> No se puede determinar qué proceso es el padre y cuál es el hijo porque el sistema operativo no siempre garantiza el orden de ejecución de manera jerárquica. Es decir, la llamada "fork()" crea un nuevo proceso hijo, el cual es una copia del padre y ejecuta el mismo código que él (es por eso que se ejecutan dos líneas), pero ambos se ejecutan de manera concurrente sin un orden estricto de prioridad.
+
+Ex 2:
+Antes del fork: Soy el proceso 50046
+PADRE: Soy el proceso 50046
+Los DOS: Soy el proceso 50046
+HIJO: Soy el proceso 50047
+Los DOS: Soy el proceso 50047
+-> En este caso, el primer caso es el del padre y el segundo el del hijo. Podemos estar seguros de ello porque está imprimiendo el mensaje según el pid que tengan y la llamada "fork()" asigna al padre el pid del hijo y al hijo el pid = 0. Por lo tanto, el switch se hace correctamente, ya que el hijo entra en el caso "0" y el padre en el "default".
+
+Ex 3:
+Antes del fork: Soy el proceso 51068
+PADRE: Soy el proceso 51068
+Solo lo ejecuta el padre: Soy el proceso 51068
+HIJO: Soy el proceso 51070
+-> Análogamente, los tres primeros mensajes son del padre y el último es el hijo, ya que se usa la estructura "switch()" para separar las ejecuciones en función del valor del pid (pid del padre = pid del hijo; pid del hijo = 0). El padre es el único que ejecuta la 3a línea, ya que cuando el hijo entra en su caso (case pid == 0) se llama a la función "exit(0)", la cual finaliza la ejecución del proceso del hijo.
+
+Ex 4:
+Antes del fork: Soy el proceso 53290
+PADRE: Soy el proceso 53290
+Solo lo ejecuta el padre: Soy el proceso 53290
+HIJO: Soy el proceso 53291
+HIJO acaba: Soy el proceso 53291
+-> El proceso del padre termina antes la ejecución que su hijo.
+
+Ex 5:
+Antes del fork: Soy el proceso 56338
+PADRE: Soy el proceso 56338
+HIJO: Soy el proceso 56339
+HIJO:La variable_global vale A y la local a
+PADRE:La variable_global vale A y la local a
+Solo lo ejecuta el padre: Soy el proceso 56338
+-> El proceso padre ejecuta el primer y el segundo mensaje y espera a que termine la ejecución de su hijo por la llamada "waitpid(-1, NULL, 0)" para enviar su último mensaje, el cual solo ejecuta él. El hijo ejecuta el tercer y cuarto mensaje, haciendo referencia a la variable_global y la variable_local.
+
+Ex 6:
+-> El contenido del fichero de salida, empieza con la ejecución de las dos siguientes líneas:
+    Antes del fork: Soy el proceso 99447
+    PADRE: Soy el proceso 99447
+-> Y sigue con la ejecución simultánea del padre y del hijo imprimiendo las siguientes frase según corresponda: 
+    PADRE/HIJO:La variable_global vale <value>
+-> No podemos asegurar que el contenido del fichero de salida sea el mismo en todas las ejecuciones, ya que al ejecutarse en paralelo el orden de las líneas puede variar según la planificación del sistema (e.g. puede escribir el hijo antes que el padre o el padre antes del hijo).
+
+Ex 7:
+-> El código no compila porque el procedimiento "Escribe_variables()" está llamando a la "variable_local" cuando no ha sido declarada ni pasada como parámetro, ya que está declarada como variable local en la función principal "main", pero no en el procedimiento "Escribe_variables()".
+-> No tiene que ver con la creación de procesos, ya que se trata del periodo de compilación y no durante la ejecución, en la cual se crean los procesos.
+-> Se puede arreglar el código añadiendo el parámetro "char variable_local" en la cabecera del procedimiento "Escribe_variables()" y pasar el valor de la "variable_local" como parametro desde la función principal "main()". Otra manera de hacerlo sería poner la "variable_local" fuera de la función "main()", es decir, haciéndola una variable global, pero eso rompería con el propósito por el cual ha estado diseñada esa variable.
+
+Ex 8:
+-> El programa empieza imprimiendo el PID del proceso que lleva la ejecución. Seguidamente, se remplaza el proceso actual por el nuevo programa "ls" llamando a la función "execlp()". De esta manera, como se ha cambiado el proceso correctamente, no se termina de ejecutar el código del programa. 
+-> En la pantalla veo una lista de los archivos que tengo en el directorio en el que se encuentra el programa con información detallada.
+-> El PID del proceso tan solo aparece 1a vez en pantalla, ya que el proceso de la ejecución del programa ha sido sustituida por otro proceso y, por lo tanto, no se termina con la ejecución de las últimas líneas de código, en las cuales se vuelve a requerir la impresión del PID del proceso en pantalla.
+
+Ex 9:
+-> Este código empieza imprimiendo en pantalla el PID del proceso que está llevando a cabo la ejecución del programa. Seguidamente, cambia el proceso actual por el de la ejecución del programa "ejemplo_fork1", el cual imprime el PID de los procesos que se crean (2: padre e hijo).
+-> Los mensajes que aparecen en pantalla son los siguientes:
+    Soy el proceso: 12828
+    Soy el proceso 12828
+    Soy el proceso 12829
+-> Se ejecutan un total de 3 procesos.
+
+Ex 10: 
+exit -> sección 3
+waitpid -> sección 2
+execlp -> sección 3
+perror -> sección 3
