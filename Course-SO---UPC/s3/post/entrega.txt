@@ -1,0 +1,104 @@
+Ex 29:
+-> Cuando se crea un proceso con la llamada "fork()", esta función devuelve el valor del pid del proceso hijo que se ha creado. Por lo tanto:
+    int pid = fork() // "pid" contiene el PID del proceso hijo
+-> Usando la llamada "getpid()", la cual devuelve el PID del proceso actual.
+
+Ex 30:
+-> En caso que el exclp falle.
+
+Ex 31:
+-> Hay los siguientes directorios dentro de /proc/9894/ (el padre):
+/proc/9894/attr/       /proc/9894/net/
+/proc/9894/cwd/        /proc/9894/ns/
+/proc/9894/fd/         /proc/9894/root/
+/proc/9894/fdinfo/     /proc/9894/task/
+/proc/9894/map_files/
+-> He usado el comando "ls -d /proc/9894/*/"
+
+Ex 32:
+-> Contenido de status:
+Name:   myps
+Umask:  0022
+State:  R (running)
+Tgid:   9894
+Ngid:   0
+Pid:    9894
+PPid:   9619
+TracerPid:      0
+Uid:    38308   38308   38308   38308
+Gid:    105     105     105     105
+FDSize: 64
+Groups: 105
+NStgid: 9894
+NSpid:  9894
+NSpgid: 9894
+NSsid:  9619
+Kthread:        0
+VmPeak:     2792 kB
+VmSize:     2544 kB
+VmLck:         0 kB
+VmPin:         0 kB
+VmHWM:      1516 kB
+VmRSS:      1516 kB
+RssAnon:               0 kB
+RssFile:            1516 kB
+RssShmem:              0 kB
+VmData:      120 kB
+VmStk:       136 kB
+VmExe:         4 kB
+VmLib:      2240 kB
+VmPTE:        36 kB
+VmSwap:        0 kB
+HugetlbPages:          0 kB
+CoreDumping:    0
+THP_enabled:    1
+untag_mask:     0xffffffffffffffff
+Threads:        1
+SigQ:   0/127067
+SigPnd: 0000000000000000
+ShdPnd: 0000000000000000
+SigBlk: 0000000000000000
+SigIgn: 0000000000000000
+SigCgt: 0000000000000000
+CapInh: 0000000000000000
+CapPrm: 0000000000000000
+CapEff: 0000000000000000
+CapBnd: 000001ffffffffff
+CapAmb: 0000000000000000
+NoNewPrivs:     0
+Seccomp:        0
+Seccomp_filters:        0
+Speculation_Store_Bypass:       thread vulnerable
+SpeculationIndirectBranch:      conditional enabled
+Cpus_allowed:   ffffff
+Cpus_allowed_list:      0-23
+Mems_allowed:   00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:      0
+voluntary_ctxt_switches:        3
+nonvoluntary_ctxt_switches:     272
+x86_Thread_features:
+x86_Thread_features_locked:
+-> Contenido de cmdline:
+./myps^@max^@
+-> El contenido es el mismo tanto en el documento "environ" como en el comando "env", pero la diferencia es que usando el comando "env" se expone el contenido visualmente mucho mejor, augmentando la legibilidad de la información.
+-> El estado del proceso, según la información del archivo "status" es "R" (Running).
+-> La CPU ha consumido un tiempo total de 20172 en modo usuario.
+
+Ex 33:
+-> No apuntan a ningún fichero (están vacios), ya que el proceso hijo, al cual estoy accediendo, está en estado Zoombie.
+
+Ex 34:
+-> En el caso del fichero "environ" no puedo visualizar el contenido, ya que me denega el acceso, aún que puedo ver el contenido con el comando "env". A los ficheros "status" y "cmdline" sí que tengo acceso y gracias a la información que me muestra el fichero "status", puedo ver que el proceso se encuentra en estado "Z" (Zoombie).
+
+Ex 35:
+-> En el caso del programa "pyPS_v0.c", el ficher "cwd" apunta al fichero "/dades/max.vila.ruiz/s3" y fichero "exe" apunta al fichero "/dades/max.vila.ruiz/s3/myps_v0".
+-> En este caso, los ficheros no están vacios, ya que el proceso hijo se encuentra en estado "R" (Running).
+-> Esto se debe a que en el programa myPS_v0.c no se muta el proceso del hijo a una distinto y, por lo tanto, continua con la ejecución del mismo programa.
+
+Ex 36:
+-> Sí, en este caso tengo acceso a todos los ficheros y puedo ver su contenido debido a que el estado del proceso hijo ahora se encuentra en estado "R" (Running) y antes estaba en estado "Z" (Zoombie). La explicación de porqué ha cambiado el estado del proceso se encuentra en el ejercicio anterior.
+
+Ex 37:
+-> 
+
+Ex 38:
