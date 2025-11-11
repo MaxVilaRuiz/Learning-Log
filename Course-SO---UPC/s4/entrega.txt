@@ -1,0 +1,35 @@
+--- ALARM1
+Ex 1:
+-> Nada, el proceso del programa sigue esperando al SIGALRM para desbloquearse, la cual está configurada en 10s (alarm(10)) y, al pasar 5s, le quedan 5s para enviar una alarma. Cuando el proceso recibe la alarma, termina e imprime el siguiente output:
+zsh: alarm      ./alarm1
+
+Ex 2:
+-> El comportamiento es el mismo: finaliza la ejecución del programa, pero esta vez tiene el siguiente output, ya que el programa ha sido finalizado por un comando 'kill' en lugar de por una alarma:
+zsh: killed     ./alarm1
+
+Ex 3:
+-> La shell es quien se encarga de mostrar el mensaje de finalización del proceso del programa, la cual usa la llamada a sistema 'waitpit()' para recoger el estado de finalización del proceso hijo.
+
+Ex 4:
+-> No porque el SIGALRM ya se encarga de la finalización del programa, como acción por defecto. El 'exit(1)' no se ejecuta en ningún caso, ya que el proceso termina antes de poder ejecutarlo, al recibir SIGALRM.
+
+
+--- ALARM2
+Ex 1:
+-> Cada vez que ejecuto en la terminal el comando 'kill -ALRM pid_del_programa', el programa muestra el mensaje de "ALARMA pid=x: XX segundos", conforme ha recibido una alarma. El control del tiempo no funciona según lo que pretendía el código, ya que en lugar de recibir las alarmas con la frecuencia en que ha sido programadas, estoy forzando yo mismo las alarmas desde la terminal y se procesa de igual modo (como si hubiera pasado el tiempo correspondiente).
+
+Ex 2:
+-> A pesar de que hay ciertos signals que pueden ser reprogramados, hay otros que no (e.g. SIGKILL) y, por lo tanto, existen algunas signals que no se pueden capturar ni modificar.
+
+Ex 3:
+-> Se retorna la cantidad de tiempo que faltan para la alarma anterior o, en caso de que no haya, 0. En este caso, cuando llegue un SIGALRM podríamos mirar si ha sido realmente la alarma que teniamos configurada desde el programa (retorna 0) o si ha sido una externa (retorna un valor > 0, ya que la alarma del programa aún le queda algo de tiempo para ejecutarse).
+
+
+--- ALARM3
+Ex 1:
+-> El padre solo recibe sus SIGALRM y lo mismo pasa para el hijo. Es decir, un SIGALRM del hijo no lo recibe el padre y viceversa. Lo he comprobado ejecutando el programa y, en otra terminal, enviarle SIGALRM al proceso padre e hijo con el comando 'kill -ALRM pid'.
+
+
+--- ALARM4
+Ex 1:
+-> Cada proceso programa 10 SIGALRM. Cada proceso recibe la alarma que el mismo ha programado. El padre hace 10 iteraciones en el bucle while, ya que no ejecuta la llamada 'alarm()' que ejecuta el hijo antes de iniciar el while. 

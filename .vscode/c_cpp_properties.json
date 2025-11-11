@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "GNU-G++-15",
+            "compilerPath": "/opt/homebrew/Cellar/gcc/15.2.0/bin/g++-15",
+            "intelliSenseMode": "gcc-arm64",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/homebrew/Cellar/gcc/15.2.0/include/c++/15.2.0",
+                "/opt/homebrew/Cellar/gcc/15.2.0/include/c++/15.2.0/aarch64-apple-darwin24",
+                "/opt/homebrew/Cellar/gcc/15.2.0/lib/gcc/15.2.0/include"
+            ]
+        }
+    ],
+    "version": 4
+}
