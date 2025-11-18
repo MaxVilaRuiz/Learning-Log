@@ -1,0 +1,31 @@
+Ex 1:
+-> 0
+
+
+Ex 2: 
+-> ./es1 < fichero.txt 
+
+
+Ex 3:
+-rwxr-xr-x@ 1 maxvilaruiz  staff  33696 Nov 18 12:18 es1
+-rw-r--r--@ 1 maxvilaruiz  staff   1319 Nov 18 12:16 es1.c
+-rw-r--r--@ 1 maxvilaruiz  staff   1700 Jul 23 08:17 es2.c
+-rw-r--r--@ 1 maxvilaruiz  staff    943 Jul 23 08:17 es3.c
+-rw-r--r--@ 1 maxvilaruiz  staff   1206 Jul 23 08:17 es4.c
+-rw-r--r--@ 1 maxvilaruiz  staff     31 Jul 23 08:17 es5.c
+-rw-r--r--@ 1 maxvilaruiz  staff    112 Jul 23 08:17 es6.c
+-rw-r--r--@ 1 maxvilaruiz  staff    107 Jul 23 08:17 es7.c
+-rw-r--r--@ 1 maxvilaruiz  staff    644 Jul 23 08:17 es8.c
+-rw-r--r--@ 1 maxvilaruiz  staff   1133 Jul 23 08:17 es9.c
+
+-> El comando "grep es" muestra toda la cadena recibida por la entrada estándar que contenga el texto "es". En este caso recibe como entrada la salida del comando "ls -l" y por eso solo muestra la información sobre los ficheros que contienen "es" (e.g. es5.c).
+
+
+Ex 4:
+> ps -eo pid,user,comm | grep bash
+
+
+Ex 5:
+-> Es el caso del entero en representación interna, se escriben 4 bytes, ya que es un entero.
+-> En el caso del entero en formato string, se escriben 5 bytes, 1 byte por cada carácter.
+-> En la terminal, el número en representación interna no se muestra, ya que no está en formato ASCII. Pero el número en formato string sí que se muestra correctamente por la misma razón.
