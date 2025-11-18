@@ -1,0 +1,17 @@
+# macOS system files
+.DS_Store
+
+# Generic unwanted files
+19-Guitar
+
+# Node / Python typical project
+node_modules/
+dist/
+venv/
+__pycache__/
+*.pyc
+
+# OS or editor trash
+Thumbs.db
+.idea/
+.vscode/
