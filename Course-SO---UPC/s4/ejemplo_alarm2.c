@@ -16,10 +16,19 @@ int segundos=0;
 void funcion_alarma(int s)
 {
     char buff[256];
-    segundos=segundos+10;
-    sprintf(buff, "ALARMA pid=%d: %d segundos\n",getpid(),segundos);
+
+    if (s == SIGALRM) {
+        segundos=segundos+10;
+        sprintf(buff, "ALARMA pid=%d: %d segundos\n",getpid(),segundos);
+    }
+    else {
+        sprintf(buff, "Ha llegado un signal SIGUSR1\n");
+    }
+
     write(1, buff, strlen(buff)); 
 }
+
+
 int main (int argc,char * argv[])
 {
     struct sigaction sa;
@@ -27,6 +36,7 @@ int main (int argc,char * argv[])
 
     sigemptyset(&mask);
     sigaddset(&mask, SIGALRM);
+    sigaddset(&mask, SIGUSR1);
     sigprocmask(SIG_BLOCK,&mask, NULL);
 
     /* REPROGRAMAMOS EL SIGNAL SIGALRM */

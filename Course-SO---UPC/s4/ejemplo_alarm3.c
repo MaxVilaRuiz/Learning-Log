@@ -24,14 +24,6 @@ int main (int argc,char * argv[])
     struct sigaction sa;
     sigset_t mask;
 
-    struct sigaction sa;
-    sigset_t mask;
-    sigfillset(&sa.sa_mask);
-    sigdelset(&sa.sa_mask, SIGALRM);
-    sigaddset(&sa.sa_mask, SIGCHLD);
-    sigemptyset(&sa.sa_mask);
-    sigprocmask(SIG_BLOCK, &sa.sa_mask, NULL);
-
     /* EVITAMOS QUE NOS LLEGUE EL SIGALRM FUERA DEL SIGSUSPEND */
     sigemptyset(&mask);
     sigaddset(&mask, SIGALRM);
@@ -42,12 +34,20 @@ int main (int argc,char * argv[])
     sa.sa_flags = SA_RESTART; 
     sigfillset(&sa.sa_mask); 
 
-    if (sigaction(SIGALRM, &sa, NULL) < 0) error_y_exit("sigaction", 1);
+    int res = fork();
+    if (res < 0) error_y_exit("fork", 1);
 
-    if (fork() < 0) error_y_exit("fork", 1);
+    if (res == 0 && sigaction(SIGALRM, &sa, NULL) < 0) error_y_exit("sigaction", 1);
+
     while (segundos<100)
     {
 	alarm(10);
+    if (res == 0) {
+        sigemptyset(&mask);
+        sigaddset(&mask, SIGALRM);
+        sigprocmask(SIG_BLOCK,&mask, NULL);
+        execlp("./a", "a", (char *) NULL);
+    }
 	sigfillset(&mask);
         sigdelset(&mask, SIGALRM);
         sigdelset(&mask, SIGINT);

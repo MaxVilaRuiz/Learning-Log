@@ -1,0 +1,8 @@
+Ex 39:
+-> Ahora cuando le llega el SIGALRM al padre, termina su ejecución, ya que no tiene manera de gestionarla y es su acción por defecto (terminar). A pesar de que el padre termina la ejecución, el hijo sigue con el proceso porque es el ahora el único que puede gestionar el SIGALRM.
+
+Ex 40:
+-> La tabla de tratamientos de signals vuelve a sus valores por defecto al hacer un execlp. De hecho, al comprovar el funcionamiento del código ejecutando el programa podemos ver que no se imprime nada en la terminal a pesar de que se ejecute el SIGALRM. Eso quiere decir, que a pesar de que se reciben los SIGALRMs, no hay ningun proceso que los trate, ya que el proceso hijo está ahora en otro programa (por el execlp).
+
+Ex 41:
+-> El programa ejemplo_waitpid es concurrente, ya que se ejecutan multiples procesos de manera simultanea (el padre y sus hijos).
