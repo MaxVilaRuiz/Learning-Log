@@ -1,0 +1,37 @@
+Ex 1:
+cons1: 0000000100000848 S 
+resp: 0000000100008000 D
+argn: 0000000100008004 S
+argk: no me sale nada.
+-> No es poden saber les direccions de totes les variables amb nm, ja que no sempre em mostra les variables locals, com ara "argk".
+-> S: símbolo distinto a dato, texto, absoluto, indefinido, bss, común.
+-> D: .data (datos).
+-> propth sale como T (.text).
+
+
+Ex 2:
+-> He usado la opción de gcc "-static".
+
+Programa mem2_previo:
+- vector1: symbol addr 0x0000000000602060 (.bss)
+- vector2: symbol addr 0x0000000000622060 (.bss)
+- Región .bss (rw-p): 0x0000000000600000 - 0x0000000000650000 = 0x50000 = 327680 bytes.
+
+Programa mem2_previo_v2, n = 10:
+- vector1: dirección 0x00e32010
+    región [heap]: 0x00e32000 - 0x00e33000 = 4096 bytes.
+- vector2: dirección 0x7f7bd3c00000
+    región anon: 0x7f7bd3c00000 - 0x7f7bd3c01000 = 4096 bytes.
+
+Programa mem2_previo_v2, n=10000:
+- vector: direccion 0x00e35000 (dentro de [heap])
+    región [heap]: 0x00e35000 - 0x00e3f000 = 40960 bytes.
+- vector2: 0x7f7bd3c20000
+    región anon: 0x7f7bd3c20000 - 0x7f7bd3c30000 = 40960 bytes.
+
+Programa mem2_previo_v2, n=40000:
+- vector1: direccion 0x00e45000 = 163840 bytes.
+- vector2: 0x7f7bd3c50000
+  región anon: 0x7f7bd3c50000 - 0x7f7bd3c79000 = 163840 bytes.
+
+-> Sí existen diferencias entre los distintos valores de las ejecuciones de ambos programas.

@@ -1,0 +1,84 @@
+Main Structure:
+backend/
+ ├── app/
+ │    ├── api/
+ │    │    ├── v1/
+ │    │    │    ├── routes_professionals.py
+ │    │    │    ├── routes_patients.py
+ │    │    │    ├── routes_appointments.py
+ │    │    │    └── routes_tasks.py
+ │    ├── core/
+ │    │    ├── config.py
+ │    │    ├── security.py
+ │    │    └── dependencies.py
+ │    ├── db/
+ │    │    ├── session.py
+ │    │    ├── base.py
+ │    │    └── init_db.py
+ │    ├── models/
+ │    │    ├── professional.py
+ │    │    ├── patient.py
+ │    │    ├── appointment.py
+ │    │    ├── task.py
+ │    │    └── __init__.py
+ │    ├── schemas/
+ │    │    ├── professional.py
+ │    │    ├── patient.py
+ │    │    └── __init__.py
+ │    ├── services/
+ │    │    ├── professional_service.py
+ │    │    ├── patient_service.py
+ │    │    └── __init__.py
+ │    ├── main.py
+ │    └── __init__.py
+ ├── alembic/
+ ├── tests/
+ ├── .env
+ ├── .env.example
+ ├── requirements.txt (o pyproject.toml)
+ ├── Dockerfile
+ └── README.md
+
+app/: folder of the source code of the app.
+app/api: contain subfolders (e.g. v1, v2...) to store the endpoints (routes) of the multiple versions of the backend.
+app/core/: contain the config & global elements that affects the whole project (e.g. config.py which stores the env variables...).
+app/db/: contain all the information related with de db & its connection. 
+app/models/: defines the SQLAlchemy tables (ORM classes), where each doc defines a principal entity.
+app/schemas/: Pydantic classes, used to define how the data go in & out of the API (contract between the backend & the frontend).
+app/services/: contains the business logic & CRUD functions. There are no HTTP routes, only functions that will use the routers.
+app/main.py: entrypoint of the FastAPI server.
+alembic/: controls the db migrations. Contains "env.py" which configs the enviroment of the migrations, and "versions/" which stores the files of each migration generated automaticaly.
+tests/: structure:
+tests/
+ ├── conftest.py           # global config, fixtures of the DB
+ ├── test_professionals.py
+ ├── test_patients.py
+ └── test_auth.py 
+.env: local doc with private variables.
+.env.example: version of the ".env" without credentials, to share it with the team.
+requirements.txt or pyproject.toml: define the dependencies of the projects. Used by the hosting providers during the project deploy.
+Dockerfile: to package the app.
+
+
+---
+
+
+Python Enviroment:
+> python3 -m venv .venv
+> source .venv/bin/activate	 	# To activate the enviroment
+# Install the necessary dependencies
+> deactivate			 	# To desactivate the enviroment (when stop working on the project) 
+
+
+--- 
+
+
+To run the project:
+> uvicorn app.main:app --reload
+
+
+---
+
+
+To install requirements:
+> pip install -r requirements.txt
