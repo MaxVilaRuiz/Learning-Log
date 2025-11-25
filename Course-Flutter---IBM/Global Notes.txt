@@ -12,6 +12,7 @@ To start a Flutter project:
 
 To run a Flutter project run:
     > flutter run -d <platform>
+    > flutter run -d chrome --web-port=8080
     Ex: > flutter run -d chrome
 
 Good project structure:

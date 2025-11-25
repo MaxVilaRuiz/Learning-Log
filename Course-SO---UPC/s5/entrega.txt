@@ -1,0 +1,60 @@
+Ex 46:
+Para los dos comandos, el tamaño de la salida en el caso del ejecutable estático es mucho mayor que el ejecutable dinámico. Esto se debe a que el ejecutable estático necesita poner las librerías necesarias para la ejecución del programa en el propio ejecutable y no puede usar contenido de librerías dinámicos (ocupa mucho menos para el propio programa) como es el caso de las dinámicas.
+
+
+Ex 47:
+mem1_dynamic:
+55e904f00000-55e904f01000 ninguna
+55e904f01000-55e904f02000 ninguna
+55e904f02000-55e904f03000 ninguna
+55e9064f1000-55e906512000 [heap]
+7fe21ca00000-7fe21cbfb000 ninguna
+7fe21cbfb000-7fe21cbff000 ninguna
+7fe21cbff000-7fe21cc07000 ninguna
+7fe21cc07000-7fe21cc15000 ninguna
+7fe21cdd9000-7fe21cddc000 ninguna 
+7fe21ce1a000-7fe21ce1c000 ninguna 
+7fe21ce1c000-7fe21ce4f000 ninguna
+7fe21ce4f000-7fe21ce51000 ninguna
+7fe21ce51000-7fe21ce53000 ninguna
+7ffd48c93000-7ffd48cb5000 [stack]
+7ffd48db8000-7ffd48dbc000 [vvar]
+7ffd48dbc000-7ffd48dbe000 [vdso]
+ffffffffff600000-ffffffffff601000 [vsyscall]
+mem1_static:
+00400000-004a6000 ninguna
+004a6000-004ab000 ninguna
+004ab000-004af000 ninguna
+004af000-004b4000 ninguna
+325a9000-325cb000 [heap]
+7ffdb5353000-7ffdb5375000 [stack]
+7ffdb53a0000-7ffdb53a4000 [vvar]
+7ffdb53a4000-7ffdb53a6000 [vdso]
+ffffffffff600000-ffffffffff601000 [vsyscall]
+
+-> La sección de maps para el caso del ejecutable dinámico es major que el ejecutable estático. Esto se debe a que el ejecutable dinámico está concediendo direcciones de memoría con ciertos permisos a bibiotecas compartidas del sistema para poderlas usar durante la ejecucación.
+
+
+Ex 48:
+const1: data, apunta a la dirección del ejecutable (permisos rw--p).
+resp: data, apunta a la dirección del ejecutable (permisos rw--p).
+argn: bss, la dirección está entre el stack y el heap (permisos rw--p).
+argk: stack, 7ffdb5353000-7ffdb5375000
+ptr: stack, 7ffdb5353000-7ffdb5375000
+
+-> Usando el comando nm da los siguientes resultados:
+const1: sección read only.
+resp: sección data.
+argn: sección bss.
+argk: sección stack.
+ptr: sección stack.
+
+
+Ex 49:
+Ejecución ['1', '1']:
+16324000-16346000
+Ejecución ['1', '3']:
+2c66d000-2c68f000
+Ejecución ['3', '4']:
+2d549000-2d58c000
+-> Sí, cambia el tamaño del heap según el parámetro de entrada.
