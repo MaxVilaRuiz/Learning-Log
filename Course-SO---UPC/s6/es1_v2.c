@@ -23,15 +23,11 @@ main ()
   write (2, buffer, strlen (buffer));
 
 
-  // Leemos del canal 0 (entrada std), 1 bye
-  ret = read (0, &c, sizeof (c));
-  // Cuando el read devuelve 0 significa que se ha acabado la 
-  // entrada de datos --> acabamos el bucle de lectura
-  while (ret > 0)
-    {
-      // Escribimos en el canal 1 (salida std) 1 byte
-      write (1, &c, sizeof (c));
-      ret = read (0, &c, sizeof (c));
-    }
+  while ((ret = read(0, buffer, sizeof(buffer))) > 0) {
+    write(1, buffer, ret);
+  }
+
   write (1, buf, strlen (buf));
+
+  return 0;
 }

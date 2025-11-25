@@ -1,0 +1,48 @@
+Ex 56:
+> ps
+> ./es1 > dev/pst/1
+> ./es1 | ./es1
+> strace -o salida_v2 -e read ./es1_v2 < es2.c
+> strace -o salida_v1 -e read ./es1 < es2.c
+
+-> En la ejecución del primer programa (es1.c) se ejecuta la llamada a sistema "read()" un total de 1702, mientras que en el segundo (es1_v2) se ejecutan tan solo 4 veces. 
+-> Esto demuestra que el programa es1_v2 es mucho más eficiente que el programa es1, ya que hace muchísimas menos llamadas a sistema, las cuales consumen cierto espacio en el procesamiento de la CPU.
+
+
+Ex 57:
+-> En el caso de poner un 1 como primer parámetro, el programa te imprime un número random en formato de entero (no se puede ver por la terminal), pero en caso que se haya puesto un 0, se imprime en formato ASCII. 
+-> El primer parámetro sirve para definir el formato con el que se quiere que se imprima el número random generado: formato de entero o formato ASCII.
+
+
+Ex 58:
+-> El programa asume que su entrada es un entero con formato entero, por eso en el caso de la entrada en formato entero (./es3 < ./es2 1 x), el program funciona perfectamente.
+-> Por otro lado, si se introduce un entero en formato ASCII como entrada del programa es3.c (./es3 < ./es2 0 1), el programa no funciona como se espera y imprime dos números en la terminal (en lugar de uno solo, el que se ha introducido como entrada), ya que en lee 4 bytes en lugar de todos los bytes necesarios para leer el número en ASCII (un byte por dígito). Además, hay que añadir que ninguno de los dos números que se muestran en la salida de este último caso coincide con el número de la entrada (es lo que debería de hacer el programa).
+
+
+Ex 59:
+-> Por lo que se he explicado en el ejercicio anterior. El programa es3.c está pensado para recibir un entero como entrada, mientras que el es4.c hace lo contrario. Si juntamos el hecho de que el programa es2.c ha generado dos ficheros de respuesta distintos para cada ejecución con los diferentes formatos que hemos solicitado (formato ASCII y formato entero), restulta que tan solo uno de los dos resultados de podrá leer en terminal para los programas es3.c y es4.c.
+
+
+Ex 60:
+CMD                         %CPU     TIME
+./es1                        0.0 00:00:00
+./es5                        100 00:00:19
+./es1                        0.0 00:00:00
+./es5                        100 00:00:21
+./es1                        0.0 00:00:00
+./es5                        100 00:00:23
+./es1                        0.0 00:00:00
+./es5                        100 00:00:25
+./es1                        0.0 00:00:00
+./es5                        100 00:00:27
+./es1                        0.0 00:00:00
+./es5                        100 00:00:29
+
+-> El programa es1.c no consume nada de CPU durante su ejecución (mientras no recibe ningún dato), mientras que el programa es5.c lo hace por completo. Esto se debe a que la llamada de sistema "read()" que se usa en el programa es1.c espera sin consumir cpu hasta recibir una entrada. Por otro lado, el programa es5.c (while infinito) está siempre activo.
+-> Las líneas diferenciales para cada uno de los programas son las siguientes:
+-> es1.c: ret = read (0, &c, sizeof (c));
+-> es5.c: while (1);
+
+
+Ex 61:
+-> 
