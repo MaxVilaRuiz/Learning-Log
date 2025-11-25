@@ -1,0 +1,12 @@
+Ex 1:
+$mkfifo mypipe
+$cat > mypipe
+$cat < mypipe
+
+Ex 2:
+-> Desde dos terminales distintos no se puede, ya que no tiene nombre en el sistema de ficheros y por lo tanto no puede ser abierta por otros procesos que no formen parte de la pipeline inicial.
+-> Desde el mismo terminal sí que podemos porque lo estaría ejecutando el mismo proceso de la terminal (e.g. cat | cat).
+
+Ex 3:
+close(0);	// Para cerrar la entrada estándar
+dup(4);  	// Para crear una copia de la entrada estándar 4 en el primer descriptor libre (0)
