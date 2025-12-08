@@ -45,4 +45,16 @@ app/: the core of the project.
 app/layout.tsx: root of the website, which must include elements that would repeat in every page, such as: global typo, shared components, basic html labels...
 app/page.tsx: the '/' router (landing page).
 app/globals.css: global styles.
--> Each page in app/ creates a website route. 
+-> Each page in app/ creates a website route.
+
+
+---
+
+
+Run Next.js in Vercel:
+# Install vercel:
+> npm i -g vercel
+# Config Vercel:
+> vercel
+# Run to production:
+> vercel --prod 
