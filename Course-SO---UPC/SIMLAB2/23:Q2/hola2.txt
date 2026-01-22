@@ -1,0 +1,8 @@
+Hola Este
+.txt tiene
+mas endlines
+que
+el primer hola1 que solo tiene 5
+andlines, pues este
+en total tiene
+7

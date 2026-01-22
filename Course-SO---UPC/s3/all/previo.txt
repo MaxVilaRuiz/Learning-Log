@@ -1,0 +1,57 @@
+1:
+Soy el proceso 90277
+Soy el proceso 90278
+A partir del fork hay dos procesos en ejecucion, el padre e hijo, y usando getpid() podemos obtener el id del priceso en ejecucion.
+El padre tiene el pid 90277 y el hijo 90278.
+
+2:
+Antes del fork: Soy el proceso 90396
+PADRE: Soy el proceso 90396
+Los DOS: Soy el proceso 90396
+HIJO: Soy el proceso 90397
+Los DOS: Soy el proceso 90397
+
+Antes del fork, el proceso en ejecucuin es el 90396 (padre).
+Despues de el fork, hay 2 procesos en ejecucion: el padre e hijo.
+En el proceso padre, el pid que devuelve el fork() es el pid del proceso hijo, por lo tando dento del switch se ejecuta el caso default.
+El el proceso hijo, el pid que devuelve el fork() es 0, por lo tanto se ejecuta el caso 0.
+Primero se ejecuta el padre y despues el hijo. Eso se puede observar, por el orden en que se imprimen los pid.
+Como que el caso de "los DOS" esta fuera del switch, se ejecuta una vez por cada proceso (una pez el padre y una ver el hijo), por eso sale 2 vezes, pero con diferente pid.
+
+3:
+Antes del fork: Soy el proceso 90784
+PADRE: Soy el proceso 90784
+Solo lo ejecuta el padre: Soy el proceso 90784
+HIJO: Soy el proceso 90785
+
+Andes de el fork, el proceso en ejecucuin es el 90784 (padre).
+Una vez se ejecuta el fork(), tenemos 2 procesos en ejecucion: el padre e hijo.
+El padre ejecuta antes que el hijo. Podemos verlo ya que en el padre, el fork() devuelve el pid del hijo, por lo tanto se ejecuta el caso default.
+Despues, fuera del switch (seguimos en el proceso padre) se ejecuta el caso "Solo lo ejecuta el padre".
+Despues se ejecuta el hijo, ya que el pid que devuelve el fork() en el proceso hijo es 0, por lo tanto se ejecuta el caso 0.
+Esta vez, el exit(0) termina la ejecucion del proceso hijo, por lo tanto no se ejecuta el caso "Solo lo ejecuta el padre" en el proceso hijo.
+
+4:
+//sin waitpd()
+Antes del fork: Soy el proceso 91044
+PADRE: Soy el proceso 91044
+Solo lo ejecuta el padre: Soy el proceso 91044
+HIJO: Soy el proceso 91045
+HIJO acaba: Soy el proceso 91045
+
+-Acaca antes la ejecucion del proceso padre
+
+//con waitpd()
+Antes del fork: Soy el proceso 91150
+PADRE: Soy el proceso 91150
+HIJO: Soy el proceso 91151
+HIJO acaba: Soy el proceso 91151
+Solo lo ejecuta el padre: Soy el proceso 91150
+
+5:
+Antes del fork: Soy el proceso 91922
+PADRE: Soy el proceso 91922
+HIJO: Soy el proceso 91923
+HIJO:La variable_global vale A y la local a
+PADRE:La variable_global vale A y la local a
+Solo lo ejecuta el padre: Soy el proceso 91922

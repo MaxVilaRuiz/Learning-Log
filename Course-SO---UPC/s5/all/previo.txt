@@ -1,0 +1,86 @@
+-   Utiliza el comando nm sobre el ejecutable y apunta en el fichero “previo.txt” la dirección asignada a cada una de las variables del programa. Busca en el man (y apunta en previo.txt) los tipos de símbolos que nos muestra nm. Por ejemplo, los símbolos etiquetados con una “D” significa que están en la sección de datos (variables globales). ¿Es posible saber la dirección de las variables “i” y “j” con el comando nm? ¿Por qué? ¿En qué zona de memoria están reservadas estas variables? Busca también la dirección asignada a la función “suma”.
+
+                 U ___sprintf_chk
+0000000100000000 T __mh_execute_header
+                 U _atoi
+                 U _exit
+0000000100008000 S _j
+0000000100003e14 T _main
+                 U _strlen
+0000000100003de8 T _suma
+                 U _write
+Es possible saber la direccion de j ya que es una variable global, pero no la de i, que es una variable local, porque se encuentra en la pila.
+
+
+-   Utiliza el comando gcc para compilar el fichero mem1_previo.c enlazándolo con librerías estáticas. Indica en el fichero “previo.txt” qué comando has utilizado.
+Con el comando "gcc -static -o mem1_previo.x mem1_previo.c"
+
+
+
+-   Compila de forma estática tanto mem2_previo como mem2_previo_v2. Para ambos programas haz lo siguiente: ejecuta el programa y antes de pulsar Return para que acabe, desde otro terminal, accede al directorio del /proc/PID_del_proceso que contiene la información sobre el proceso y observa el fichero maps. Este fichero contiene una línea para cada región de memoria reservada. La primera columna nos indica la dirección inicial y final de la región (en hexadecimal). La diferencia entre ambos valores nos da el tamaño de la región. Busca en la página del man para proc el formato de la salida del fichero maps y el significado del resto de campos. Anota en el fichero previo.txt el tamaño total de la region de heap y datos para los siguientes números de elementos del vector: 10 y 40000. La región del heap esta etiquetada como [heap] pero la región de datos está etiquetada con el nombre del ejecutable. Deberás deducir cual es (hay varias) por los permisos de la región. ¿Existe alguna diferencia entre los distintos valores de las ejecuciones de ambos programas?
+
+//v1 10
+==== Writable regions for process 14854
+REGION TYPE                    START - END         [ VSIZE  RSDNT  DIRTY   SWAP] PRT/MAX SHRMOD PURGE    REGION DETAIL
+__DATA                      100260000-100288000    [  160K     0K     0K    16K] rw-/rw- SM=PRV          /Users/USER/Library/Mobile Documents/com~apple~CloudDocs/*/mem2_previo
+dyld private memory         100698000-1006d8000    [  256K    48K    48K     0K] rw-/rwx SM=PRV  
+Kernel Alloc Once           1006e0000-1006e8000    [   32K     0K     0K    16K] rw-/rwx SM=PRV  
+MALLOC metadata             1006f0000-1006f4000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             1006f8000-100700000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             100708000-100710000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             100718000-100720000    [   32K     0K     0K    32K] rw-/rwx SM=SHM  
+MALLOC metadata             10072c000-100730000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC_TINY                 13d600000-13d700000    [ 1024K    32K    32K     0K] rw-/rwx SM=PRV          MallocHelperZone_0x1006ec000
+MALLOC_SMALL                13d800000-13e000000    [ 8192K    16K    16K    16K] rw-/rwx SM=PRV          MallocHelperZone_0x1006ec000
+Stack                       16f3ac000-16fba8000    [ 8176K    16K    16K    16K] rw-/rwx SM=PRV          thread 0
+
+//v1 40000
+==== Writable regions for process 14988
+REGION TYPE                    START - END         [ VSIZE  RSDNT  DIRTY   SWAP] PRT/MAX SHRMOD PURGE    REGION DETAIL
+__DATA                      1046fc000-104724000    [  160K   160K   160K     0K] rw-/rw- SM=PRV          /Users/USER/Library/Mobile Documents/com~apple~CloudDocs/*/mem2_previo
+dyld private memory         104b34000-104b74000    [  256K    32K    32K    16K] rw-/rwx SM=PRV  
+Kernel Alloc Once           104b7c000-104b84000    [   32K     0K     0K    16K] rw-/rwx SM=PRV  
+MALLOC metadata             104b8c000-104b90000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             104b94000-104b9c000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             104ba4000-104bac000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             104bb4000-104bbc000    [   32K     0K     0K    32K] rw-/rwx SM=SHM  
+MALLOC metadata             104bc8000-104bcc000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC_TINY                 143600000-143700000    [ 1024K    16K    16K    16K] rw-/rwx SM=PRV          MallocHelperZone_0x104b88000
+MALLOC_TINY                 143700000-143800000    [ 1024K    32K    32K     0K] rw-/rwx SM=PRV          MallocHelperZone_0x104b88000
+MALLOC_SMALL                143800000-144000000    [ 8192K    16K    16K    16K] rw-/rwx SM=PRV          MallocHelperZone_0x104b88000
+Stack                       16af10000-16b70c000    [ 8176K    16K    16K    16K] rw-/rwx SM=PRV          thread 0
+
+
+
+//v2 10
+==== Writable regions for process 15072
+REGION TYPE                    START - END         [ VSIZE  RSDNT  DIRTY   SWAP] PRT/MAX SHRMOD PURGE    REGION DETAIL
+__DATA                      102a90000-102ab8000    [  160K     0K     0K     0K] rw-/rw- SM=NUL          /Users/USER/Library/Mobile Documents/com~apple~CloudDocs/*/mem2_previo_v2
+SBRK                        102ac4000-102ec4000    [ 4096K    16K    16K     0K] rw-/rwx SM=PRV  
+dyld private memory         102ec8000-102f08000    [  256K    48K    48K     0K] rw-/rwx SM=PRV  
+Kernel Alloc Once           102f10000-102f18000    [   32K    16K    16K     0K] rw-/rwx SM=PRV  
+MALLOC metadata             102f20000-102f24000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             102f28000-102f30000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             102f38000-102f40000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             102f48000-102f50000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             102f5c000-102f60000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC_TINY                 136600000-136700000    [ 1024K    32K    32K     0K] rw-/rwx SM=PRV          MallocHelperZone_0x102f1c000
+MALLOC_SMALL                136800000-137000000    [ 8192K    32K    32K     0K] rw-/rwx SM=PRV          MallocHelperZone_0x102f1c000
+Stack                       16cb7c000-16d378000    [ 8176K    32K    32K     0K] rw-/rwx SM=PRV          thread 0
+
+
+//v2 40000
+==== Writable regions for process 15150
+REGION TYPE                    START - END         [ VSIZE  RSDNT  DIRTY   SWAP] PRT/MAX SHRMOD PURGE    REGION DETAIL
+__DATA                      102c54000-102c7c000    [  160K     0K     0K     0K] rw-/rw- SM=NUL          /Users/USER/Library/Mobile Documents/com~apple~CloudDocs/*/mem2_previo_v2
+SBRK                        102c88000-103088000    [ 4096K   160K   160K     0K] rw-/rwx SM=PRV  
+dyld private memory         10308c000-1030cc000    [  256K    48K    48K     0K] rw-/rwx SM=PRV  
+Kernel Alloc Once           1030d4000-1030dc000    [   32K    16K    16K     0K] rw-/rwx SM=PRV  
+MALLOC metadata             1030e4000-1030e8000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             1030ec000-1030f4000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             1030fc000-103104000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             10310c000-103114000    [   32K    32K    32K     0K] rw-/rwx SM=SHM  
+MALLOC metadata             103120000-103124000    [   16K    16K    16K     0K] rw-/rwx SM=SHM  
+MALLOC_TINY                 127600000-127700000    [ 1024K    32K    32K     0K] rw-/rwx SM=PRV          MallocHelperZone_0x1030e0000
+MALLOC_SMALL                127800000-128000000    [ 8192K    32K    32K     0K] rw-/rwx SM=PRV          MallocHelperZone_0x1030e0000
+Stack                       16c9b8000-16d1b4000    [ 8176K    32K    32K     0K] rw-/rwx SM=PRV          thread 0

@@ -1,0 +1,37 @@
+alarm1:
+1. Ejecuta alarm1 en una consola y observa su comportamiento. ¿Qué ocurre cuando pasan 5 segundos?
+-Nada, la alarma es de 10 segundos.
+
+2. Ejecuta de nuevo alarm1 y antes de que acabe el temporizador envíale un signal de tipo SIGKILL. Para ello, en otro terminal ejecuta el comando ps para obtener el pid del proceso y a continuación utiliza el comando kill con la opción “–KILL” para enviar al proceso el signal SIGKILL. ¿El comportamiento es el mismo que si esperas que llegue el SIGALRM? ¿Recibes un mensaje diferente en el terminal?
+-No, el comportamiento no es el mismo. Recibes un mensaje diferente en el terminal.
+Sin hacer el kill, el mensaje es: zsh: alarm      ./alarm1
+Si hacemos kill, el mensaje es: zsh: killed     ./alarm1
+
+3. ¿Qué proceso se encarga de mostrar los mensajes que aparecen en pantalla cuando muere el proceso alarm1? ¿Con qué llamada a sistema el shell recoge el estado de finalización del proceso que ejecuta alarm1 cuando éste termina?
+-El shell es el encargado de mostrar los mensajes que aparecen en cuando muere el proceso. El shell recoge el estado de finalización del proceso que ejecuta alarm1 cuando este termina con la llamada a sistema waitpid().
+
+4. ¿Es necesario el exit que hay en el código de alarm1? ¿Se ejecuta en algún caso?
+-No, debido a que justo antes se ejecuta el sigsuspend() que suspende el proceso.
+
+
+
+alarm2:
+1. Ejecuta alarm2 en un terminal. Abre otro, averigua el pid del proceso alarm2 y utiliza el comando kill para enviarle el signal “–ALRM” varias veces. ¿Qué comportamiento observas? ¿El control de tiempo ha funcionado como pretendía el código?
+-Al ejecutar el kill -ALRM, continua la ejecucion como si la alarma hubiera finalizado, y continua en la siguiente iteracion hasta llegar a 100
+
+2. ¿Se puede modificar el tratamiento asociado a cualquier signal?
+-No, hay algunos por ejemplo el SIGKILL y SIGSTOP que no se pueden modificar.
+
+3. Mira en el man (man alarm) el valor de retorno de la llamada a sistema alarm y piensa cómo podríamos arreglar el código para detectar cuándo un SIGALRM nos llega sin estar relacionado con el temporizador.
+-El valor de retorno de la llamada es el tiempo restante de esa alarma. Podriamos restar a los segundos totales el valor que nos devuelve la funcion.
+
+
+alarm3:
+1. ¿Quién recibe los SIGALRM: el padre, el hijo o los dos? ¿Cómo lo has comprobado? Modifica la función “funcion_alarma” para que en el mensaje que se escribe aparezca también el pid del proceso, de forma que podamos ver fácilmente qué proceso recibe los signals.
+-Los dos lo reciben. Ejecutando el programa se puede ver que se muestra el pid del padre e hijo, despues de que salte la alarma.
+
+
+alarm4:
+1. ¿Cuántos SIGALRMS programa cada proceso? ¿Quién recibe cada alarma: El padre, el hijo, los dos? ¿Qué le pasa al padre? ¿Cómo lo has comprobado? Modifica el código de forma que la primera alarma la programe el padre antes de fork (y el hijo no), y observa cómo el hijo se queda esperando en la llamada sigsuspend.
+-Si dejamos ejecutar sin interumpir, primero se ejecuta los 100 segundos del hijo, y despues una vez finalizado se ejecutan los 100 segundos del padre.
+Si hacemos kill con el pid del padre, se ejecutan los 2 procesos a la vez.
